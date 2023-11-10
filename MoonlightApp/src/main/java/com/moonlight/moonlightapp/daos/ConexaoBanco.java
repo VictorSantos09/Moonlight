@@ -19,7 +19,7 @@ public class ConexaoBanco {
     private static final String Driver = "com.mysql.cj.jdbc.Driver";
     private static final String Url = "jdbc:mysql://localhost:3306/moonlight";
 
-    protected static final Connection Connect() {
+    protected static Connection Connect() {
         try {
             Class.forName(Driver);
             Connection = DriverManager.getConnection(Url, "root",
@@ -31,7 +31,7 @@ public class ConexaoBanco {
         return Connection;
     }
 
-    protected static final void Disconnect() {
+    protected static void Disconnect() {
         try {
             Connection.close();
         } catch (Exception e) {
@@ -39,7 +39,7 @@ public class ConexaoBanco {
         }
     }
 
-    public static final boolean TestConnection() {
+    public static boolean TestConnection() {
         try {
             Connect();
             Disconnect();
