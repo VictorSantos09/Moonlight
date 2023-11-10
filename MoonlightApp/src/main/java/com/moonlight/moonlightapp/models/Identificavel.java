@@ -8,6 +8,14 @@ package com.moonlight.moonlightapp.models;
  *
  * @author victor.santos8
  */
-public interface Model {
-    public int id = -1;
+public class Identificavel {
+    public int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
