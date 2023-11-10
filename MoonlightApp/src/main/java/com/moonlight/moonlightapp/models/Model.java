@@ -9,5 +9,5 @@ package com.moonlight.moonlightapp.models;
  * @author victor.santos8
  */
 public interface Model {
-    public int id;
+    public int id = -1;
 }
