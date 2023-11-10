@@ -39,7 +39,7 @@ public class ConexaoBanco {
         }
     }
 
-    public static boolean TestConnection() {
+    public static final boolean TestConnection() {
         try {
             Connect();
             Disconnect();
