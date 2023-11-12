@@ -12,5 +12,5 @@ public interface BuscarPorIdDAO<T extends Identificavel> {
      * @param id ID do objeto a ser buscado.
      * @return objeto encontrado ou null caso não exista.
      */
-    public T BuscarPorId(int id);
+    public T BuscarPorId(int id) throws RuntimeException;
 }

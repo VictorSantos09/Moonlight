@@ -13,9 +13,9 @@ public final class ProdutoDAO extends ConexaoBanco
         implements ModelDAO<ProdutoModel>, BuscarPorNomeDAO<ProdutoModel> {
 
     @Override
-    public final BaseDTO Criar(ProdutoModel model) {
+    public final BaseDTO criar(ProdutoModel model) {
         try {
-            Connection conexao = Connect();
+            Connection conexao = connect();
             PreparedStatement ps = conexao.prepareStatement("INSERT INTO produtos (NOME, DESCRICAO) VALUES (?, ?)");
             ps.setString(1, model.getNome());
             ps.setString(2, model.getDescricao());
@@ -25,12 +25,15 @@ public final class ProdutoDAO extends ConexaoBanco
         } catch (Exception e) {
             return BaseDTO.BuildException(e);
         }
+        finally {
+            disconnect();
+        }
     }
 
     @Override
-    public final BaseDTO Atualizar(ProdutoModel modelAtualizado) {
+    public final BaseDTO atualizar(ProdutoModel modelAtualizado) {
         try {
-            Connection conexao = Connect();
+            Connection conexao = connect();
             PreparedStatement ps = conexao.prepareStatement("UPDATE produtos SET NOME = ?, DESCRICAO = ? WHERE ID = ?");
             ps.setString(1, modelAtualizado.getNome());
             ps.setString(2, modelAtualizado.getDescricao());
@@ -41,12 +44,15 @@ public final class ProdutoDAO extends ConexaoBanco
         } catch (Exception e) {
             return BaseDTO.BuildException(e);
         }
+        finally {
+            disconnect();
+        }
     }
 
     @Override
-    public final BaseDTO Deletar(ProdutoModel model) {
+    public final BaseDTO deletar(ProdutoModel model) {
         try {
-            Connection conexao = Connect();
+            Connection conexao = connect();
             PreparedStatement ps = conexao.prepareStatement("DELETE FROM produtos WHERE ID = ?");
             ps.setInt(1, model.getId());
             ps.executeUpdate();
@@ -55,12 +61,15 @@ public final class ProdutoDAO extends ConexaoBanco
         } catch (Exception e) {
             return BaseDTO.BuildException(e);
         }
+        finally {
+            disconnect();
+        }
     }
 
     @Override
-    public final ProdutoModel BuscarPorId(int id) {
+    public final ProdutoModel BuscarPorId(int id) throws RuntimeException {
         try {
-            Connection conexao = Connect();
+            Connection conexao = connect();
             PreparedStatement ps = conexao.prepareStatement("SELECT * FROM produtos WHERE ID_PRODUTO = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -68,12 +77,15 @@ public final class ProdutoDAO extends ConexaoBanco
         } catch (Exception e) {
             throw new RuntimeException("Erro ao buscar produto por ID", e);
         }
+        finally {
+            disconnect();
+        }
     }
 
     @Override
-    public final ProdutoModel BuscarPorNome(String name) {
+    public final ProdutoModel buscarPorNome(String name) throws RuntimeException {
         try {
-            Connection conexao = Connect();
+            Connection conexao = connect();
             PreparedStatement ps = conexao.prepareStatement("SELECT * FROM produtos WHERE NOME = ?");
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
@@ -81,9 +93,12 @@ public final class ProdutoDAO extends ConexaoBanco
         } catch (Exception e) {
             throw new RuntimeException("Erro ao buscar produto por nome. Erro: ", e);
         }
+        finally {
+            disconnect();
+        }
     }
 
-    private final ProdutoModel Build(ResultSet rs) {
+    private final ProdutoModel Build(ResultSet rs) throws RuntimeException {
         try {
             if (rs.next()) {
                 int ProdutoId = rs.getInt("ID_PRODUTO");
@@ -97,6 +112,9 @@ public final class ProdutoDAO extends ConexaoBanco
             }
         } catch (Exception e) {
             throw new RuntimeException("Erro ao buscar produto por nome. Erro: ", e);
+        }
+        finally {
+            disconnect();
         }
     }
 }
