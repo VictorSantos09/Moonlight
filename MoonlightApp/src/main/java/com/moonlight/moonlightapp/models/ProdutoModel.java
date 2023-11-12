@@ -5,16 +5,17 @@
 package com.moonlight.moonlightapp.models;
 
 /**
- *
  * @author victor.santos8
  */
 public class ProdutoModel extends Identificavel {
     private String nome;
     private String descricao;
+    private ValorProdutoModel valorProduto;
 
-    public ProdutoModel(String nome, String descricao) {
+    public ProdutoModel(String nome, String descricao, ValorProdutoModel valorProduto) {
         this.nome = nome;
         this.descricao = descricao;
+        this.valorProduto = valorProduto;
     }
 
     public String getNome() {
@@ -31,5 +32,13 @@ public class ProdutoModel extends Identificavel {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public ValorProdutoModel getValorProduto() {
+        return valorProduto;
+    }
+
+    public void setValorProduto(ValorProdutoModel valorProduto) {
+        this.valorProduto = valorProduto;
     }
 }

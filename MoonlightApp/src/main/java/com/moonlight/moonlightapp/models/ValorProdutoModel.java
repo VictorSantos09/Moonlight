@@ -8,16 +8,13 @@ package com.moonlight.moonlightapp.models;
  *
  * @author victor.santos8
  */
-public class ValoresProdutoModel extends Identificavel {
-
+public class ValorProdutoModel extends Identificavel {
     private double valorRecomendado;
     private double valor;
-    private ProdutoModel produto;
 
-    public ValoresProdutoModel(double valorRecomendado, double valor, ProdutoModel produto) {
+    public ValorProdutoModel(double valorRecomendado, double valor) {
         this.valorRecomendado = valorRecomendado;
         this.valor = valor;
-        this.produto = produto;
     }
 
     public double getValorRecomendado() {
@@ -34,13 +31,5 @@ public class ValoresProdutoModel extends Identificavel {
 
     public void setValor(double valor) {
         this.valor = valor;
-    }
-
-    public ProdutoModel getProduto() {
-        return produto;
-    }
-
-    public void setProduto(ProdutoModel produto) {
-        this.produto = produto;
     }
 }
