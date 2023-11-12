@@ -13,7 +13,7 @@ public final class BaseDTO {
         this.isException = isException;
     }
 
-    public static BaseDTO BuildSucesso(String mensagem, Object data) {
+    public static BaseDTO buildSucesso(String mensagem, Object data) {
         return new BaseDTO(mensagem, true, data, false);
     }
 
@@ -25,7 +25,7 @@ public final class BaseDTO {
         return new BaseDTO(mensagem, isSucesso, data, isException);
     }
 
-    public static BaseDTO BuildException(Exception e) {
+    public static BaseDTO buildException(Exception e) {
         return new BaseDTO(e.getMessage(), false, e.getMessage(), true);
     }
 

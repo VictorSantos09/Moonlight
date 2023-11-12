@@ -9,9 +9,7 @@ public class CalcularValorRecomendadoProdutoService {
     private static final Double margemLucro = 0.75;
 
     public static Double calcular(ItensProdutoModel itensProduto) {
-        List<MateriaPrimaModel> materiasprimasNecessarias = itensProduto.getMateriasPrimas();
-
-        return realizarCalculo(materiasprimasNecessarias);
+        return realizarCalculo(itensProduto.getMateriaPrima());
     }
 
     public static Double calcular(List<MateriaPrimaModel> materiasPrimas) {
@@ -19,11 +17,11 @@ public class CalcularValorRecomendadoProdutoService {
     }
 
     private static Double realizarCalculo(List<MateriaPrimaModel> materiasPrimas) {
-        double subtotalMateriaPrima = materiasPrimas.stream()
-                .mapToDouble(m -> m.getValor() * m.getQuantidade())
-                .sum();
+        return materiasPrimas.stream().mapToDouble(m -> realizarCalculo(m)).sum();
+    }
 
-        Double precoVenda = (subtotalMateriaPrima + (subtotalMateriaPrima * margemLucro));
+    private static Double realizarCalculo(MateriaPrimaModel materiaPrima) {
+        Double precoVenda = (materiaPrima.getValor() + (materiaPrima.getValor() * margemLucro));
         return precoVenda;
     }
 }

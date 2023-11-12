@@ -55,12 +55,40 @@ public class ItensProdutoDAO extends ConexaoBanco
 
     @Override
     public BaseDTO criar(ItensProdutoModel model) {
-        throw new RuntimeException("metodo não implementado");
+        try {
+            Connection conexao = connect();
+
+            PreparedStatement ps = conexao.prepareStatement("CALL spCriarItensProduto(?, ?, ?, ?)");
+            ps.setInt(1, model.getProduto().getId());
+            ps.setInt(2, model.getMateriaPrima().getId());
+            ps.setInt(3, model.getQuantidade());
+            ps.setDouble(4, model.getSubTotal());
+
+            ps.execute();
+
+            return BaseDTO.buildSucesso("item cadastrado com sucesso", null);
+        } catch (Exception e) {
+            return BaseDTO.buildException(e);
+        }
     }
 
     @Override
     public BaseDTO atualizar(ItensProdutoModel modelAtualizado) {
-        throw new RuntimeException("metodo nao implementado");
+        try {
+            Connection conexao = connect();
+
+            PreparedStatement ps = conexao.prepareStatement("CALL spAtualizarItensProduto(?, ?, ? , ?, ?)");
+            ps.setInt(1, modelAtualizado.getQuantidade());
+            ps.setInt(2, modelAtualizado.getProduto().getId());
+            ps.setInt(3, modelAtualizado.getMateriaPrima().getId());
+            ps.setDouble(4, modelAtualizado.getSubTotal());
+            ps.setInt(5, modelAtualizado.getId());
+
+            ps.execute();
+            return BaseDTO.buildSucesso("atualizado com sucesso", null);
+        } catch (Exception e) {
+            return BaseDTO.buildException(e);
+        }
     }
 
     @Override
@@ -72,9 +100,9 @@ public class ItensProdutoDAO extends ConexaoBanco
             ps.setInt(1, model.getId());
 
             ps.execute();
-            return BaseDTO.BuildSucesso("deletado com sucesso", null);
-        }catch (Exception e){
-            return BaseDTO.BuildException(e);
+            return BaseDTO.buildSucesso("deletado com sucesso", null);
+        } catch (Exception e) {
+            return BaseDTO.buildException(e);
         }
     }
 
@@ -88,11 +116,10 @@ public class ItensProdutoDAO extends ConexaoBanco
             double subtotal = rs.getDouble(5);
 
             ProdutoModel produtoModel = buscarProdutoPorId(idProduto);
+            MateriaPrimaModel materiaPrimaModel = buscarMateriaPrimaPorId(idMateriaPrima);
 
-            ItensProdutoModel itensProduto = new ItensProdutoModel(quantidade, produtoModel, subtotal);
+            var itensProduto = new ItensProdutoModel(quantidade, produtoModel, subtotal, materiaPrimaModel);
             itensProduto.setId(idItemProduto);
-
-            addMateriaPrima(itensProduto, idMateriaPrima);
 
             output.add(itensProduto);
         } else {
@@ -100,11 +127,6 @@ public class ItensProdutoDAO extends ConexaoBanco
         }
 
         return output;
-    }
-
-    private void addMateriaPrima(ItensProdutoModel itensProduto, int idMateriaPrima) {
-        MateriaPrimaModel materiaPrimaModel = buscarMateriaPrimaPorId(idMateriaPrima);
-        itensProduto.addMateriaPrima(materiaPrimaModel);
     }
 
     private MateriaPrimaModel buscarMateriaPrimaPorId(int id) {
