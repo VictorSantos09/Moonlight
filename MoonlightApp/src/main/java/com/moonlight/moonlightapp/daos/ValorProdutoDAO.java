@@ -8,9 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ValorProdutoDAO extends ConexaoBanco
+public final class ValorProdutoDAO extends ConexaoBanco
         implements ModelDAO<ValorProdutoModel> {
-
 
     @Override
     public ValorProdutoModel BuscarPorId(int id) throws RuntimeException {

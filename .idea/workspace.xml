@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2e55380-d7b6-4b94-8214-4c6b9490f994" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/MoonlightApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/MoonlightApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ValoresProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ValorProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/Identificavel.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/Identificavel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ProdutoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ProdutoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ValoresProdutoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ValorProdutoModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ValorProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ValorProdutoDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
