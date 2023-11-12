@@ -9,25 +9,25 @@ public class MateriaPrimaDAO extends ConexaoBanco
         implements ModelDAO<MateriaPrimaModel>, BuscarPorNomeDAO<MateriaPrimaModel> {
 
     @Override
-    public MateriaPrimaModel BuscarPorNome(String name) {
+    public MateriaPrimaModel buscarPorNome(String name) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'BuscarPorNome'");
     }
 
     @Override
-    public BaseDTO Criar(MateriaPrimaModel model) {
+    public BaseDTO criar(MateriaPrimaModel model) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'Criar'");
     }
 
     @Override
-    public BaseDTO Atualizar(MateriaPrimaModel modelAtualizado) {
+    public BaseDTO atualizar(MateriaPrimaModel modelAtualizado) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'Atualizar'");
     }
 
     @Override
-    public BaseDTO Deletar(MateriaPrimaModel model) {
+    public BaseDTO deletar(MateriaPrimaModel model) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'Deletar'");
     }

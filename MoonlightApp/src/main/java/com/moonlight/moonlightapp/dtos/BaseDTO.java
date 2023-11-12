@@ -3,12 +3,30 @@ package com.moonlight.moonlightapp.dtos;
 public final class BaseDTO {
     private String mensagem;
     private Boolean isSucesso;
+    private Boolean isException;
     private Object data;
 
-    public BaseDTO(String mensagem, Boolean isSucesso, Object data) {
+    public BaseDTO(String mensagem, Boolean isSucesso, Object data, Boolean isException) {
         this.mensagem = mensagem;
         this.isSucesso = isSucesso;
         this.data = data;
+        this.isException = isException;
+    }
+
+    public static BaseDTO BuildSucesso(String mensagem, Object data) {
+        return new BaseDTO(mensagem, true, data, false);
+    }
+
+    public static BaseDTO BuildFalha(String mensagem, Object data) {
+        return new BaseDTO(mensagem, false, data, false);
+    }
+
+    public static BaseDTO Build(String mensagem, Boolean isSucesso, Object data, Boolean isException) {
+        return new BaseDTO(mensagem, isSucesso, data, isException);
+    }
+
+    public static BaseDTO BuildException(Exception e) {
+        return new BaseDTO(e.getMessage(), false, e.getMessage(), true);
     }
 
     @Override
@@ -40,19 +58,19 @@ public final class BaseDTO {
         this.data = data;
     }
 
-    public static BaseDTO BuildSucesso(String mensagem, Object data) {
-        return new BaseDTO(mensagem, true, data);
+    public Boolean getSucesso() {
+        return isSucesso;
     }
 
-    public static BaseDTO BuildFalha(String mensagem, Object data) {
-        return new BaseDTO(mensagem, false, data);
+    public void setSucesso(Boolean sucesso) {
+        isSucesso = sucesso;
     }
 
-    public static BaseDTO Build(String mensagem, Boolean isSucesso, Object data) {
-        return new BaseDTO(mensagem, isSucesso, data);
+    public Boolean getException() {
+        return isException;
     }
 
-    public static BaseDTO BuildException(Exception e) {
-        return new BaseDTO(e.getMessage(), false, null);
+    public void setException(Boolean exception) {
+        isException = exception;
     }
 }

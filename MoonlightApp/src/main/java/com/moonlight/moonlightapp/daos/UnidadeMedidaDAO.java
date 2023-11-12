@@ -8,7 +8,7 @@ public class UnidadeMedidaDAO extends ConexaoBanco
         implements BuscarPorNomeDAO<UnidadeMedidaModel>, BuscarPorIdDAO<UnidadeMedidaModel> {
 
     @Override
-    public UnidadeMedidaModel BuscarPorNome(String name) {
+    public UnidadeMedidaModel buscarPorNome(String name) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'BuscarPorNome'");
     }

@@ -8,7 +8,7 @@ public class TipoMateriaPrimaDAO extends ConexaoBanco
         implements BuscarPorNomeDAO<TipoMateriaPrimaModel>, BuscarPorIdDAO<TipoMateriaPrimaModel> {
 
     @Override
-    public TipoMateriaPrimaModel BuscarPorNome(String name) {
+    public TipoMateriaPrimaModel buscarPorNome(String name) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'BuscarPorNome'");
     }
