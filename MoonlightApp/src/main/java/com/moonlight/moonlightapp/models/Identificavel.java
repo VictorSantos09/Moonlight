@@ -9,7 +9,7 @@ package com.moonlight.moonlightapp.models;
  * @author victor.santos8
  */
 public class Identificavel {
-    public int id;
+    private int id;
 
     public int getId() {
         return id;
