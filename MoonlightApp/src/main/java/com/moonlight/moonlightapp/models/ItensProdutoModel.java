@@ -7,28 +7,19 @@ package com.moonlight.moonlightapp.models;
 import java.util.ArrayList;
 
 /**
- *
  * @author victor.santos8
  */
 public class ItensProdutoModel extends Identificavel {
     private int quantidade;
     private ProdutoModel produto;
-    private ArrayList<MateriaPrimaModel> materiasPrimas;
+    private MateriaPrimaModel materiaPrima;
     private double subTotal;
 
-    public ItensProdutoModel(int quantidade, ProdutoModel produto, double valor) {
+    public ItensProdutoModel(int quantidade, ProdutoModel produto, double valor, MateriaPrimaModel materiasPrima) {
         this.quantidade = quantidade;
         this.produto = produto;
         this.subTotal = valor;
-        materiasPrimas = new ArrayList<>();
-    }
-
-    public void addMateriaPrima(MateriaPrimaModel materiaPrima) {
-        materiasPrimas.add(materiaPrima);
-    }
-
-    public void removeMateriaPrima(MateriaPrimaModel materiaPrima) {
-        materiasPrimas.remove(materiaPrima);
+        this.materiaPrima = materiasPrima;
     }
 
     public int getQuantidade() {
@@ -47,12 +38,12 @@ public class ItensProdutoModel extends Identificavel {
         this.produto = produto;
     }
 
-    public ArrayList<MateriaPrimaModel> getMateriasPrimas() {
-        return materiasPrimas;
+    public MateriaPrimaModel getMateriaPrima() {
+        return materiaPrima;
     }
 
-    public void setMateriasPrimas(ArrayList<MateriaPrimaModel> materiasPrimas) {
-        this.materiasPrimas = materiasPrimas;
+    public void setMateriaPrima(MateriaPrimaModel materiaPrima) {
+        this.materiaPrima = materiaPrima;
     }
 
     public double getSubTotal() {

@@ -33,9 +33,9 @@ public final class ProdutoDAO extends ConexaoBanco
 
             ps.execute();
 
-            return BaseDTO.BuildSucesso("Produto criado com sucesso", null);
+            return BaseDTO.buildSucesso("Produto criado com sucesso", null);
         } catch (Exception e) {
-            return BaseDTO.BuildException(e);
+            return BaseDTO.buildException(e);
         } finally {
             disconnect();
         }
@@ -46,16 +46,16 @@ public final class ProdutoDAO extends ConexaoBanco
         try {
             Connection conexao = connect();
 
-            PreparedStatement ps = conexao.prepareStatement("UPDATE produtos SET NOME = ?, DESCRICAO = ? WHERE ID = ?");
+            var ps = conexao.prepareStatement("UPDATE produtos SET NOME = ?, DESCRICAO = ? WHERE ID = ?");
             ps.setString(1, modelAtualizado.getNome());
             ps.setString(2, modelAtualizado.getDescricao());
             ps.setInt(3, modelAtualizado.getId());
 
             ps.executeUpdate();
 
-            return BaseDTO.BuildSucesso("Produto atualizado com sucesso", null);
+            return BaseDTO.buildSucesso("Produto atualizado com sucesso", null);
         } catch (Exception e) {
-            return BaseDTO.BuildException(e);
+            return BaseDTO.buildException(e);
         } finally {
             disconnect();
         }
@@ -71,9 +71,9 @@ public final class ProdutoDAO extends ConexaoBanco
 
             ps.executeUpdate();
 
-            return BaseDTO.BuildSucesso("Produto deletado com sucesso", null);
+            return BaseDTO.buildSucesso("Produto deletado com sucesso", null);
         } catch (Exception e) {
-            return BaseDTO.BuildException(e);
+            return BaseDTO.buildException(e);
         } finally {
             disconnect();
         }

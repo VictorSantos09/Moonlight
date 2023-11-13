@@ -41,9 +41,9 @@ public final class ValorProdutoDAO extends ConexaoBanco
 
             ps.execute();
 
-            return BaseDTO.BuildSucesso("cadastrado com sucesso", null);
+            return BaseDTO.buildSucesso("cadastrado com sucesso", null);
         } catch (Exception e) {
-            return BaseDTO.BuildException(e);
+            return BaseDTO.buildException(e);
         } finally {
             disconnect();
         }
@@ -60,9 +60,9 @@ public final class ValorProdutoDAO extends ConexaoBanco
 
             ps.execute();
 
-            return BaseDTO.BuildSucesso("atualizado com sucesso", null);
+            return BaseDTO.buildSucesso("atualizado com sucesso", null);
         } catch (Exception e) {
-            return BaseDTO.BuildException(e);
+            return BaseDTO.buildException(e);
         } finally {
             disconnect();
         }
@@ -78,9 +78,9 @@ public final class ValorProdutoDAO extends ConexaoBanco
 
             ps.execute();
 
-            return BaseDTO.BuildSucesso("deletado com sucesso", null);
+            return BaseDTO.buildSucesso("deletado com sucesso", null);
         } catch (Exception e) {
-            return BaseDTO.BuildException(e);
+            return BaseDTO.buildException(e);
         } finally {
             disconnect();
         }

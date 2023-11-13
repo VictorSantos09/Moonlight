@@ -6,12 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="d2e55380-d7b6-4b94-8214-4c6b9490f994" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ItensProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ItensProdutoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ValorProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ValorProdutoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/BaseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/BaseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ItensProdutoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ItensProdutoModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/CalcularValorRecomendadoProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/CalcularValorRecomendadoProdutoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,7 +48,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "victor",
-    "last_opened_file_path": "C:/Users/victo/OneDrive/Área de Trabalho/ecommerceapp"
+    "last_opened_file_path": "C:/Users/victo/OneDrive/Área de Trabalho/ecommerceapp",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -49,5 +62,8 @@
       <updated>1699627761642</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
