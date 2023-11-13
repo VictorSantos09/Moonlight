@@ -43,19 +43,22 @@ public class CriarProdutoService {
 
         List<ItensProdutoModel> itensProdutos = converterItensProdutoParaListModel(dto, novoProduto);
 
-        double valorRecomendado = CalcularValorRecomendadoProdutoService.calcular(itensProdutos);
+        double valorRecomendado = CalcularValorRecomendadoProdutoService.calcular(itensProdutos.stream()
+                .map(ItensProdutoModel::getMateriaPrima)
+                .collect(Collectors.toList()));
+
         novoProduto.getValorProduto().setValorRecomendado(valorRecomendado);
 
         var resultadoGravacaoProduto = gravarProduto(novoProduto);
-        if(!resultadoGravacaoProduto.getIsSucesso()){
+        if (!resultadoGravacaoProduto.getIsSucesso()) {
             return resultadoGravacaoProduto;
         }
 
-        if(!gravarItensProdutos(itensProdutos)){
+        if (!gravarItensProdutos(itensProdutos)) {
             return BaseDTO.buildFalha("não foi possível gravar um itemProduto", null);
         }
 
-        return  BaseDTO.buildSucesso("produto cadastrado com sucesso", null);
+        return BaseDTO.buildSucesso("produto cadastrado com sucesso", null);
     }
 
     private List<ProcessoModel> converterProcessosParaModel(ProdutoDTO dto) {
@@ -80,17 +83,17 @@ public class CriarProdutoService {
                 .collect(Collectors.toList());
     }
 
-    private  BaseDTO gravarProduto(ProdutoModel produto){
+    private BaseDTO gravarProduto(ProdutoModel produto) {
         return produtoDAO.criar(produto);
     }
 
-    private  Boolean gravarItensProdutos(List<ItensProdutoModel> itensProdutos){
-        for (var ip: itensProdutos) {
+    private Boolean gravarItensProdutos(List<ItensProdutoModel> itensProdutos) {
+        for (var ip : itensProdutos) {
             var resultadoCriacaoItemProduto = itensProdutoDAO.criar(ip);
-            if(!resultadoCriacaoItemProduto.getIsSucesso()){
-                return  false;
+            if (!resultadoCriacaoItemProduto.getIsSucesso()) {
+                return false;
             }
         }
-        return  true;
+        return true;
     }
 }
