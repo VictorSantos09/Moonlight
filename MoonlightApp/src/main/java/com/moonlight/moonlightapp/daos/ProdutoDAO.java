@@ -30,7 +30,7 @@ public final class ProdutoDAO extends ConexaoBanco
         try {
             Connection conexao = connect();
 
-            PreparedStatement ps = conexao.prepareStatement("CALL spCriarProduto(?, ?, ?, ?)");
+            PreparedStatement ps = conexao.prepareStatement("CALL spCriarProduto(?, ?, ?, ?, ?, ?)");
             ps.setString(1, model.getNome());
             ps.setString(2, model.getDescricao());
             ps.setDouble(3, model.getValorProduto().getValorRecomendado());
@@ -138,8 +138,8 @@ public final class ProdutoDAO extends ConexaoBanco
             TipoProdutoModel tipoProduto = buscarTipoProdutoPorId(idTipoProduto);
             List<ProcessoModel> processos = buscarProcessosPorProdutoId(idProduto);
 
-            ProdutoModel produto = new ProdutoModel(nome, descricao, valorProduto,
-                    unidadeMedida, tipoProduto, processos);
+            ProdutoModel produto = new ProdutoModel(nome, descricao, unidadeMedida, tipoProduto,
+                    processos, valorProduto.getValorRecomendado(), valorProduto.getValor());
 
             produto.setId(idProduto);
 

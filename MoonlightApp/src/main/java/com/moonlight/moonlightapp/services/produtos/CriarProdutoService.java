@@ -2,7 +2,9 @@ package com.moonlight.moonlightapp.services.produtos;
 
 import com.moonlight.moonlightapp.converters.MateriaPrimaConverter;
 import com.moonlight.moonlightapp.converters.ProcessoConverter;
-import com.moonlight.moonlightapp.daos.*;
+import com.moonlight.moonlightapp.daos.ProdutoDAO;
+import com.moonlight.moonlightapp.daos.TipoProdutoDAO;
+import com.moonlight.moonlightapp.daos.UnidadeMedidaDAO;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
 import com.moonlight.moonlightapp.dtos.produtos.ProdutoDTO;
 import com.moonlight.moonlightapp.models.*;
@@ -27,31 +29,20 @@ public class CriarProdutoService {
     }
 
     public BaseDTO criar(ProdutoDTO dto) {
-        var materiasPrimas = converterMateriasPrimasParaModel(dto);
-
-        Double valorRecomendado = CalcularValorRecomendadoProdutoService.calcular(materiasPrimas);
-
-        ValorProdutoModel valorProduto = new ValorProdutoModel(valorRecomendado, dto.getValor());
-
         UnidadeMedidaModel unidadeMedida = unidadeMedidaDAO.buscarPorSigla(dto.getSiglaUnidadeMedida());
         TipoProdutoModel tipoProduto = tipoProdutoDAO.buscarPorNome(dto.getTipo());
 
         var processos = converterProcessosParaModel(dto);
 
         var novoProduto = new ProdutoModel(dto.getNome(), dto.getDescricao(),
-                valorProduto, unidadeMedida, tipoProduto, processos);
+                unidadeMedida, tipoProduto, processos, 0, dto.getValor());
+
+        var itensProdutos = converterItensProdutoParaListModel(dto, novoProduto);
+
+        double valorRecomendado = CalcularValorRecomendadoProdutoService.calcular(itensProdutos);
+        novoProduto.getValorProduto().setValorRecomendado(valorRecomendado);
 
         return produtoDAO.criar(novoProduto);
-    }
-
-    private List<MateriaPrimaModel> converterMateriasPrimasParaModel(ProdutoDTO dto) {
-        List<MateriaPrimaModel> materiasPrimas = new ArrayList<>();
-
-        for (var materiaPrimaDto : dto.getMateriasPrimas()) {
-            materiasPrimas.add(materiaPrimaConverter.converterParaModel(materiaPrimaDto));
-        }
-
-        return materiasPrimas;
     }
 
     private List<ProcessoModel> converterProcessosParaModel(ProdutoDTO dto) {
@@ -61,5 +52,21 @@ public class CriarProdutoService {
             processos.add(processoConverter.converterParaModel(processo));
         }
         return processos;
+    }
+
+    private List<ItensProdutoModel> converterItensProdutoParaListModel(ProdutoDTO dto, ProdutoModel novoProduto) {
+        List<ItensProdutoModel> itensProdutos = new ArrayList<>();
+
+        for (var ip : dto.getItensProdutos()) {
+            var materiaPrima = materiaPrimaConverter.converterParaModel(ip.getMateriaPrima());
+
+            var valor = materiaPrima.getValor() * ip.getQuantidade();
+
+            var itemProduto = new ItensProdutoModel(ip.getQuantidade(), novoProduto, valor, materiaPrima);
+
+            itensProdutos.add(itemProduto);
+        }
+
+        return itensProdutos;
     }
 }

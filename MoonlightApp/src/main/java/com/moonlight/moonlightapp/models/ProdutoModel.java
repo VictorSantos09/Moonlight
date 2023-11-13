@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Classe que representa um produto final da empresa.
- * 
+ *
  * @author victor.santos09
  */
 public class ProdutoModel extends BaseModel {
@@ -15,14 +15,15 @@ public class ProdutoModel extends BaseModel {
     private TipoProdutoModel tipo;
     private List<ProcessoModel> processos;
 
-    public ProdutoModel(String nome, String descricao, ValorProdutoModel valorProduto,
-            UnidadeMedidaModel unidadeMedida, TipoProdutoModel tipo, List<ProcessoModel> processos) {
+    public ProdutoModel(String nome, String descricao,
+                        UnidadeMedidaModel unidadeMedida, TipoProdutoModel tipo,
+                        List<ProcessoModel> processos, double valorRecomendado, double valor) {
         this.nome = nome;
         this.descricao = descricao;
-        this.valorProduto = valorProduto;
         this.unidadeMedida = unidadeMedida;
         this.tipo = tipo;
         this.processos = processos;
+        valorProduto = new ValorProdutoModel(valorRecomendado, valor);
     }
 
     public String getNome() {

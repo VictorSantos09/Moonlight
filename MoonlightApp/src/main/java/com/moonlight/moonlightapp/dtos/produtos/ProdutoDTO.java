@@ -21,21 +21,8 @@ public class ProdutoDTO {
     private String tipo;
     private String siglaUnidadeMedida;
     private List<ProcessoDTO> processos;
-    private List<MateriaPrimaDTO> materiasPrimas;
+    private List<ItemProdutoDTO>  itensProdutos;
     private TipoProdutoModel tipoProduto;
-
-    public ProdutoDTO(String nome, String descricao, Integer valor, String tipo,
-                      String siglaUnidadeMedida, List<ProcessoDTO> processos,
-                      List<MateriaPrimaDTO> materiasPrimas, TipoProdutoModel tipoProduto) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.valor = valor;
-        this.tipo = tipo;
-        this.siglaUnidadeMedida = siglaUnidadeMedida;
-        this.processos = processos;
-        this.materiasPrimas = materiasPrimas;
-        this.tipoProduto = tipoProduto;
-    }
 
     public String getNome() {
         return nome;
@@ -85,12 +72,12 @@ public class ProdutoDTO {
         this.processos = processos;
     }
 
-    public List<MateriaPrimaDTO> getMateriasPrimas() {
-        return materiasPrimas;
+    public List<ItemProdutoDTO> getItensProdutos() {
+        return itensProdutos;
     }
 
-    public void setMateriasPrimas(List<MateriaPrimaDTO> materiasPrimas) {
-        this.materiasPrimas = materiasPrimas;
+    public void setItensProdutos(List<ItemProdutoDTO> itensProdutos) {
+        this.itensProdutos = itensProdutos;
     }
 
     public TipoProdutoModel getTipoProduto() {

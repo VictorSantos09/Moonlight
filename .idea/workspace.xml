@@ -5,32 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2e55380-d7b6-4b94-8214-4c6b9490f994" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/converters/MateriaPrimaConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/converters/ProcessoConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/materiasprimas/MateriaPrimaDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/processos/ProcessoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/produtos/ProdutoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/produtos/CriarProdutoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/produtos/ItemProdutoDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/moonlight.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/moonlight.mwb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/moonlight.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/moonlight.mwb.bak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/MoonlightApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/MoonlightApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ItensProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ItensProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/MateriaPrimaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/MateriaPrimaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProcessoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProcessoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoMedidasDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoTiposDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/TipoMateriaPrimaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/TipoMateriaPrimaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/TipoProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/TipoProdutoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/UnidadeMedidaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/UnidadeMedidaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ValorProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ValorProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/contracts/BuscarPorIdDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/contracts/BuscarPorIdDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/BaseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/BaseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/produtos/CriarProdutoDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ProdutoMedidasModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/produtos/ProdutoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/produtos/ProdutoDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ProdutoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ProdutoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ProdutoTiposModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/CalcularValorRecomendadoProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/CalcularValorRecomendadoProdutoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/produtos/CriarProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/produtos/CriarProdutoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +52,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "victor",
+    "git-widget-placeholder": "fix-mudanca",
     "last_opened_file_path": "C:/Users/victo/OneDrive/Área de Trabalho/ecommerceapp",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
