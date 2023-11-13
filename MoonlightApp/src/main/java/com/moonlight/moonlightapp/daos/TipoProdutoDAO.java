@@ -17,7 +17,7 @@ public class TipoProdutoDAO extends ConexaoBanco
         try {
             Connection conexao = connect();
 
-            String sql = "SELECT * FROM tipo_produto WHERE nome = ?";
+            String sql = "SELECT * FROM tipos_produtos WHERE NOME = ?";
 
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, name);
@@ -37,7 +37,7 @@ public class TipoProdutoDAO extends ConexaoBanco
         try {
             Connection conexao = connect();
 
-            String sql = "SELECT * FROM tipo_produto WHERE ID_TIPO_PRODUTO = ?";
+            String sql = "SELECT * FROM tipos_produtos WHERE ID_TIPO_PRODUTO = ?";
 
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setInt(1, id);
@@ -57,7 +57,7 @@ public class TipoProdutoDAO extends ConexaoBanco
             var id = rs.getInt(1);
             String nome = rs.getString(2);
 
-            var tipoProduto = new TipoProdutoModel(nome);
+            TipoProdutoModel tipoProduto = new TipoProdutoModel(nome);
             tipoProduto.setId(id);
 
             return tipoProduto;

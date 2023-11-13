@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+    <option name="SCOPE_TYPE" value="4" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e55380-d7b6-4b94-8214-4c6b9490f994" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/produtos/ItemProdutoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ItensProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ItensProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoDAO.java" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/UnidadeMedidaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/UnidadeMedidaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/produtos/ProdutoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/produtos/ProdutoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ProdutoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ProdutoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/CalcularValorRecomendadoProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/CalcularValorRecomendadoProdutoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/produtos/CriarProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/produtos/CriarProdutoService.java" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ValorProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ValorProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/BaseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/dtos/BaseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ItensProdutoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ItensProdutoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/CalcularValorRecomendadoProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/CalcularValorRecomendadoProdutoService.java" afterDir="false" />
->>>>>>> 2bc6975fa352cbfc5da37d9292f8427bf1b5d6ec
+    <list default="true" id="8e3b9cf3-85e3-42cc-8c01-01fc234da8e6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Moonlight.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,13 +38,11 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2XzN4qIROnjaNtpw9qZj33TKbIR" />
+  <component name="ProjectId" id="2Y7fkF6XOgRtDldx1Y2GD1GVoWo" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -58,24 +54,19 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-<<<<<<< HEAD
-    "git-widget-placeholder": "fix-mudanca",
-=======
-    "git-widget-placeholder": "victor",
->>>>>>> 2bc6975fa352cbfc5da37d9292f8427bf1b5d6ec
-    "last_opened_file_path": "C:/Users/victo/OneDrive/Área de Trabalho/ecommerceapp",
+    "git-widget-placeholder": "Merging fix-produtosProcessos",
+    "run.code.analysis.last.selected.profile": "aDefault",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d2e55380-d7b6-4b94-8214-4c6b9490f994" name="Changes" comment="" />
-      <created>1699627761642</created>
+      <changelist id="8e3b9cf3-85e3-42cc-8c01-01fc234da8e6" name="Changes" comment="" />
+      <created>1699876224103</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1699627761642</updated>
+      <updated>1699876224103</updated>
     </task>
     <servers />
   </component>

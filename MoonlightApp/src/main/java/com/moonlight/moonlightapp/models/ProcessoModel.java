@@ -7,12 +7,10 @@ package com.moonlight.moonlightapp.models;
 public class ProcessoModel extends BaseModel {
     private String etapa;
     private double custo;
-    private ProdutoModel produto;
 
-    public ProcessoModel(String etapa, double custo, ProdutoModel produto) {
+    public ProcessoModel(String etapa, double custo) {
         this.etapa = etapa;
         this.custo = custo;
-        this.produto = produto;
     }
 
     public String getEtapa() {
@@ -29,13 +27,5 @@ public class ProcessoModel extends BaseModel {
 
     public void setCusto(double custo) {
         this.custo = custo;
-    }
-
-    public ProdutoModel getProduto() {
-        return produto;
-    }
-
-    public void setProduto(ProdutoModel produto) {
-        this.produto = produto;
     }
 }

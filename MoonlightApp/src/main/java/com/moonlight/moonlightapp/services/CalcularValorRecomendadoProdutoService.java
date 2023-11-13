@@ -20,7 +20,6 @@ public class CalcularValorRecomendadoProdutoService {
 
         for (var ip : itensProdutos) {
             subTotalMateriasPrimas += calcular(ip);
-            subTotalProcessos += CalcularValorProcessoService.calcular(ip.getProduto().getProcessos());
         }
 
         return subTotalProcessos + subTotalMateriasPrimas;
