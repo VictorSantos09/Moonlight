@@ -1,14 +1,12 @@
 package com.moonlight.moonlightapp.dtos.produtos;
 
-import com.moonlight.moonlightapp.dtos.materiasprimas.MateriaPrimaDTO;
-
 public class ItemProdutoDTO {
     private int quantidade;
-    private MateriaPrimaDTO materiaPrima;
+    private String nomeMateriaPrima;
 
-    public ItemProdutoDTO(int quantidade, MateriaPrimaDTO materiaPrima) {
+    public ItemProdutoDTO(int quantidade, String nomeMateriaPrima) {
         this.quantidade = quantidade;
-        this.materiaPrima = materiaPrima;
+        this.nomeMateriaPrima = nomeMateriaPrima;
     }
 
     public int getQuantidade() {
@@ -19,11 +17,11 @@ public class ItemProdutoDTO {
         this.quantidade = quantidade;
     }
 
-    public MateriaPrimaDTO getMateriaPrima() {
-        return materiaPrima;
+    public String getMateriaPrima() {
+        return nomeMateriaPrima;
     }
 
-    public void setMateriaPrima(MateriaPrimaDTO materiaPrima) {
-        this.materiaPrima = materiaPrima;
+    public void setNomeMateriaPrima(String nomeMateriaPrima) {
+        this.nomeMateriaPrima = nomeMateriaPrima;
     }
 }
