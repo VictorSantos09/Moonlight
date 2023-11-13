@@ -15,7 +15,7 @@ public interface ModelDAO<T extends BaseModel> extends BuscarPorIdDAO<T> {
      * @param model O modelo a ser criado.
      * @return Um objeto BaseDTO contendo informações sobre a operação de criação.
      */
-    public BaseDTO criar(T model);
+    BaseDTO criar(T model);
 
     /**
      * Atualiza um modelo existente no banco de dados.
@@ -23,7 +23,7 @@ public interface ModelDAO<T extends BaseModel> extends BuscarPorIdDAO<T> {
      * @param modelAtualizado O modelo atualizado a ser salvo.
      * @return Um objeto BaseDTO contendo informações sobre a operação de atualização.
      */
-    public BaseDTO atualizar(T modelAtualizado);
+    BaseDTO atualizar(T modelAtualizado);
 
     /**
      * Deleta um modelo existente no banco de dados.
@@ -31,5 +31,5 @@ public interface ModelDAO<T extends BaseModel> extends BuscarPorIdDAO<T> {
      * @param model O modelo a ser deletado.
      * @return Um objeto BaseDTO contendo informações sobre a operação de deleção.
      */
-    public BaseDTO deletar(T model);
+    BaseDTO deletar(T model);
 }

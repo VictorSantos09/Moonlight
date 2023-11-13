@@ -12,5 +12,5 @@ public interface BuscarPorIdDAO<T extends BaseModel> {
      * @param id ID do objeto a ser buscado.
      * @return objeto encontrado ou null caso não exista.
      */
-    public T buscarPorId(int id) throws RuntimeException;
+    T buscarPorId(int id) throws RuntimeException;
 }

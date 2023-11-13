@@ -13,5 +13,5 @@ public interface BuscarPorNomeDAO<T> {
      * @param name o nome a ser buscado
      * @return o objeto do tipo T encontrado, ou null se não encontrado
      */
-    public T buscarPorNome(String name) throws RuntimeException;
+    T buscarPorNome(String name) throws RuntimeException;
 }
