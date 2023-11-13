@@ -32,7 +32,7 @@ public class MateriaPrimaConverter {
     }
 
     private UnidadeMedidaModel buscarUnidadeMedidaPorSigla(String sigla) {
-        return unidadeMedidaDAO.BuscarPorSigla(sigla);
+        return unidadeMedidaDAO.buscarPorSigla(sigla);
     }
 
     private TipoMateriaPrimaModel buscarTipoMateriaPrimaPorNome(String nome) {

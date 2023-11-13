@@ -6,7 +6,7 @@ package com.moonlight.moonlightapp.models;
  * 
  * @author victor.santos09
  */
-public class UnidadeMedidaModel extends Identificavel {
+public class UnidadeMedidaModel extends BaseModel {
 
     private String nome;
     private String sigla;

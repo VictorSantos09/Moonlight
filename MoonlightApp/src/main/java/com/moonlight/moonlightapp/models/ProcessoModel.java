@@ -4,7 +4,7 @@ package com.moonlight.moonlightapp.models;
  * Classe que representa um processo de um produto a ser fabricado.
  * @author victor.santos9
  */
-public class ProcessoModel extends Identificavel {
+public class ProcessoModel extends BaseModel {
     private String etapa;
     private double custo;
     private ProdutoModel produto;

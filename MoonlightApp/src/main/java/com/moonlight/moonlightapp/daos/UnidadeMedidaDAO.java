@@ -13,7 +13,7 @@ public class UnidadeMedidaDAO extends ConexaoBanco
         throw new UnsupportedOperationException("Unimplemented method 'BuscarPorNome'");
     }
 
-    public UnidadeMedidaModel BuscarPorSigla(String sigla) {
+    public UnidadeMedidaModel buscarPorSigla(String sigla) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'BuscarPorSigla'");
     }

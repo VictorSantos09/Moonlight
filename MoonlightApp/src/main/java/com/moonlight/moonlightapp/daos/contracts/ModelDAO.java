@@ -1,14 +1,14 @@
 package com.moonlight.moonlightapp.daos.contracts;
 
 import com.moonlight.moonlightapp.dtos.BaseDTO;
-import com.moonlight.moonlightapp.models.Identificavel;
+import com.moonlight.moonlightapp.models.BaseModel;
 
 /**
  * Interface que define as operações básicas de um DAO para um modelo que implementa a interface Identificavel.
  *
  * @param <T> Tipo do modelo que implementa Identificavel.
  */
-public interface ModelDAO<T extends Identificavel> extends BuscarPorIdDAO<T> {
+public interface ModelDAO<T extends BaseModel> extends BuscarPorIdDAO<T> {
     /**
      * Cria um novo modelo no banco de dados.
      *

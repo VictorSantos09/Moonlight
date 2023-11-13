@@ -33,7 +33,7 @@ public class CriarProdutoService {
 
         ValorProdutoModel valorProduto = new ValorProdutoModel(valorRecomendado, dto.getValor());
 
-        UnidadeMedidaModel unidadeMedida = unidadeMedidaDAO.BuscarPorSigla(dto.getSiglaUnidadeMedida());
+        UnidadeMedidaModel unidadeMedida = unidadeMedidaDAO.buscarPorSigla(dto.getSiglaUnidadeMedida());
         TipoProdutoModel tipoProduto = tipoProdutoDAO.buscarPorNome(dto.getTipo());
 
         var processos = converterProcessosParaModel(dto);

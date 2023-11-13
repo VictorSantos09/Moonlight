@@ -5,7 +5,7 @@ package com.moonlight.moonlightapp.models;
  * 
  * @author victor.santos09
  */
-public class TipoMateriaPrimaModel extends Identificavel {
+public class TipoMateriaPrimaModel extends BaseModel {
 
     private String nome;
 

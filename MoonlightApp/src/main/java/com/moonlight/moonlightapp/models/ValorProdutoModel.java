@@ -5,7 +5,7 @@ package com.moonlight.moonlightapp.models;
  * 
  * @author victor.santos09
  */
-public class ValorProdutoModel extends Identificavel {
+public class ValorProdutoModel extends BaseModel {
     private double valorRecomendado;
     private double valor;
 

@@ -4,7 +4,7 @@ package com.moonlight.moonlightapp.models;
  * Classe que representa uma matéria prima de um produto.
  * @author victor.santos09
  */
-public class MateriaPrimaModel extends Identificavel {
+public class MateriaPrimaModel extends BaseModel {
     private String nome;
     private String descricao;
     private double valor;

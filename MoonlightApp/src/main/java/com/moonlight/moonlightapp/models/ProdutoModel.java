@@ -7,7 +7,7 @@ import java.util.List;
  * 
  * @author victor.santos09
  */
-public class ProdutoModel extends Identificavel {
+public class ProdutoModel extends BaseModel {
     private String nome;
     private String descricao;
     private ValorProdutoModel valorProduto;
