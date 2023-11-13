@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.moonlight.moonlightapp.models;
 
 import java.util.List;
 
 /**
- * @author victor.santos8
+ * Classe que representa um produto final da empresa.
+ * 
+ * @author victor.santos09
  */
 public class ProdutoModel extends Identificavel {
     private String nome;
@@ -18,7 +16,7 @@ public class ProdutoModel extends Identificavel {
     private List<ProcessoModel> processos;
 
     public ProdutoModel(String nome, String descricao, ValorProdutoModel valorProduto,
-                        UnidadeMedidaModel unidadeMedida, TipoProdutoModel tipo, List<ProcessoModel> processos) {
+            UnidadeMedidaModel unidadeMedida, TipoProdutoModel tipo, List<ProcessoModel> processos) {
         this.nome = nome;
         this.descricao = descricao;
         this.valorProduto = valorProduto;
@@ -66,6 +64,7 @@ public class ProdutoModel extends Identificavel {
     public void setTipo(TipoProdutoModel tipo) {
         this.tipo = tipo;
     }
+
     public List<ProcessoModel> getProcessos() {
         return processos;
     }

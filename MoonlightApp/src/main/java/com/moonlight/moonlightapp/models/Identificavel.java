@@ -1,14 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package com.moonlight.moonlightapp.models;
 
 /**
- *
- * @author victor.santos8
+ * Classe que representa um objeto identificável por um ID.
+ * @author victor.santos09
  */
-public class Identificavel {
+
+ public class Identificavel {
     private int id;
 
     public int getId() {

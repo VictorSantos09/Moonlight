@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.moonlight.moonlightapp.models;
 
 /**
- *
- * @author victor.santos8
+ * Classe que representa uma unidade de medida de uma matéria prima ou um
+ * produto a ser fabricado.
+ * 
+ * @author victor.santos09
  */
 public class UnidadeMedidaModel extends Identificavel {
 

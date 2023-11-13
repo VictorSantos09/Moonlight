@@ -11,7 +11,9 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- * @author victor.santos8
+ * Classe responsável por estabelecer a conexão com o banco de dados MySQL.
+ * 
+ * @author victor
  */
 public class ConexaoBanco {
     private static final String driver = "com.mysql.cj.jdbc.Driver";
