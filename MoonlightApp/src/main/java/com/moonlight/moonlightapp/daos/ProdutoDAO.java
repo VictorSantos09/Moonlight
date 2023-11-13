@@ -9,20 +9,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 public final class ProdutoDAO extends ConexaoBanco
         implements ModelDAO<ProdutoModel>, BuscarPorNomeDAO<ProdutoModel> {
     private final ValorProdutoDAO valorProdutoDAO;
     private final UnidadeMedidaDAO unidadeMedidaDAO;
     private final TipoProdutoDAO tipoProdutoDAO;
-    private final ProcessoDAO processoDAO;
 
     public ProdutoDAO() {
         valorProdutoDAO = new ValorProdutoDAO();
         unidadeMedidaDAO = new UnidadeMedidaDAO();
         tipoProdutoDAO = new TipoProdutoDAO();
-        processoDAO = new ProcessoDAO();
     }
 
     @Override
@@ -136,10 +133,9 @@ public final class ProdutoDAO extends ConexaoBanco
             ValorProdutoModel valorProduto = buscarValorProdutoPorId(idValorProduto);
             UnidadeMedidaModel unidadeMedida = buscarUnidadeMedidaPorId(idUnidadeMedida);
             TipoProdutoModel tipoProduto = buscarTipoProdutoPorId(idTipoProduto);
-            List<ProcessoModel> processos = buscarProcessosPorProdutoId(idProduto);
 
             ProdutoModel produto = new ProdutoModel(nome, descricao, unidadeMedida, tipoProduto,
-                    processos, valorProduto.getValorRecomendado(), valorProduto.getValor());
+                    valorProduto.getValorRecomendado(), valorProduto.getValor());
 
             produto.setId(idProduto);
 
@@ -159,9 +155,5 @@ public final class ProdutoDAO extends ConexaoBanco
 
     private TipoProdutoModel buscarTipoProdutoPorId(int id) {
         return tipoProdutoDAO.buscarPorId(id);
-    }
-
-    private List<ProcessoModel> buscarProcessosPorProdutoId(int id) {
-        return processoDAO.buscarPorProdutoId(id);
     }
 }

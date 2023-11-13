@@ -1,7 +1,5 @@
 package com.moonlight.moonlightapp.models;
 
-import java.util.List;
-
 /**
  * Classe que representa um produto final da empresa.
  *
@@ -13,16 +11,13 @@ public class ProdutoModel extends BaseModel {
     private ValorProdutoModel valorProduto;
     private UnidadeMedidaModel unidadeMedida;
     private TipoProdutoModel tipo;
-    private List<ProcessoModel> processos;
 
     public ProdutoModel(String nome, String descricao,
-                        UnidadeMedidaModel unidadeMedida, TipoProdutoModel tipo,
-                        List<ProcessoModel> processos, double valorRecomendado, double valor) {
+            UnidadeMedidaModel unidadeMedida, TipoProdutoModel tipo, double valorRecomendado, double valor) {
         this.nome = nome;
         this.descricao = descricao;
         this.unidadeMedida = unidadeMedida;
         this.tipo = tipo;
-        this.processos = processos;
         valorProduto = new ValorProdutoModel(valorRecomendado, valor);
     }
 
@@ -64,13 +59,5 @@ public class ProdutoModel extends BaseModel {
 
     public void setTipo(TipoProdutoModel tipo) {
         this.tipo = tipo;
-    }
-
-    public List<ProcessoModel> getProcessos() {
-        return processos;
-    }
-
-    public void setProcessos(List<ProcessoModel> processos) {
-        this.processos = processos;
     }
 }

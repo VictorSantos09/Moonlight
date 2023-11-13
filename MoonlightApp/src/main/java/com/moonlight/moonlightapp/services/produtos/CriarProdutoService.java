@@ -39,7 +39,7 @@ public class CriarProdutoService {
         List<ProcessoModel> processos = converterProcessosParaModel(dto);
 
         var novoProduto = new ProdutoModel(dto.getNome(), dto.getDescricao(),
-                unidadeMedida, tipoProduto, processos, 0, dto.getValor());
+                unidadeMedida, tipoProduto, 0, dto.getValor());
 
         List<ItensProdutoModel> itensProdutos = converterItensProdutoParaListModel(dto, novoProduto);
 

@@ -14,12 +14,6 @@ import java.util.List;
 
 public class ProcessoDAO extends ConexaoBanco implements ModelDAO<ProcessoModel> {
 
-    private final ProdutoDAO produtoDAO;
-
-    public ProcessoDAO() {
-        produtoDAO = new ProdutoDAO();
-    }
-
     public ProcessoModel buscarPorEtapa(String etapa) {
         try {
             Connection conexao = connect();
@@ -60,7 +54,6 @@ public class ProcessoDAO extends ConexaoBanco implements ModelDAO<ProcessoModel>
                     .prepareStatement("INSERT INTO processos (ETAPA, CUSTO, ID_PRODUTO) VALUES (?, ?, ?)");
             ps.setString(1, model.getEtapa());
             ps.setDouble(2, model.getCusto());
-            ps.setInt(3, model.getProduto().getId());
 
             ps.execute();
             return BaseDTO.buildSucesso("Processo criado com sucesso", null);
@@ -81,8 +74,7 @@ public class ProcessoDAO extends ConexaoBanco implements ModelDAO<ProcessoModel>
 
             ps.setString(1, modelAtualizado.getEtapa());
             ps.setDouble(2, modelAtualizado.getCusto());
-            ps.setInt(3, modelAtualizado.getProduto().getId());
-            ps.setInt(4, modelAtualizado.getId());
+            ps.setInt(3, modelAtualizado.getId());
 
             ps.executeUpdate();
 
@@ -130,16 +122,29 @@ public class ProcessoDAO extends ConexaoBanco implements ModelDAO<ProcessoModel>
         }
     }
 
+    public List<ProcessoModel> buscarTodos() throws RuntimeException {
+        try {
+            Connection conexao = connect();
+
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM processos");
+
+            ResultSet rs = ps.executeQuery();
+
+            return buildList(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar todos os processos: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+    }
+
     private ProcessoModel build(ResultSet rs) throws SQLException {
         if (rs.next()) {
             int id = rs.getInt(1);
             String etapa = rs.getString(2);
             double custo = rs.getDouble(3);
-            int idProduto = rs.getInt(4);
 
-            ProdutoModel produto = buscarProdutoPorId(idProduto);
-
-            ProcessoModel processo = new ProcessoModel(etapa, custo, produto);
+            ProcessoModel processo = new ProcessoModel(etapa, custo);
             processo.setId(id);
             return processo;
         } else {
@@ -151,9 +156,5 @@ public class ProcessoDAO extends ConexaoBanco implements ModelDAO<ProcessoModel>
         List<ProcessoModel> processos = new ArrayList<>();
         processos.add(build(rs));
         return processos;
-    }
-
-    private ProdutoModel buscarProdutoPorId(int id) {
-        return produtoDAO.buscarPorId(id);
     }
 }

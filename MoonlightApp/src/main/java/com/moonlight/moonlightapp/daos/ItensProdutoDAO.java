@@ -33,7 +33,7 @@ public class ItensProdutoDAO extends ConexaoBanco
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            return build(rs).getFirst();
+            return build(rs).get(0);
         } catch (SQLException e) {
             throw new RuntimeException("Um erro ocorreu ao buscar o ItensProduto por ID: " + e.getMessage());
         } finally {
