@@ -1,23 +1,28 @@
 package com.moonlight.moonlightapp.daos;
 
+import com.moonlight.moonlightapp.daos.contracts.BuscarPorNomeDAO;
+import com.moonlight.moonlightapp.daos.contracts.ModelDAO;
+import com.moonlight.moonlightapp.dtos.BaseDTO;
+import com.moonlight.moonlightapp.models.*;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.moonlight.moonlightapp.daos.contracts.BuscarPorNomeDAO;
-import com.moonlight.moonlightapp.daos.contracts.ModelDAO;
-import com.moonlight.moonlightapp.dtos.BaseDTO;
-import com.moonlight.moonlightapp.models.ProdutoModel;
-import com.moonlight.moonlightapp.models.ValorProdutoModel;
+import java.util.List;
 
 public final class ProdutoDAO extends ConexaoBanco
         implements ModelDAO<ProdutoModel>, BuscarPorNomeDAO<ProdutoModel> {
-
-    private final ValorProdutoDAO _valorProdutoDAO;
+    private final ValorProdutoDAO valorProdutoDAO;
+    private final UnidadeMedidaDAO unidadeMedidaDAO;
+    private final TipoProdutoDAO tipoProdutoDAO;
+    private final ProcessoDAO processoDAO;
 
     public ProdutoDAO() {
-        _valorProdutoDAO = new ValorProdutoDAO();
+        valorProdutoDAO = new ValorProdutoDAO();
+        unidadeMedidaDAO = new UnidadeMedidaDAO();
+        tipoProdutoDAO = new TipoProdutoDAO();
+        processoDAO = new ProcessoDAO();
     }
 
     @Override
@@ -30,6 +35,8 @@ public final class ProdutoDAO extends ConexaoBanco
             ps.setString(2, model.getDescricao());
             ps.setDouble(3, model.getValorProduto().getValorRecomendado());
             ps.setDouble(4, model.getValorProduto().getValor());
+            ps.setInt(5, model.getUnidadeMedida().getId());
+            ps.setInt(6, model.getTipo().getId());
 
             ps.execute();
 
@@ -46,11 +53,13 @@ public final class ProdutoDAO extends ConexaoBanco
         try {
             Connection conexao = connect();
 
-            var ps = conexao.prepareStatement("UPDATE produtos SET NOME = ?, DESCRICAO = ? WHERE ID = ?");
-            ps.setString(1, modelAtualizado.getNome());
+            var ps = conexao.prepareStatement("CALL spAtualizarProduto(?, ?, ?, ?, ?, ?, ?)");
+            ps.setInt(1, modelAtualizado.getId());
             ps.setString(2, modelAtualizado.getDescricao());
-            ps.setInt(3, modelAtualizado.getId());
-
+            ps.setDouble(3, modelAtualizado.getValorProduto().getValorRecomendado());
+            ps.setDouble(4, modelAtualizado.getValorProduto().getValor());
+            ps.setInt(5, modelAtualizado.getUnidadeMedida().getId());
+            ps.setInt(6, modelAtualizado.getTipo().getId());
             ps.executeUpdate();
 
             return BaseDTO.buildSucesso("Produto atualizado com sucesso", null);
@@ -80,7 +89,7 @@ public final class ProdutoDAO extends ConexaoBanco
     }
 
     @Override
-    public ProdutoModel BuscarPorId(int id) throws RuntimeException {
+    public ProdutoModel buscarPorId(int id) throws RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -121,10 +130,17 @@ public final class ProdutoDAO extends ConexaoBanco
             String nome = rs.getString(2);
             String descricao = rs.getString(3);
             int idValorProduto = rs.getInt(4);
+            int idUnidadeMedida = rs.getInt(5);
+            int idTipoProduto = rs.getInt(6);
 
-            ValorProdutoModel valorProduto = BuscarValorProduto(idValorProduto);
+            ValorProdutoModel valorProduto = buscarValorProdutoPorId(idValorProduto);
+            UnidadeMedidaModel unidadeMedida = buscarUnidadeMedidaPorId(idUnidadeMedida);
+            TipoProdutoModel tipoProduto = buscarTipoProdutoPorId(idTipoProduto);
+            List<ProcessoModel> processos = buscarProcessosPorProdutoId(idProduto);
 
-            ProdutoModel produto = new ProdutoModel(nome, descricao, valorProduto);
+            ProdutoModel produto = new ProdutoModel(nome, descricao, valorProduto,
+                    unidadeMedida, tipoProduto, processos);
+
             produto.setId(idProduto);
 
             return produto;
@@ -133,7 +149,19 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    private ValorProdutoModel BuscarValorProduto(int id) {
-        return _valorProdutoDAO.BuscarPorId(id);
+    private ValorProdutoModel buscarValorProdutoPorId(int id) {
+        return valorProdutoDAO.buscarPorId(id);
+    }
+
+    private UnidadeMedidaModel buscarUnidadeMedidaPorId(int id) {
+        return unidadeMedidaDAO.buscarPorId(id);
+    }
+
+    private TipoProdutoModel buscarTipoProdutoPorId(int id) {
+        return tipoProdutoDAO.buscarPorId(id);
+    }
+
+    private List<ProcessoModel> buscarProcessosPorProdutoId(int id) {
+        return processoDAO.buscarPorProdutoId(id);
     }
 }

@@ -7,10 +7,6 @@ package com.moonlight.moonlightapp;
 import javax.swing.JOptionPane;
 
 import com.moonlight.moonlightapp.daos.ConexaoBanco;
-import com.moonlight.moonlightapp.daos.ProdutoDAO;
-import com.moonlight.moonlightapp.daos.ValorProdutoDAO;
-import com.moonlight.moonlightapp.models.ProdutoModel;
-import com.moonlight.moonlightapp.models.ValorProdutoModel;
 
 /**
  * @author amanda.medeiros1

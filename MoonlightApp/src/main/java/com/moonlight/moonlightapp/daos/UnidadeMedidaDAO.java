@@ -19,7 +19,7 @@ public class UnidadeMedidaDAO extends ConexaoBanco
     }
 
     @Override
-    public UnidadeMedidaModel BuscarPorId(int id) {
+    public UnidadeMedidaModel buscarPorId(int id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'BuscarPorId'");
     }

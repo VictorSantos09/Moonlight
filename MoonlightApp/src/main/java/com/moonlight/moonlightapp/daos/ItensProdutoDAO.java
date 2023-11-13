@@ -25,7 +25,7 @@ public class ItensProdutoDAO extends ConexaoBanco
     }
 
     @Override
-    public ItensProdutoModel BuscarPorId(int id) throws RuntimeException {
+    public ItensProdutoModel buscarPorId(int id) throws RuntimeException {
         try {
             Connection conexa = connect();
 
@@ -130,10 +130,10 @@ public class ItensProdutoDAO extends ConexaoBanco
     }
 
     private MateriaPrimaModel buscarMateriaPrimaPorId(int id) {
-        return _materiaPrimaDAO.BuscarPorId(id);
+        return _materiaPrimaDAO.buscarPorId(id);
     }
 
     private ProdutoModel buscarProdutoPorId(int id) {
-        return _produtoDAO.BuscarPorId(id);
+        return _produtoDAO.buscarPorId(id);
     }
 }

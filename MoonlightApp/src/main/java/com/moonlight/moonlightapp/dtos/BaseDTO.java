@@ -17,7 +17,7 @@ public final class BaseDTO {
         return new BaseDTO(mensagem, true, data, false);
     }
 
-    public static BaseDTO BuildFalha(String mensagem, Object data) {
+    public static BaseDTO buildFalha(String mensagem, Object data) {
         return new BaseDTO(mensagem, false, data, false);
     }
 

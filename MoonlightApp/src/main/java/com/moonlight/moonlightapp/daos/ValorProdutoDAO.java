@@ -12,7 +12,7 @@ public final class ValorProdutoDAO extends ConexaoBanco
         implements ModelDAO<ValorProdutoModel> {
 
     @Override
-    public ValorProdutoModel BuscarPorId(int id) throws RuntimeException {
+    public ValorProdutoModel buscarPorId(int id) throws RuntimeException {
         try {
             var conexao = connect();
 
