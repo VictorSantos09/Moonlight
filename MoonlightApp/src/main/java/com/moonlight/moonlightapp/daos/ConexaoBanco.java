@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package com.moonlight.moonlightapp.daos;
 
 import java.sql.Connection;
@@ -11,7 +6,9 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- * @author victor.santos8
+ * Classe responsável por estabelecer a conexão com o banco de dados MySQL.
+ * 
+ * @author victor
  */
 public class ConexaoBanco {
     private static final String driver = "com.mysql.cj.jdbc.Driver";

@@ -33,7 +33,7 @@ public class MateriaPrimaDAO extends ConexaoBanco
     }
 
     @Override
-    public MateriaPrimaModel BuscarPorId(int id) {
+    public MateriaPrimaModel buscarPorId(int id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'BuscarPorId'");
     }

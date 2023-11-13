@@ -14,7 +14,7 @@ public class TipoProdutoDAO extends ConexaoBanco
     }
 
     @Override
-    public TipoProdutoModel BuscarPorId(int id) {
+    public TipoProdutoModel buscarPorId(int id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'BuscarPorId'");
     }
