@@ -3,37 +3,157 @@ package com.moonlight.moonlightapp.daos;
 import com.moonlight.moonlightapp.daos.contracts.ModelDAO;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
 import com.moonlight.moonlightapp.models.ProcessoModel;
+import com.moonlight.moonlightapp.models.ProdutoModel;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProcessoDAO extends  ConexaoBanco
-implements ModelDAO<ProcessoModel> {
+public class ProcessoDAO extends ConexaoBanco implements ModelDAO<ProcessoModel> {
+
+    private final ProdutoDAO produtoDAO;
+
+    public ProcessoDAO() {
+        produtoDAO = new ProdutoDAO();
+    }
+
+    public ProcessoModel buscarPorEtapa(String etapa) {
+        try {
+            Connection conexao = connect();
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM processos WHERE ETAPA = ?");
+            ps.setString(1, etapa);
+            ResultSet rs = ps.executeQuery();
+
+            return build(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar processo por etapa: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+    }
 
     @Override
     public ProcessoModel buscarPorId(int id) throws RuntimeException {
-        return null;
-    }
+        try {
+            Connection conexao = connect();
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM processos WHERE ID_PROCESSO = ?");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
 
-    public ProcessoModel BuscarPorEtapa(String etapa) throws RuntimeException {
-        return null;
-    }
-
-    @Override
-    public BaseDTO criar(ProcessoModel model) {
-        return null;
-    }
-
-    @Override
-    public BaseDTO atualizar(ProcessoModel modelAtualizado) {
-        return null;
+            return build(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar processo por id: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
     }
 
     @Override
-    public BaseDTO deletar(ProcessoModel model) {
-        return null;
+    public BaseDTO criar(ProcessoModel model) throws RuntimeException {
+        try {
+            Connection conexao = connect();
+
+            PreparedStatement ps = conexao
+                    .prepareStatement("INSERT INTO processos (ETAPA, CUSTO, ID_PRODUTO) VALUES (?, ?, ?)");
+            ps.setString(1, model.getEtapa());
+            ps.setDouble(2, model.getCusto());
+            ps.setInt(3, model.getProduto().getId());
+
+            ps.execute();
+            return BaseDTO.buildSucesso("Processo criado com sucesso", null);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao criar processo: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
     }
 
-    public List<ProcessoModel> buscarPorProdutoId(int id){
-        return List.of();
+    @Override
+    public BaseDTO atualizar(ProcessoModel modelAtualizado) throws RuntimeException {
+        try {
+            Connection conexao = connect();
+            PreparedStatement ps = conexao
+                    .prepareStatement(
+                            "UPDATE processos SET ETAPA = ?, CUSTO = ?, ID_PRODUTO = ? WHERE ID_PROCESSO = ?");
+
+            ps.setString(1, modelAtualizado.getEtapa());
+            ps.setDouble(2, modelAtualizado.getCusto());
+            ps.setInt(3, modelAtualizado.getProduto().getId());
+            ps.setInt(4, modelAtualizado.getId());
+
+            ps.executeUpdate();
+
+            return BaseDTO.buildSucesso("Processo atualizado com sucesso", null);
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar processo: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+    }
+
+    @Override
+    public BaseDTO deletar(ProcessoModel model) throws RuntimeException {
+        try {
+            Connection conexao = connect();
+
+            PreparedStatement ps = conexao.prepareStatement("DELETE FROM processos WHERE ID_PROCESSO = ?");
+            ps.setInt(1, model.getId());
+
+            ps.execute();
+
+            return BaseDTO.buildSucesso("Processo deletado com sucesso", null);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao deletar processo: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+    }
+
+    public List<ProcessoModel> buscarPorProdutoId(int id) throws RuntimeException {
+        try {
+            Connection conexao = connect();
+
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM processos WHERE ID_PRODUTO = ?");
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            return buildList(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar processos por produto id: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+    }
+
+    private ProcessoModel build(ResultSet rs) throws SQLException {
+        if (rs.next()) {
+            int id = rs.getInt(1);
+            String etapa = rs.getString(2);
+            double custo = rs.getDouble(3);
+            int idProduto = rs.getInt(4);
+
+            ProdutoModel produto = buscarProdutoPorId(idProduto);
+
+            ProcessoModel processo = new ProcessoModel(etapa, custo, produto);
+            processo.setId(id);
+            return processo;
+        } else {
+            return null;
+        }
+    }
+
+    private List<ProcessoModel> buildList(ResultSet rs) throws SQLException {
+        List<ProcessoModel> processos = new ArrayList<>();
+        processos.add(build(rs));
+        return processos;
+    }
+
+    private ProdutoModel buscarProdutoPorId(int id) {
+        return produtoDAO.buscarPorId(id);
     }
 }

@@ -23,8 +23,8 @@ public final class ValorProdutoDAO extends ConexaoBanco
             ResultSet rs = ps.executeQuery();
 
             return build(rs);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao buscar o ValorProduto por ID", e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar o ValorProduto por ID. Erro: " + e.getMessage());
         } finally {
             disconnect();
         }
@@ -42,8 +42,8 @@ public final class ValorProdutoDAO extends ConexaoBanco
             ps.execute();
 
             return BaseDTO.buildSucesso("cadastrado com sucesso", null);
-        } catch (Exception e) {
-            return BaseDTO.buildException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao criar o ValorProduto. Erro: " + e.getMessage());
         } finally {
             disconnect();
         }
@@ -61,8 +61,8 @@ public final class ValorProdutoDAO extends ConexaoBanco
             ps.execute();
 
             return BaseDTO.buildSucesso("atualizado com sucesso", null);
-        } catch (Exception e) {
-            return BaseDTO.buildException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar o ValorProduto. Erro: " + e.getMessage());
         } finally {
             disconnect();
         }
@@ -79,8 +79,8 @@ public final class ValorProdutoDAO extends ConexaoBanco
             ps.execute();
 
             return BaseDTO.buildSucesso("deletado com sucesso", null);
-        } catch (Exception e) {
-            return BaseDTO.buildException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao deletar o ValorProduto. Erro: " + e.getMessage());
         } finally {
             disconnect();
         }

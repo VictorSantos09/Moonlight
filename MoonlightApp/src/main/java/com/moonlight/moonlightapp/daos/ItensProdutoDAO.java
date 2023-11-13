@@ -34,8 +34,10 @@ public class ItensProdutoDAO extends ConexaoBanco
 
             ResultSet rs = ps.executeQuery();
             return build(rs).getFirst();
-        } catch (Exception e) {
-            throw new RuntimeException("Um erro ocorreu ao buscar o ItensProduto por ID");
+        } catch (SQLException e) {
+            throw new RuntimeException("Um erro ocorreu ao buscar o ItensProduto por ID: " + e.getMessage());
+        } finally {
+            disconnect();
         }
     }
 
@@ -48,13 +50,16 @@ public class ItensProdutoDAO extends ConexaoBanco
 
             ResultSet rs = ps.executeQuery();
             return build(rs);
-        } catch (Exception e) {
-            throw new RuntimeException("Um erro ocorreu ao buscar os itensProdutos por meio do produto");
+        } catch (SQLException e) {
+            throw new RuntimeException(
+                    "Um erro ocorreu ao buscar os itensProdutos por meio do produto: " + e.getMessage());
+        } finally {
+            disconnect();
         }
     }
 
     @Override
-    public BaseDTO criar(ItensProdutoModel model) {
+    public BaseDTO criar(ItensProdutoModel model) throws RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -67,13 +72,15 @@ public class ItensProdutoDAO extends ConexaoBanco
             ps.execute();
 
             return BaseDTO.buildSucesso("item cadastrado com sucesso", null);
-        } catch (Exception e) {
-            return BaseDTO.buildException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Um erro ocorreu ao criar o item: " + e.getMessage());
+        } finally {
+            disconnect();
         }
     }
 
     @Override
-    public BaseDTO atualizar(ItensProdutoModel modelAtualizado) {
+    public BaseDTO atualizar(ItensProdutoModel modelAtualizado) throws RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -86,13 +93,15 @@ public class ItensProdutoDAO extends ConexaoBanco
 
             ps.execute();
             return BaseDTO.buildSucesso("atualizado com sucesso", null);
-        } catch (Exception e) {
-            return BaseDTO.buildException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Um erro ocorreu ao atualizar o item: " + e.getMessage());
+        } finally {
+            disconnect();
         }
     }
 
     @Override
-    public BaseDTO deletar(ItensProdutoModel model) {
+    public BaseDTO deletar(ItensProdutoModel model) throws RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -101,8 +110,8 @@ public class ItensProdutoDAO extends ConexaoBanco
 
             ps.execute();
             return BaseDTO.buildSucesso("deletado com sucesso", null);
-        } catch (Exception e) {
-            return BaseDTO.buildException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Um erro ocorreu ao deletar o item: " + e.getMessage());
         }
     }
 

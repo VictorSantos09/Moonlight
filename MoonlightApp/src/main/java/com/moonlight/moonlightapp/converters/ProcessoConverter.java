@@ -18,6 +18,6 @@ public class ProcessoConverter {
     }
 
     public ProcessoModel converterParaModel(ProcessoDTO dto) {
-        return processoDAO.BuscarPorEtapa(dto.getEtapa());
+        return processoDAO.buscarPorEtapa(dto.getEtapa());
     }
 }
