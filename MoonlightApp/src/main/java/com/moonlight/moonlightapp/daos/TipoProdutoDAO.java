@@ -1,13 +1,13 @@
 package com.moonlight.moonlightapp.daos;
 
+import com.moonlight.moonlightapp.daos.contracts.BuscarPorIdDAO;
+import com.moonlight.moonlightapp.daos.contracts.BuscarPorNomeDAO;
+import com.moonlight.moonlightapp.models.TipoProdutoModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.moonlight.moonlightapp.daos.contracts.BuscarPorIdDAO;
-import com.moonlight.moonlightapp.daos.contracts.BuscarPorNomeDAO;
-import com.moonlight.moonlightapp.models.TipoProdutoModel;
 
 public class TipoProdutoDAO extends ConexaoBanco
         implements BuscarPorNomeDAO<TipoProdutoModel>, BuscarPorIdDAO<TipoProdutoModel> {
