@@ -3,10 +3,15 @@ package com.moonlight.moonlightapp.daos.contracts;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
 import com.moonlight.moonlightapp.models.BaseModel;
 
+
 /**
- * Interface que define as operações básicas de um DAO para um modelo que implementa a interface Identificavel.
+ * Esta interface define o contrato para um Objeto de Acesso a Dados (DAO) que manipula operações CRUD para um modelo específico.
  *
- * @param <T> Tipo do modelo que implementa Identificavel.
+ * @param <T> O tipo de modelo que este DAO manipula.
+ */
+/**
+ * Interface que define as operações básicas de um DAO para um modelo genérico.
+ * @param <T> O tipo do modelo.
  */
 public interface ModelDAO<T extends BaseModel> extends BuscarPorIdDAO<T> {
     /**
@@ -14,22 +19,25 @@ public interface ModelDAO<T extends BaseModel> extends BuscarPorIdDAO<T> {
      *
      * @param model O modelo a ser criado.
      * @return Um objeto BaseDTO contendo informações sobre a operação de criação.
+     * @throws RuntimeException Se ocorrer um erro ao criar o modelo.
      */
-    public BaseDTO criar(T model);
+    BaseDTO criar(T model) throws RuntimeException;
 
     /**
      * Atualiza um modelo existente no banco de dados.
      *
      * @param modelAtualizado O modelo atualizado a ser salvo.
      * @return Um objeto BaseDTO contendo informações sobre a operação de atualização.
+     * @throws RuntimeException Se ocorrer um erro ao atualizar o modelo.
      */
-    public BaseDTO atualizar(T modelAtualizado);
+    BaseDTO atualizar(T modelAtualizado) throws RuntimeException;
 
     /**
      * Deleta um modelo existente no banco de dados.
      *
      * @param model O modelo a ser deletado.
      * @return Um objeto BaseDTO contendo informações sobre a operação de deleção.
+     * @throws RuntimeException Se ocorrer um erro ao deletar o modelo.
      */
-    public BaseDTO deletar(T model);
+    BaseDTO deletar(T model) throws RuntimeException;
 }

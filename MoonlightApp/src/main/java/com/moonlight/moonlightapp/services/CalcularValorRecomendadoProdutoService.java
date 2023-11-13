@@ -8,7 +8,7 @@ import com.moonlight.moonlightapp.models.ProdutoModel;
 import java.util.List;
 
 public class CalcularValorRecomendadoProdutoService {
-    private static final double margemLucro = 0.75;
+    private static final double margemLucro = 0.3;
 
     public static Double calcular(ItensProdutoModel itensProduto) {
         return realizarCalculo(itensProduto.getMateriaPrima());
@@ -20,7 +20,7 @@ public class CalcularValorRecomendadoProdutoService {
 
         for (var ip : itensProdutos) {
             subTotalMateriasPrimas += calcular(ip);
-            subTotalProcessos += realizarCalculoProcesso(ip.getProduto().getProcessos());
+            subTotalProcessos += CalcularValorProcessoService.calcular(ip.getProduto().getProcessos());
         }
 
         return subTotalProcessos + subTotalMateriasPrimas;
@@ -28,9 +28,5 @@ public class CalcularValorRecomendadoProdutoService {
 
     private static Double realizarCalculo(MateriaPrimaModel materiaPrima) {
         return (materiaPrima.getValor() + (materiaPrima.getValor() * margemLucro));
-    }
-
-    private static Double realizarCalculoProcesso(List<ProcessoModel> processos) {
-        return processos.stream().mapToDouble(ProcessoModel::getCusto).sum() / processos.size();
     }
 }

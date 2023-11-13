@@ -41,8 +41,8 @@ public final class ProdutoDAO extends ConexaoBanco
             ps.execute();
 
             return BaseDTO.buildSucesso("Produto criado com sucesso", null);
-        } catch (Exception e) {
-            return BaseDTO.buildException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao criar produto: " + e.getMessage());
         } finally {
             disconnect();
         }
@@ -63,8 +63,8 @@ public final class ProdutoDAO extends ConexaoBanco
             ps.executeUpdate();
 
             return BaseDTO.buildSucesso("Produto atualizado com sucesso", null);
-        } catch (Exception e) {
-            return BaseDTO.buildException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar produto: " + e.getMessage());
         } finally {
             disconnect();
         }
@@ -81,8 +81,8 @@ public final class ProdutoDAO extends ConexaoBanco
             ps.executeUpdate();
 
             return BaseDTO.buildSucesso("Produto deletado com sucesso", null);
-        } catch (Exception e) {
-            return BaseDTO.buildException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao deletar produto: " + e.getMessage());
         } finally {
             disconnect();
         }
@@ -99,8 +99,8 @@ public final class ProdutoDAO extends ConexaoBanco
             ResultSet rs = ps.executeQuery();
             return Build(rs);
 
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao buscar produto por ID", e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar produto por ID: " + e.getMessage());
         } finally {
             disconnect();
         }
@@ -117,8 +117,8 @@ public final class ProdutoDAO extends ConexaoBanco
             ResultSet rs = ps.executeQuery();
 
             return Build(rs);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao buscar produto por nome. Erro: ", e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar produto por nome. Erro: " + e.getMessage());
         } finally {
             disconnect();
         }

@@ -22,7 +22,7 @@ public class ConexaoBanco {
                     "root");
 
         } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "erro ao conectar ao banco de dados.Erro: " + e.toString());
+            JOptionPane.showMessageDialog(null, "erro ao conectar ao banco de dados.Erro: " + e);
         }
         return connection;
     }
