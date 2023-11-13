@@ -25,4 +25,5 @@ replay_pid*
 
 # intelliJ IDEA
 *.idea
+.ideia
 *.DS_Store
