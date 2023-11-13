@@ -9,20 +9,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e3b9cf3-85e3-42cc-8c01-01fc234da8e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoProcessosDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/DatabaseConfig.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/DatabaseConfig.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/moonlight.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/moonlight.mwb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/moonlight.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/moonlight.mwb.bak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/MoonlightApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/MoonlightApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ItensProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ItensProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProcessoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProcessoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/ProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/TipoProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/daos/TipoProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ProcessoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ProcessoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ProdutoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/models/ProdutoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/CalcularValorRecomendadoProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/CalcularValorRecomendadoProdutoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/produtos/CriarProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MoonlightApp/src/main/java/com/moonlight/moonlightapp/services/produtos/CriarProdutoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Moonlight.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,10 +35,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
-}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2Y7fkF6XOgRtDldx1Y2GD1GVoWo" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -51,15 +50,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;imp-daos&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging fix-produtosProcessos",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -70,5 +69,8 @@
       <updated>1699876224103</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
