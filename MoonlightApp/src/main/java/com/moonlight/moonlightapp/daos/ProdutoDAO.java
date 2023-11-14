@@ -9,9 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public final class ProdutoDAO extends ConexaoBanco
-        implements ModelDAO<ProdutoModel>, BuscarPorNomeDAO<ProdutoModel> {
+        implements BuscarPorNomeDAO<ProdutoModel> {
     private final ValorProdutoDAO valorProdutoDAO;
     private final UnidadeMedidaDAO unidadeMedidaDAO;
     private final TipoProdutoDAO tipoProdutoDAO;
@@ -22,8 +23,7 @@ public final class ProdutoDAO extends ConexaoBanco
         tipoProdutoDAO = new TipoProdutoDAO();
     }
 
-    @Override
-    public BaseDTO criar(ProdutoModel model) {
+    public BaseDTO criar(ProdutoModel model, List<ProcessoModel> processos, List<ItemProdutoModel> itensProdutos) {
         try {
             Connection conexao = connect();
 
@@ -45,7 +45,6 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    @Override
     public BaseDTO atualizar(ProdutoModel modelAtualizado) {
         try {
             Connection conexao = connect();
@@ -67,7 +66,6 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    @Override
     public BaseDTO deletar(ProdutoModel model) {
         try {
             Connection conexao = connect();
@@ -85,7 +83,6 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    @Override
     public ProdutoModel buscarPorId(int id) throws RuntimeException {
         try {
             Connection conexao = connect();
@@ -102,7 +99,6 @@ public final class ProdutoDAO extends ConexaoBanco
             disconnect();
         }
     }
-
     @Override
     public ProdutoModel buscarPorNome(String name) throws RuntimeException {
         try {

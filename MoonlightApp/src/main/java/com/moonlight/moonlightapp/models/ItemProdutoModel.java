@@ -5,13 +5,13 @@ package com.moonlight.moonlightapp.models;
  * @author victor.santos09
  */
 
- public class ItensProdutoModel extends BaseModel {
+ public class ItemProdutoModel extends BaseModel {
     private int quantidade;
     private ProdutoModel produto;
     private MateriaPrimaModel materiaPrima;
     private double subTotal;
 
-    public ItensProdutoModel(int quantidade, ProdutoModel produto, double valor, MateriaPrimaModel materiasPrima) {
+    public ItemProdutoModel(int quantidade, ProdutoModel produto, double valor, MateriaPrimaModel materiasPrima) {
         this.quantidade = quantidade;
         this.produto = produto;
         this.subTotal = valor;

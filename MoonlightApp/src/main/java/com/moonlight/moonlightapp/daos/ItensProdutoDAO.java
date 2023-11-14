@@ -2,7 +2,7 @@ package com.moonlight.moonlightapp.daos;
 
 import com.moonlight.moonlightapp.daos.contracts.ModelDAO;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
-import com.moonlight.moonlightapp.models.ItensProdutoModel;
+import com.moonlight.moonlightapp.models.ItemProdutoModel;
 import com.moonlight.moonlightapp.models.MateriaPrimaModel;
 import com.moonlight.moonlightapp.models.ProdutoModel;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItensProdutoDAO extends ConexaoBanco
-        implements ModelDAO<ItensProdutoModel> {
+        implements ModelDAO<ItemProdutoModel> {
 
     private final ProdutoDAO _produtoDAO;
     private final MateriaPrimaDAO _materiaPrimaDAO;
@@ -25,7 +25,7 @@ public class ItensProdutoDAO extends ConexaoBanco
     }
 
     @Override
-    public ItensProdutoModel buscarPorId(int id) throws RuntimeException {
+    public ItemProdutoModel buscarPorId(int id) throws RuntimeException {
         try {
             Connection conexa = connect();
 
@@ -41,7 +41,7 @@ public class ItensProdutoDAO extends ConexaoBanco
         }
     }
 
-    public List<ItensProdutoModel> buscarPorProdutoId(int idProduto) throws RuntimeException {
+    public List<ItemProdutoModel> buscarPorProdutoId(int idProduto) throws RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -59,7 +59,7 @@ public class ItensProdutoDAO extends ConexaoBanco
     }
 
     @Override
-    public BaseDTO criar(ItensProdutoModel model) throws RuntimeException {
+    public BaseDTO criar(ItemProdutoModel model) throws RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -80,7 +80,7 @@ public class ItensProdutoDAO extends ConexaoBanco
     }
 
     @Override
-    public BaseDTO atualizar(ItensProdutoModel modelAtualizado) throws RuntimeException {
+    public BaseDTO atualizar(ItemProdutoModel modelAtualizado) throws RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -101,7 +101,7 @@ public class ItensProdutoDAO extends ConexaoBanco
     }
 
     @Override
-    public BaseDTO deletar(ItensProdutoModel model) throws RuntimeException {
+    public BaseDTO deletar(ItemProdutoModel model) throws RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -115,8 +115,8 @@ public class ItensProdutoDAO extends ConexaoBanco
         }
     }
 
-    private List<ItensProdutoModel> build(ResultSet rs) throws SQLException {
-        List<ItensProdutoModel> output = new ArrayList<>();
+    private List<ItemProdutoModel> build(ResultSet rs) throws SQLException {
+        List<ItemProdutoModel> output = new ArrayList<>();
         if (rs.next()) {
             int idItemProduto = rs.getInt(1);
             int quantidade = rs.getInt(2);
@@ -127,7 +127,7 @@ public class ItensProdutoDAO extends ConexaoBanco
             ProdutoModel produtoModel = buscarProdutoPorId(idProduto);
             MateriaPrimaModel materiaPrimaModel = buscarMateriaPrimaPorId(idMateriaPrima);
 
-            var itensProduto = new ItensProdutoModel(quantidade, produtoModel, subtotal, materiaPrimaModel);
+            var itensProduto = new ItemProdutoModel(quantidade, produtoModel, subtotal, materiaPrimaModel);
             itensProduto.setId(idItemProduto);
 
             output.add(itensProduto);

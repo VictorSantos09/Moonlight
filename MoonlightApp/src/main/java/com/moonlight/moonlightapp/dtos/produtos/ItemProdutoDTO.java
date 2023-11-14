@@ -2,11 +2,13 @@ package com.moonlight.moonlightapp.dtos.produtos;
 
 public class ItemProdutoDTO {
     private int quantidade;
+    private String nomeProduto;
     private String nomeMateriaPrima;
 
-    public ItemProdutoDTO(int quantidade, String nomeMateriaPrima) {
+    public ItemProdutoDTO(int quantidade, String nomeMateriaPrima, String nomeProduto) {
         this.quantidade = quantidade;
         this.nomeMateriaPrima = nomeMateriaPrima;
+        this.nomeProduto = nomeProduto;
     }
 
     public int getQuantidade() {
@@ -23,5 +25,13 @@ public class ItemProdutoDTO {
 
     public void setNomeMateriaPrima(String nomeMateriaPrima) {
         this.nomeMateriaPrima = nomeMateriaPrima;
+    }
+    
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 }
