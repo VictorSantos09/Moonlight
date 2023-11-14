@@ -15,12 +15,9 @@ import java.util.List;
 
 public class ItensProdutoDAO extends ConexaoBanco
         implements ModelDAO<ItemProdutoModel> {
-
-    private final ProdutoDAO _produtoDAO;
     private final MateriaPrimaDAO _materiaPrimaDAO;
 
     public ItensProdutoDAO() {
-        _produtoDAO = new ProdutoDAO();
         _materiaPrimaDAO = new MateriaPrimaDAO();
     }
 
@@ -143,6 +140,7 @@ public class ItensProdutoDAO extends ConexaoBanco
     }
 
     private ProdutoModel buscarProdutoPorId(int id) {
-        return _produtoDAO.buscarPorId(id);
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        return produtoDAO.buscarPorId(id);
     }
 }

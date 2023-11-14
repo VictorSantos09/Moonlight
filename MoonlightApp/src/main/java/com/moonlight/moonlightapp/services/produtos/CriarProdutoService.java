@@ -1,60 +1,98 @@
 package com.moonlight.moonlightapp.services.produtos;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.moonlight.moonlightapp.converters.ProcessoConverter;
+import com.moonlight.moonlightapp.daos.MateriaPrimaDAO;
+import com.moonlight.moonlightapp.daos.ProcessoDAO;
 import com.moonlight.moonlightapp.daos.ProdutoDAO;
-import com.moonlight.moonlightapp.daos.TipoProdutoDAO;
-import com.moonlight.moonlightapp.daos.UnidadeMedidaDAO;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
 import com.moonlight.moonlightapp.dtos.processos.ProcessoDTO;
 import com.moonlight.moonlightapp.dtos.produtos.ItemProdutoDTO;
 import com.moonlight.moonlightapp.dtos.produtos.ProdutoDTO;
-import com.moonlight.moonlightapp.models.ItemProdutoModel;
-import com.moonlight.moonlightapp.models.ProcessoModel;
-import com.moonlight.moonlightapp.models.ProdutoModel;
+import com.moonlight.moonlightapp.models.*;
+import com.moonlight.moonlightapp.services.CalcularValorRecomendadoProdutoService;
 
-public class CriarProdutoService {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public final class CriarProdutoService {
+    private final ProcessoDAO processoDAO;
     private final ProdutoDAO produtoDAO;
-    private final ProcessoConverter processoConverter;
+    private final MateriaPrimaDAO materiaPrimaDAO;
 
     public CriarProdutoService() {
+        processoDAO = new ProcessoDAO();
         produtoDAO = new ProdutoDAO();
-        processoConverter = new ProcessoConverter();
+        materiaPrimaDAO = new MateriaPrimaDAO();
     }
 
     public BaseDTO criar(ProdutoDTO dto) {
-        var processosDtos = dto.getProcessos();
-        var itensProdutosDtos = dto.getItensProdutos();
-        var unidadeMedida = dto.getUnidadeMedida();
-        var tipoProduto = dto.getTipoProduto();
+        List<ProcessoDTO> processosDtos = dto.getProcessos();
+        List<ItemProdutoDTO> itensProdutosDtos = dto.getItensProdutos();
+        UnidadeMedidaModel unidadeMedida = dto.getUnidadeMedida();
+        TipoProdutoModel tipoProduto = dto.getTipoProduto();
 
-        
-        ProdutoModel produto = new ProdutoModel(dto.getNome(), dto.getDescricao(), unidadeMedida, 
-        tipoProduto, 0, dto.getValor());
+        List<ProcessoModel> processosModels = buscarProcessos(processosDtos);
 
-        var processosModels = converterProcessosParaModel(processosDtos);
-        var itensProdutosModels = converterItensProdutosParaModel(itensProdutosDtos);
-        return produtoDAO.criar(produto, processosModels, itensProdutosModels);
-    }
+        List<MateriaPrimaModel> materiasPrimas = extrairMateriasPrimas(itensProdutosDtos);
 
-    private List<ProcessoModel> converterProcessosParaModel(List<ProcessoDTO> dtos){
-        List<ProcessoModel> processos = new ArrayList<>();
-        for (ProcessoDTO dto : dtos) {
-            processos.add(processoConverter.converterParaModel(dto));
+        var valorRecomendado = CalcularValorRecomendadoProdutoService.calcularProcessos(processosModels, materiasPrimas);
+
+        ProdutoModel produto = new ProdutoModel(dto.getNome(), dto.getDescricao(), unidadeMedida,
+                tipoProduto, valorRecomendado, dto.getValor());
+
+        BaseDTO resultadoGravacaoProduto = produtoDAO.criar(produto);
+
+        if (!resultadoGravacaoProduto.getIsSucesso()) {
+            return BaseDTO.buildFalha("não foi possível gravar o produto");
         }
 
-        return processos;
-    }
+        List<ItemProdutoModel> itensProdutosModels = converterItensProdutosParaModel(itensProdutosDtos);
 
-    private List<ItemProdutoModel> converterItensProdutosParaModel(List<ItemProdutoDTO> dtos){
-        List<ItemProdutoModel> itensProdutos = new ArrayList<>();
-        for (ItemProdutoDTO dto : dtos) {
-            itensProdutos.add(new ItemProdutoModel(dto.getNome(), dto.getDescricao(), dto.getValor()));
+        var idProduto = produtoDAO.buscarPorNome(produto.getNome()).getId();
+
+        BaseDTO resultadoGravacaoDetalhes = produtoDAO.criarDetalhes(processosModels, itensProdutosModels, idProduto);
+
+        if (!resultadoGravacaoDetalhes.getIsSucesso()) {
+            return BaseDTO.buildFalha("não foi possível gravar os processos e matérias primas do produto",
+                    produto.getNome() + " foi cadastrado");
         }
 
-        return itensProdutos;
+        return BaseDTO.buildSucesso("produto e detalhes gravados com sucesso");
     }
-    
+
+    private List<ProcessoModel> buscarProcessos(List<ProcessoDTO> dtos) {
+        List<ProcessoModel> output = new ArrayList<>();
+
+        dtos.forEach(x -> {
+            var processo = processoDAO.buscarPorEtapa(x.getEtapa());
+            output.add(processo);
+        });
+
+        return output;
+    }
+
+    private List<ItemProdutoModel> converterItensProdutosParaModel(List<ItemProdutoDTO> dtos) {
+        List<ItemProdutoModel> output = new ArrayList<>();
+
+        dtos.forEach(x -> {
+            var produto = produtoDAO.buscarPorNome(x.getNomeProduto());
+
+            dtos.forEach(ip -> {
+
+                var materiaPrima = materiaPrimaDAO.buscarPorNome(ip.getNomeMateriaPrima());
+                var subTotal = materiaPrima.getValor() * ip.getQuantidade();
+                var itemProduto = new ItemProdutoModel(ip.getQuantidade(), produto, subTotal, materiaPrima);
+                output.add(itemProduto);
+            });
+        });
+
+        return output;
+    }
+
+    private List<MateriaPrimaModel> extrairMateriasPrimas(List<ItemProdutoDTO> itensProdutosDtos) {
+        return itensProdutosDtos.stream()
+                .map(itemProduto -> materiaPrimaDAO.buscarPorNome(itemProduto.getNomeMateriaPrima()))
+                .collect(Collectors.toList());
+
+    }
 }

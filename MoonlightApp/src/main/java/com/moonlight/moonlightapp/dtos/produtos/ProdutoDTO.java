@@ -23,6 +23,18 @@ public class ProdutoDTO {
     private TipoProdutoModel tipoProduto;
     private UnidadeMedidaModel unidadeMedida;
 
+    public ProdutoDTO(String nome, String descricao, Integer valor, List<ProcessoDTO> processos,
+                      List<ItemProdutoDTO> itensProdutos, TipoProdutoModel tipoProduto,
+                      UnidadeMedidaModel unidadeMedida) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.processos = processos;
+        this.itensProdutos = itensProdutos;
+        this.tipoProduto = tipoProduto;
+        this.unidadeMedida = unidadeMedida;
+    }
+
     public UnidadeMedidaModel getUnidadeMedida() {
         return unidadeMedida;
     }

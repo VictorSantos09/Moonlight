@@ -19,7 +19,7 @@ public class ItemProdutoDTO {
         this.quantidade = quantidade;
     }
 
-    public String getMateriaPrima() {
+    public String getNomeMateriaPrima() {
         return nomeMateriaPrima;
     }
 

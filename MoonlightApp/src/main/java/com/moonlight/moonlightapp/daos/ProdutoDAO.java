@@ -9,21 +9,37 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public final class ProdutoDAO extends ConexaoBanco
-        implements BuscarPorNomeDAO<ProdutoModel> {
+        implements ModelDAO<ProdutoModel>, BuscarPorNomeDAO<ProdutoModel> {
     private final ValorProdutoDAO valorProdutoDAO;
     private final UnidadeMedidaDAO unidadeMedidaDAO;
     private final TipoProdutoDAO tipoProdutoDAO;
+    private final ItensProdutoDAO itensProdutoDAO;
 
     public ProdutoDAO() {
         valorProdutoDAO = new ValorProdutoDAO();
         unidadeMedidaDAO = new UnidadeMedidaDAO();
         tipoProdutoDAO = new TipoProdutoDAO();
+        itensProdutoDAO = new ItensProdutoDAO();
     }
 
-    public BaseDTO criar(ProdutoModel model, List<ProcessoModel> processos, List<ItemProdutoModel> itensProdutos) {
+    public BaseDTO criarDetalhes(List<ProcessoModel> processos, List<ItemProdutoModel> itensProdutos, int idProduto) throws  RuntimeException {
+        try {
+            var resultadosProcessos = salvarProcessos(idProduto, processos);
+            var resultadosItensProdutos = salvarItensProdutos(itensProdutos);
+
+            return BaseDTO.buildSucesso("detalhes do produto criados com sucesso", null);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao criar os detalhes do produto: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+    }
+
+    public BaseDTO criar(ProdutoModel model) throws  RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -45,7 +61,7 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    public BaseDTO atualizar(ProdutoModel modelAtualizado) {
+    public BaseDTO atualizar(ProdutoModel modelAtualizado) throws  RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -66,7 +82,7 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    public BaseDTO deletar(ProdutoModel model) {
+    public BaseDTO deletar(ProdutoModel model) throws  RuntimeException{
         try {
             Connection conexao = connect();
 
@@ -99,7 +115,7 @@ public final class ProdutoDAO extends ConexaoBanco
             disconnect();
         }
     }
-    @Override
+
     public ProdutoModel buscarPorNome(String name) throws RuntimeException {
         try {
             Connection conexao = connect();
@@ -151,5 +167,34 @@ public final class ProdutoDAO extends ConexaoBanco
 
     private TipoProdutoModel buscarTipoProdutoPorId(int id) {
         return tipoProdutoDAO.buscarPorId(id);
+    }
+
+    private List<String> salvarProcessos(int idProduto, List<ProcessoModel> processos) {
+        List<String> output = new ArrayList<>();
+        ProdutoProcessosDAO produtoProcessosDAO = new ProdutoProcessosDAO();
+
+        processos.forEach(processo -> {
+            var produto = buscarPorId(idProduto);
+
+            ProdutoProcessoModel produtoProcesso = new ProdutoProcessoModel(processo, produto);
+
+            var resultadoGravacao = produtoProcessosDAO.criar(produtoProcesso);
+
+            output.add(processo.getEtapa() + (resultadoGravacao.getIsSucesso() ? " CRIADO" : " NÃO CRIADO"));
+        });
+
+        return output;
+    }
+
+    private List<String> salvarItensProdutos(List<ItemProdutoModel> itensProdutos) {
+        List<String> output = new ArrayList<>();
+
+        itensProdutos.forEach(ip -> {
+            var resultadoGravacao = itensProdutoDAO.criar(ip);
+
+            output.add(ip.getProduto().getNome() + " - " + ip.getMateriaPrima().getNome() + (resultadoGravacao.getIsSucesso() ? "CRIADO" : "NÂO CRIADO"));
+        });
+
+        return output;
     }
 }

@@ -5,14 +5,12 @@
 package com.moonlight.moonlightapp;
 
 import com.moonlight.moonlightapp.daos.ConexaoBanco;
-import com.moonlight.moonlightapp.daos.ProcessoDAO;
-import com.moonlight.moonlightapp.daos.ProdutoDAO;
-import com.moonlight.moonlightapp.daos.ProdutoProcessosDAO;
 import com.moonlight.moonlightapp.daos.TipoProdutoDAO;
 import com.moonlight.moonlightapp.daos.UnidadeMedidaDAO;
-import com.moonlight.moonlightapp.models.ProcessoModel;
-import com.moonlight.moonlightapp.models.ProdutoModel;
-import com.moonlight.moonlightapp.models.ProdutoProcessoModel;
+import com.moonlight.moonlightapp.dtos.processos.ProcessoDTO;
+import com.moonlight.moonlightapp.dtos.produtos.ItemProdutoDTO;
+import com.moonlight.moonlightapp.dtos.produtos.ProdutoDTO;
+import com.moonlight.moonlightapp.services.produtos.CriarProdutoService;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -29,26 +27,33 @@ public class MoonlightApp {
             JOptionPane.showMessageDialog(null, "Falha ao conectar ao banco de dados");
         }
 
+        try {
+            Executar();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getCause());
+            JOptionPane.showMessageDialog(null, e.getStackTrace());
+        }
+    }
+
+    private static void Executar() {
         var unidadeMedida = new UnidadeMedidaDAO().buscarPorId(1);
-        var tipo = new TipoProdutoDAO().buscarPorId(1);
+        var tipoProduto = new TipoProdutoDAO().buscarPorId(1);
 
-        ProdutoModel model = new ProdutoModel("bolo de vodka", "MT DOIDO", unidadeMedida, tipo, 500, 100);
+        List<ProcessoDTO> processosDtos = new ArrayList<>();
+        processosDtos.add(new ProcessoDTO("Fermentação", 10d));
+        processosDtos.add(new ProcessoDTO("Cozimento", 5d));
+        processosDtos.add(new ProcessoDTO("Embalagem", 120d));
 
-        var processosDB = new ProcessoDAO().buscarTodos();
-        List<ProcessoModel> processos = new ArrayList<>();
+        List<ItemProdutoDTO> itensProdutosDtos = new ArrayList<>();
+        itensProdutosDtos.add(new ItemProdutoDTO(10, "TOMATE",
+                "BOLO DE TOMATE"));
 
-        processosDB.forEach(processo -> {
-            processos.add(processo);
-        });
+        ProdutoDTO dto = new ProdutoDTO("BOLO DE TOMATE", "MT RUIM", 100, processosDtos,
+                itensProdutosDtos, tipoProduto, unidadeMedida);
 
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        var resultado = produtoDAO.criar(model);
-
-        ProdutoProcessosDAO produtoProcessosDAO = new ProdutoProcessosDAO();
-        processos.forEach(processo -> {
-            var produtoProcesso = new ProdutoProcessoModel(processo, model);
-            produtoProcessosDAO.criar(produtoProcesso);
-        });
+        CriarProdutoService service = new CriarProdutoService();
+        var resultado = service.criar(dto);
 
         JOptionPane.showMessageDialog(null, resultado.getMensagem());
     }

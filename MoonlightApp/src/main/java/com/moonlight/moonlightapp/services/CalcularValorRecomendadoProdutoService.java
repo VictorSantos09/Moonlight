@@ -8,32 +8,19 @@ import java.util.List;
 public class CalcularValorRecomendadoProdutoService {
     private static final double margemLucro = 0.3;
 
-    public static Double calcular(MateriaPrimaModel materiaPrima) {
-        return calcularMateriaPrima(materiaPrima);
-    }
-
-    public static Double calcular(List<MateriaPrimaModel> materiasPrimas) {
-        double subTotalMateriasPrimas = 0;
-
-        for (var ip : materiasPrimas) {
-            subTotalMateriasPrimas += calcularMateriaPrima(ip);
-        }
-
-        return subTotalMateriasPrimas;
-    }
-
-    public static Double calcularProcessos(List<ProcessoModel> processos) {
+    public static Double calcularProcessos(List<ProcessoModel> processos, List<MateriaPrimaModel> materiasPrimas) {
         double subTotalProcessos = 0;
+        double subTotalMateriasPrimas = 0;
 
         for (var processo : processos) {
             subTotalProcessos += CalcularValorProcessoService.calcular(processo);
         }
 
-        return subTotalProcessos;
-    }
+        for (var mp : materiasPrimas) {
+            subTotalMateriasPrimas += calcularMateriaPrima(mp);
+        }
 
-    public static Double calcularProcesso(ProcessoModel processo) {
-        return CalcularValorProcessoService.calcular(processo);
+        return subTotalProcessos + subTotalMateriasPrimas;
     }
 
     private static Double calcularMateriaPrima(MateriaPrimaModel materiaPrima) {

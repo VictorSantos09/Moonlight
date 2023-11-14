@@ -11,10 +11,10 @@ package com.moonlight.moonlightapp.models;
     private MateriaPrimaModel materiaPrima;
     private double subTotal;
 
-    public ItemProdutoModel(int quantidade, ProdutoModel produto, double valor, MateriaPrimaModel materiasPrima) {
+    public ItemProdutoModel(int quantidade, ProdutoModel produto, double subTotal, MateriaPrimaModel materiasPrima) {
         this.quantidade = quantidade;
         this.produto = produto;
-        this.subTotal = valor;
+        this.subTotal = subTotal;
         this.materiaPrima = materiasPrima;
     }
 
@@ -46,7 +46,7 @@ package com.moonlight.moonlightapp.models;
         return subTotal;
     }
 
-    public void setSubTotal(double valor) {
-        this.subTotal = valor;
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
     }
 }
