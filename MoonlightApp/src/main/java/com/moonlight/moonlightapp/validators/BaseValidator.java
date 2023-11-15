@@ -1,5 +1,7 @@
 package com.moonlight.moonlightapp.validators;
 
+import com.moonlight.moonlightapp.validators.models.ResultadoValidacao;
+
 import java.util.ArrayList;
 import java.util.List;
 

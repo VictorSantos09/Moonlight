@@ -1,4 +1,4 @@
-package com.moonlight.moonlightapp.validators;
+package com.moonlight.moonlightapp.validators.models;
 
 import java.util.ArrayList;
 import java.util.List;
