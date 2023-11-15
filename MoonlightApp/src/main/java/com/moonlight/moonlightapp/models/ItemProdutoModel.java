@@ -2,10 +2,11 @@ package com.moonlight.moonlightapp.models;
 
 /**
  * Classe que representa o relacionamento entre ProdutoModel e sua MateriaPrimaModel e a quantidade de cada uma delas.
+ *
  * @author victor.santos09
  */
 
- public class ItemProdutoModel extends BaseModel {
+public class ItemProdutoModel extends BaseModel {
     private int quantidade;
     private ProdutoModel produto;
     private MateriaPrimaModel materiaPrima;

@@ -3,7 +3,6 @@ package com.moonlight.moonlightapp.daos;
 import com.moonlight.moonlightapp.daos.contracts.ModelDAO;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
 import com.moonlight.moonlightapp.models.ProcessoModel;
-import com.moonlight.moonlightapp.models.ProdutoModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class ProcessoDAO extends ConexaoBanco implements ModelDAO<ProcessoModel> {
 
-    public ProcessoModel buscarPorEtapa(String etapa) {
+    public ProcessoModel buscarPorEtapa(String etapa) throws RuntimeException {
         try {
             Connection conexao = connect();
             PreparedStatement ps = conexao.prepareStatement("SELECT * FROM processos WHERE ETAPA = ?");
@@ -148,7 +147,7 @@ public class ProcessoDAO extends ConexaoBanco implements ModelDAO<ProcessoModel>
             processo.setId(id);
             return processo;
         } else {
-            return null;
+            return  null;
         }
     }
 

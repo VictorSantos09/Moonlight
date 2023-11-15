@@ -4,13 +4,23 @@ public final class BaseDTO {
     private String mensagem;
     private Boolean isSucesso;
     private Boolean isException;
-    private  Object data;
+    private Object data;
 
     public BaseDTO(String mensagem, Boolean isSucesso, Object data, Boolean isException) {
         this.mensagem = mensagem;
         this.isSucesso = isSucesso;
         this.data = data;
         this.isException = isException;
+    }
+
+    @Override
+    public String toString() {
+        return "BaseDTO{" +
+                "mensagem='" + mensagem + '\'' +
+                ", isSucesso=" + isSucesso +
+                ", isException=" + isException +
+                ", data=" + data +
+                '}';
     }
 
     public static BaseDTO buildSucesso(String mensagem) {
@@ -39,11 +49,6 @@ public final class BaseDTO {
 
     public static BaseDTO buildException(Exception e) {
         return new BaseDTO(e.getMessage(), false, e.getMessage(), true);
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Mensagem: %s, Sucesso: %s, Data: %s", this.mensagem, this.isSucesso, this.data);
     }
 
     public String getMensagem() {

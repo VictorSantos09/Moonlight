@@ -2,6 +2,7 @@ package com.moonlight.moonlightapp.models;
 
 /**
  * Classe que representa um processo de um produto a ser fabricado.
+ *
  * @author victor.santos9
  */
 public class ProcessoModel extends BaseModel {
@@ -22,7 +23,7 @@ public class ProcessoModel extends BaseModel {
     }
 
     public double getCusto() {
-        return custo;
+        return this.custo;
     }
 
     public void setCusto(double custo) {

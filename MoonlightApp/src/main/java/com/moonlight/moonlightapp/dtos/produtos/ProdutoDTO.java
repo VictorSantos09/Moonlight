@@ -4,42 +4,32 @@
  */
 package com.moonlight.moonlightapp.dtos.produtos;
 
+import com.moonlight.moonlightapp.dtos.DTO;
 import com.moonlight.moonlightapp.dtos.processos.ProcessoDTO;
-import com.moonlight.moonlightapp.models.TipoProdutoModel;
-import com.moonlight.moonlightapp.models.UnidadeMedidaModel;
+import com.moonlight.moonlightapp.dtos.unidadesmedidas.UnidadeMedidaDTO;
 
 import java.util.List;
 
 /**
- *
  * @author victor.santos8
  */
-public class ProdutoDTO {
-    private String nome;
-    private String descricao;
-    private Integer valor;
-    private List<ProcessoDTO> processos;
-    private List<ItemProdutoDTO> itensProdutos;
-    private TipoProdutoModel tipoProduto;
-    private UnidadeMedidaModel unidadeMedida;
+public class ProdutoDTO implements DTO {
+    private final String nome;
+    private final String descricao;
+    private final Integer valor;
+    private final List<ProcessoDTO> processos;
+    private final List<ItemProdutoDTO> itensProdutos;
+    private final TipoProdutoDTO tipoProduto;
+    private final UnidadeMedidaDTO unidadeMedida;
 
     public ProdutoDTO(String nome, String descricao, Integer valor, List<ProcessoDTO> processos,
-                      List<ItemProdutoDTO> itensProdutos, TipoProdutoModel tipoProduto,
-                      UnidadeMedidaModel unidadeMedida) {
+                      List<ItemProdutoDTO> itensProdutos, TipoProdutoDTO tipoProduto, UnidadeMedidaDTO unidadeMedida) {
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
         this.processos = processos;
         this.itensProdutos = itensProdutos;
         this.tipoProduto = tipoProduto;
-        this.unidadeMedida = unidadeMedida;
-    }
-
-    public UnidadeMedidaModel getUnidadeMedida() {
-        return unidadeMedida;
-    }
-
-    public void setUnidadeMedida(UnidadeMedidaModel unidadeMedida) {
         this.unidadeMedida = unidadeMedida;
     }
 
@@ -47,47 +37,27 @@ public class ProdutoDTO {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getDescricao() {
         return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public Integer getValor() {
         return valor;
     }
 
-    public void setValor(Integer valor) {
-        this.valor = valor;
-    }
-
     public List<ProcessoDTO> getProcessos() {
         return processos;
-    }
-
-    public void setProcessos(List<ProcessoDTO> processos) {
-        this.processos = processos;
     }
 
     public List<ItemProdutoDTO> getItensProdutos() {
         return itensProdutos;
     }
 
-    public void setItensProdutos(List<ItemProdutoDTO> itensProdutos) {
-        this.itensProdutos = itensProdutos;
-    }
-
-    public TipoProdutoModel getTipoProduto() {
+    public TipoProdutoDTO getTipoProduto() {
         return tipoProduto;
     }
 
-    public void setTipoProduto(TipoProdutoModel tipoProduto) {
-        this.tipoProduto = tipoProduto;
+    public UnidadeMedidaDTO getUnidadeMedida() {
+        return unidadeMedida;
     }
 }

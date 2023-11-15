@@ -2,7 +2,7 @@ package com.moonlight.moonlightapp.models;
 
 /**
  * Classe que representa um tipo de produto a ser fabricado pela empresa.
- * 
+ *
  * @author victor.santos09
  */
 public class TipoProdutoModel extends BaseModel {

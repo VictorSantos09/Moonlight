@@ -32,7 +32,11 @@ public final class ProdutoDAO extends ConexaoBanco
             var resultadosProcessos = salvarProcessos(idProduto, processos);
             var resultadosItensProdutos = salvarItensProdutos(itensProdutos);
 
-            return BaseDTO.buildSucesso("detalhes do produto criados com sucesso", null);
+            List<String> informacoes = new ArrayList<>();
+            informacoes.addAll(resultadosItensProdutos);
+            informacoes.addAll(resultadosProcessos);
+
+            return BaseDTO.buildSucesso("detalhes do produto criados", informacoes);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao criar os detalhes do produto: " + e.getMessage());
         } finally {
@@ -42,6 +46,9 @@ public final class ProdutoDAO extends ConexaoBanco
 
     public BaseDTO criar(ProdutoModel model) throws RuntimeException {
         try {
+            definirIdUnidademedida(model);
+            definirIdTipoProduto(model);
+
             Connection conexao = connect();
 
             PreparedStatement ps = conexao.prepareStatement("CALL spCriarProduto(?, ?, ?, ?, ?, ?)");
@@ -87,7 +94,7 @@ public final class ProdutoDAO extends ConexaoBanco
         try {
             Connection conexao = connect();
 
-            PreparedStatement ps = conexao.prepareStatement("DELETE FROM produtos WHERE ID = ?");
+            PreparedStatement ps = conexao.prepareStatement("DELETE FROM produtos WHERE ID_PRODUTO = ?");
             ps.setInt(1, model.getId());
 
             ps.executeUpdate();
@@ -198,5 +205,25 @@ public final class ProdutoDAO extends ConexaoBanco
         });
 
         return output;
+    }
+
+    private void definirIdUnidademedida(ProdutoModel model) throws RuntimeException {
+        var idUnidadeMedida = unidadeMedidaDAO.buscarPorSigla(model.getUnidadeMedida().getSigla()).getId();
+
+        if (idUnidadeMedida == 0) {
+            throw new RuntimeException("um erro ocorreu ao definir a ID da unidade de medida do produto");
+        }
+
+        model.getUnidadeMedida().setId(idUnidadeMedida);
+    }
+
+    private void definirIdTipoProduto(ProdutoModel model) throws RuntimeException {
+        var idTipo = tipoProdutoDAO.buscarPorNome(model.getTipo().getNome()).getId();
+
+        if (idTipo == 0) {
+            throw new RuntimeException("um erro ocorreu ao definir a ID do tipo do produto");
+        }
+
+        model.getTipo().setId(idTipo);
     }
 }

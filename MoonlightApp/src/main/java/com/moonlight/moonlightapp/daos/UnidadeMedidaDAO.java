@@ -37,7 +37,7 @@ public class UnidadeMedidaDAO extends ConexaoBanco
         try {
             Connection conexao = connect();
 
-            String sql = "SELECT * FROM tipos_materias_primas WHERE SIGLA = ?";
+            String sql = "SELECT * FROM unidades_medidas WHERE SIGLA = ?";
 
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, sigla);
@@ -84,7 +84,7 @@ public class UnidadeMedidaDAO extends ConexaoBanco
 
             return unidadeMedida;
         } else {
-            return null;
+            return  null;
         }
     }
 }

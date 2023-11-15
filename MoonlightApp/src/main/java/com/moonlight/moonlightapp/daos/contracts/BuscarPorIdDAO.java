@@ -4,8 +4,10 @@ import com.moonlight.moonlightapp.models.BaseModel;
 
 /**
  * Interface que define o contrato para buscar um objeto por seu ID.
+ *
  * @param <T> tipo do objeto a ser buscado.
  */
+
 /**
  * Interface que define o contrato para buscar um objeto pelo seu ID.
  * @param <T> tipo do objeto a ser buscado.

@@ -125,7 +125,7 @@ public class MateriaPrimaDAO extends ConexaoBanco
             int id = rs.getInt(1);
             String nome = rs.getString(2);
             String descricao = rs.getString(3);
-            Double valor = rs.getDouble(4);
+            double valor = rs.getDouble(4);
             int quantidade = rs.getInt(5);
             int idUnidadeMedida = rs.getInt(6);
             int idTipoMateriaPrima = rs.getInt(7);
@@ -139,7 +139,7 @@ public class MateriaPrimaDAO extends ConexaoBanco
 
             return materiaPrima;
         } else {
-            return null;
+            return  null;
         }
     }
 

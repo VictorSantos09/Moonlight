@@ -1,6 +1,8 @@
 package com.moonlight.moonlightapp.dtos.produtos;
 
-public class ItemProdutoDTO {
+import com.moonlight.moonlightapp.dtos.DTO;
+
+public class ItemProdutoDTO implements DTO {
     private int quantidade;
     private String nomeProduto;
     private String nomeMateriaPrima;
@@ -26,7 +28,7 @@ public class ItemProdutoDTO {
     public void setNomeMateriaPrima(String nomeMateriaPrima) {
         this.nomeMateriaPrima = nomeMateriaPrima;
     }
-    
+
     public String getNomeProduto() {
         return nomeProduto;
     }

@@ -1,16 +1,20 @@
 package com.moonlight.moonlightapp.daos;
 
+import com.moonlight.moonlightapp.models.ItemProdutoModel;
+
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+import java.util.List;
 
 /**
  * Classe responsável por estabelecer a conexão com o banco de dados MySQL.
- * 
+ *
  * @author victor
  */
-public class ConexaoBanco {
+public abstract class ConexaoBanco {
     private static final String driver = "com.mysql.cj.jdbc.Driver";
     private static final String url = "jdbc:mysql://localhost:3306/moonlight";
     private static Connection connection;

@@ -9,8 +9,10 @@ import com.moonlight.moonlightapp.models.BaseModel;
  *
  * @param <T> O tipo de modelo que este DAO manipula.
  */
+
 /**
  * Interface que define as operações básicas de um DAO para um modelo genérico.
+ *
  * @param <T> O tipo do modelo.
  */
 public interface ModelDAO<T extends BaseModel> extends BuscarPorIdDAO<T> {

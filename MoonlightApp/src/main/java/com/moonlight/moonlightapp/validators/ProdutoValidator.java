@@ -6,7 +6,7 @@ import com.moonlight.moonlightapp.models.UnidadeMedidaModel;
 import com.moonlight.moonlightapp.models.ValorProdutoModel;
 import com.moonlight.moonlightapp.validators.contracts.ModelValidator;
 
-public class ProdutoValidator extends BaseModelValidator
+public class ProdutoValidator extends BaseValidator
         implements ModelValidator<ProdutoModel> {
 
     private final UnidadeMedidaValidator unidadeMedidaValidator = new UnidadeMedidaValidator();
@@ -16,34 +16,34 @@ public class ProdutoValidator extends BaseModelValidator
     @Override
     public ResultadoValidacao validar(ProdutoModel model) {
         if (model == null)
-            build("produto inválido");
+            addFailure("produto inválido");
 
         if (model.getNome().isEmpty() || model.getNome().isBlank())
-            build("nome do produto inválido");
+            addFailure("nome do produto inválido");
 
         if (model.getDescricao().isEmpty() || model.getDescricao().isBlank())
-            build("descrição do produto inválida");
+            addFailure("descrição do produto inválida");
 
         validarTipoProduto(model.getTipo());
         validarUnidadeMedida(model.getUnidadeMedida());
         validarValorProduto(model.getValorProduto());
 
-        return resultado;
+        return build();
     }
 
     private void validarUnidadeMedida(UnidadeMedidaModel model) {
         var resultado = unidadeMedidaValidator.validar(model);
-        build(resultado);
+        addFailure(resultado);
     }
 
     private void validarTipoProduto(TipoProdutoModel model) {
         var resultado = tipoProdutoValidator.validar(model);
-        build(resultado);
+        addFailure(resultado);
     }
 
     private void validarValorProduto(ValorProdutoModel model) {
         var resultado = valorProdutoValidator.validar(model);
-        build(resultado);
+        addFailure(resultado);
     }
 
 }
