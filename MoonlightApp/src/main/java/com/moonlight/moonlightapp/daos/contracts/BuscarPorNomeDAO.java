@@ -6,8 +6,10 @@ package com.moonlight.moonlightapp.daos.contracts;
  *
  * @param <T> o tipo do objeto a ser buscado
  */
+
 /**
  * Interface responsável por buscar um objeto do tipo T pelo nome único no banco de dados.
+ *
  * @param <T> o tipo do objeto a ser buscado
  */
 public interface BuscarPorNomeDAO<T> {

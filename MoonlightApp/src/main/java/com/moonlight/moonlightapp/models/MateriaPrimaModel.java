@@ -2,6 +2,7 @@ package com.moonlight.moonlightapp.models;
 
 /**
  * Classe que representa uma matéria prima de um produto.
+ *
  * @author victor.santos09
  */
 public class MateriaPrimaModel extends BaseModel {
@@ -13,7 +14,7 @@ public class MateriaPrimaModel extends BaseModel {
     private TipoMateriaPrimaModel tipoMateriaPrima;
 
     public MateriaPrimaModel(String nome, String descricao, double valor, int quantidade,
-            UnidadeMedidaModel unidadeMedida, TipoMateriaPrimaModel tipoMateriaPrima) {
+                             UnidadeMedidaModel unidadeMedida, TipoMateriaPrimaModel tipoMateriaPrima) {
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;

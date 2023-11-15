@@ -9,22 +9,46 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class ProdutoDAO extends ConexaoBanco
         implements ModelDAO<ProdutoModel>, BuscarPorNomeDAO<ProdutoModel> {
     private final ValorProdutoDAO valorProdutoDAO;
     private final UnidadeMedidaDAO unidadeMedidaDAO;
     private final TipoProdutoDAO tipoProdutoDAO;
+    private final ItensProdutoDAO itensProdutoDAO;
 
     public ProdutoDAO() {
         valorProdutoDAO = new ValorProdutoDAO();
         unidadeMedidaDAO = new UnidadeMedidaDAO();
         tipoProdutoDAO = new TipoProdutoDAO();
+        itensProdutoDAO = new ItensProdutoDAO();
     }
 
-    @Override
-    public BaseDTO criar(ProdutoModel model) {
+    public BaseDTO criarDetalhes(List<ProcessoModel> processos, List<ItemProdutoModel> itensProdutos, int idProduto)
+            throws RuntimeException {
         try {
+            var resultadosProcessos = salvarProcessos(idProduto, processos);
+            var resultadosItensProdutos = salvarItensProdutos(itensProdutos);
+
+            List<String> informacoes = new ArrayList<>();
+            informacoes.addAll(resultadosItensProdutos);
+            informacoes.addAll(resultadosProcessos);
+
+            return BaseDTO.buildSucesso("detalhes do produto criados", informacoes);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao criar os detalhes do produto: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+    }
+
+    public BaseDTO criar(ProdutoModel model) throws RuntimeException {
+        try {
+            definirIdUnidademedida(model);
+            definirIdTipoProduto(model);
+
             Connection conexao = connect();
 
             PreparedStatement ps = conexao.prepareStatement("CALL spCriarProduto(?, ?, ?, ?, ?, ?)");
@@ -45,8 +69,7 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    @Override
-    public BaseDTO atualizar(ProdutoModel modelAtualizado) {
+    public BaseDTO atualizar(ProdutoModel modelAtualizado) throws RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -67,12 +90,11 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    @Override
-    public BaseDTO deletar(ProdutoModel model) {
+    public BaseDTO deletar(ProdutoModel model) throws RuntimeException {
         try {
             Connection conexao = connect();
 
-            PreparedStatement ps = conexao.prepareStatement("DELETE FROM produtos WHERE ID = ?");
+            PreparedStatement ps = conexao.prepareStatement("DELETE FROM produtos WHERE ID_PRODUTO = ?");
             ps.setInt(1, model.getId());
 
             ps.executeUpdate();
@@ -85,7 +107,6 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    @Override
     public ProdutoModel buscarPorId(int id) throws RuntimeException {
         try {
             Connection conexao = connect();
@@ -103,7 +124,6 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    @Override
     public ProdutoModel buscarPorNome(String name) throws RuntimeException {
         try {
             Connection conexao = connect();
@@ -155,5 +175,55 @@ public final class ProdutoDAO extends ConexaoBanco
 
     private TipoProdutoModel buscarTipoProdutoPorId(int id) {
         return tipoProdutoDAO.buscarPorId(id);
+    }
+
+    private List<String> salvarProcessos(int idProduto, List<ProcessoModel> processos) {
+        List<String> output = new ArrayList<>();
+        ProdutoProcessosDAO produtoProcessosDAO = new ProdutoProcessosDAO();
+
+        processos.forEach(processo -> {
+            var produto = buscarPorId(idProduto);
+
+            ProdutoProcessoModel produtoProcesso = new ProdutoProcessoModel(processo, produto);
+
+            var resultadoGravacao = produtoProcessosDAO.criar(produtoProcesso);
+
+            output.add(processo.getEtapa() + (resultadoGravacao.getIsSucesso() ? " CRIADO" : " NÃO CRIADO"));
+        });
+
+        return output;
+    }
+
+    private List<String> salvarItensProdutos(List<ItemProdutoModel> itensProdutos) {
+        List<String> output = new ArrayList<>();
+
+        itensProdutos.forEach(ip -> {
+            var resultadoGravacao = itensProdutoDAO.criar(ip);
+
+            output.add(ip.getProduto().getNome() + " - " + ip.getMateriaPrima().getNome()
+                    + (resultadoGravacao.getIsSucesso() ? "CRIADO" : "NÂO CRIADO"));
+        });
+
+        return output;
+    }
+
+    private void definirIdUnidademedida(ProdutoModel model) throws RuntimeException {
+        var idUnidadeMedida = unidadeMedidaDAO.buscarPorSigla(model.getUnidadeMedida().getSigla()).getId();
+
+        if (idUnidadeMedida == 0) {
+            throw new RuntimeException("um erro ocorreu ao definir a ID da unidade de medida do produto");
+        }
+
+        model.getUnidadeMedida().setId(idUnidadeMedida);
+    }
+
+    private void definirIdTipoProduto(ProdutoModel model) throws RuntimeException {
+        var idTipo = tipoProdutoDAO.buscarPorNome(model.getTipo().getNome()).getId();
+
+        if (idTipo == 0) {
+            throw new RuntimeException("um erro ocorreu ao definir a ID do tipo do produto");
+        }
+
+        model.getTipo().setId(idTipo);
     }
 }

@@ -62,7 +62,7 @@ public class TipoProdutoDAO extends ConexaoBanco
 
             return tipoProduto;
         } else {
-            return null;
+            return  null;
         }
     }
 }

@@ -13,25 +13,42 @@ public final class BaseDTO {
         this.isException = isException;
     }
 
-    public static BaseDTO buildSucesso(String mensagem, Object data) {
+    @Override
+    public String toString() {
+        return "BaseDTO{" +
+                "mensagem='" + mensagem + '\'' +
+                ", isSucesso=" + isSucesso +
+                ", isException=" + isException +
+                ", data=" + data +
+                '}';
+    }
+
+    public static BaseDTO buildSucesso(String mensagem) {
+        return new BaseDTO(mensagem, true, null, false);
+    }
+
+    public static <T> BaseDTO buildSucesso(String mensagem, T data) {
         return new BaseDTO(mensagem, true, data, false);
     }
 
-    public static BaseDTO buildFalha(String mensagem, Object data) {
+    public static BaseDTO buildFalha(String mensagem) {
+        return new BaseDTO(mensagem, false, null, false);
+    }
+
+    public static <T> BaseDTO buildFalha(String mensagem, T data) {
         return new BaseDTO(mensagem, false, data, false);
     }
 
-    public static BaseDTO Build(String mensagem, Boolean isSucesso, Object data, Boolean isException) {
+    public static BaseDTO build(String mensagem, Boolean isSucesso, Boolean isException) {
+        return new BaseDTO(mensagem, isSucesso, null, isException);
+    }
+
+    public static <T> BaseDTO build(String mensagem, T data, Boolean isSucesso, Boolean isException) {
         return new BaseDTO(mensagem, isSucesso, data, isException);
     }
 
     public static BaseDTO buildException(Exception e) {
         return new BaseDTO(e.getMessage(), false, e.getMessage(), true);
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Mensagem: %s, Sucesso: %s, Data: %s", this.mensagem, this.isSucesso, this.data);
     }
 
     public String getMensagem() {

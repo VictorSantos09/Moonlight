@@ -1,6 +1,8 @@
 package com.moonlight.moonlightapp.dtos.materiasprimas;
 
-public class MateriaPrimaDTO {
+import com.moonlight.moonlightapp.dtos.DTO;
+
+public class MateriaPrimaDTO implements DTO {
     private String nome;
     private String descricao;
     private Double valor;

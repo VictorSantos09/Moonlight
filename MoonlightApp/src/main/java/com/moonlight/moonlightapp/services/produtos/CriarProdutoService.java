@@ -1,96 +1,233 @@
 package com.moonlight.moonlightapp.services.produtos;
 
-import com.moonlight.moonlightapp.converters.MateriaPrimaConverter;
-import com.moonlight.moonlightapp.converters.ProcessoConverter;
-import com.moonlight.moonlightapp.daos.ItensProdutoDAO;
-import com.moonlight.moonlightapp.daos.ProdutoDAO;
-import com.moonlight.moonlightapp.daos.TipoProdutoDAO;
-import com.moonlight.moonlightapp.daos.UnidadeMedidaDAO;
+import com.moonlight.moonlightapp.converters.ProdutoConverter;
+import com.moonlight.moonlightapp.daos.*;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
+import com.moonlight.moonlightapp.dtos.produtos.ItemProdutoDTO;
 import com.moonlight.moonlightapp.dtos.produtos.ProdutoDTO;
-import com.moonlight.moonlightapp.models.*;
+import com.moonlight.moonlightapp.models.ItemProdutoModel;
+import com.moonlight.moonlightapp.models.MateriaPrimaModel;
+import com.moonlight.moonlightapp.models.ProcessoModel;
+import com.moonlight.moonlightapp.models.ProdutoModel;
 import com.moonlight.moonlightapp.services.CalcularValorRecomendadoProdutoService;
+import com.moonlight.moonlightapp.validators.MateriaPrimaValidator;
+import com.moonlight.moonlightapp.validators.ProcessoValidator;
+import com.moonlight.moonlightapp.validators.ProdutoValidator;
+import com.moonlight.moonlightapp.validators.dtos.ProdutoDTOValidator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CriarProdutoService {
+public final class CriarProdutoService {
+    private final ProcessoDAO processoDAO;
     private final ProdutoDAO produtoDAO;
     private final UnidadeMedidaDAO unidadeMedidaDAO;
     private final TipoProdutoDAO tipoProdutoDAO;
-    private final ItensProdutoDAO itensProdutoDAO;
-    private final MateriaPrimaConverter materiaPrimaConverter;
-    private final ProcessoConverter processoConverter;
+    private final MateriaPrimaDAO materiaPrimaDAO;
+    private final ProdutoConverter produtoConverter;
+    private final ProdutoValidator produtoValidator;
+    private final ProcessoValidator processoValidator;
+    private final MateriaPrimaValidator materiaPrimaValidator;
+    private final ProdutoDTOValidator produtoDTOValidator;
 
     public CriarProdutoService() {
+        processoDAO = new ProcessoDAO();
         produtoDAO = new ProdutoDAO();
-        materiaPrimaConverter = new MateriaPrimaConverter();
         unidadeMedidaDAO = new UnidadeMedidaDAO();
         tipoProdutoDAO = new TipoProdutoDAO();
-        itensProdutoDAO = new ItensProdutoDAO();
-        processoConverter = new ProcessoConverter();
+        materiaPrimaDAO = new MateriaPrimaDAO();
+        produtoConverter = new ProdutoConverter();
+        produtoValidator = new ProdutoValidator();
+        processoValidator = new ProcessoValidator();
+        materiaPrimaValidator = new MateriaPrimaValidator();
+        produtoDTOValidator = new ProdutoDTOValidator();
     }
 
     public BaseDTO criar(ProdutoDTO dto) {
-        UnidadeMedidaModel unidadeMedida = unidadeMedidaDAO.buscarPorSigla(dto.getSiglaUnidadeMedida());
-        TipoProdutoModel tipoProduto = tipoProdutoDAO.buscarPorNome(dto.getTipo());
+        var resultadoValidacaoEntrada = validarEntrada(dto);
 
-        List<ProcessoModel> processos = converterProcessosParaModel(dto);
+        if (!resultadoValidacaoEntrada.getIsSucesso()) {
+            return resultadoValidacaoEntrada;
+        }
 
-        var novoProduto = new ProdutoModel(dto.getNome(), dto.getDescricao(),
-                unidadeMedida, tipoProduto, 0, dto.getValor());
+        var processosModels = buscarProcessos(dto);
+        if (processosModels.isEmpty()) {
+            return BaseDTO.buildFalha("processo(s) não encontrado(s)");
+        }
 
-        List<ItensProdutoModel> itensProdutos = converterItensProdutoParaListModel(dto, novoProduto);
+        var materiaPrimaModels = buscarMateriasPrimas(dto);
+        if (materiaPrimaModels.isEmpty()) {
+            return BaseDTO.buildFalha("matéria(s) prima(s) não encontrada(s)");
+        }
 
-        double valorRecomendado = CalcularValorRecomendadoProdutoService.calcular(itensProdutos);
+        if (!isUnidadeMedidaCadastrada(dto)) {
+            return BaseDTO.buildFalha("unidade de medida não cadastrada");
+        }
+
+        if (!isTipoProdutoCadastrado(dto)) {
+            return BaseDTO.buildFalha("tipo do produto não cadastrado");
+        }
+
+        ProdutoModel novoProduto = produtoConverter.converterFrom(dto);
+
+        var resultadoValidacaoDados = validarDados(novoProduto, processosModels, materiaPrimaModels);
+        if (!resultadoValidacaoDados.getIsSucesso()) {
+            return resultadoValidacaoDados;
+        }
+
+        var valorRecomendado = CalcularValorRecomendadoProdutoService.calcular(processosModels, materiaPrimaModels);
+
         novoProduto.getValorProduto().setValorRecomendado(valorRecomendado);
 
-        var resultadoGravacaoProduto = gravarProduto(novoProduto);
-        if(!resultadoGravacaoProduto.getIsSucesso()){
-            return resultadoGravacaoProduto;
+        var isProdutoCadastrado = isProdutoCadastrado(dto);
+        if (isProdutoCadastrado) {
+            return BaseDTO.buildFalha("produto já cadastrado", dto.getNome() + "já foi cadastrado");
         }
 
-        if(!gravarItensProdutos(itensProdutos)){
-            return BaseDTO.buildFalha("não foi possível gravar um itemProduto", null);
+        BaseDTO resultadoGravacaoProduto = produtoDAO.criar(novoProduto);
+
+        if (!resultadoGravacaoProduto.getIsSucesso()) {
+            return BaseDTO.buildFalha("não foi possível salvar o produto",
+                    resultadoGravacaoProduto.getMensagem());
         }
 
-        return  BaseDTO.buildSucesso("produto cadastrado com sucesso", null);
+        var itensProdutosModels = criarItensProdutos(dto);
+        if (itensProdutosModels.isEmpty()) {
+            return BaseDTO.buildFalha("não foi possível criar os itens do produto");
+        }
+
+        var idProduto = produtoDAO.buscarPorNome(novoProduto.getNome()).getId();
+
+        if (idProduto <= 0) {
+            return BaseDTO.buildFalha("não foi possível encontrar o produto salvo");
+        }
+
+        BaseDTO resultadoGravacaoDetalhes = produtoDAO.criarDetalhes(processosModels, itensProdutosModels, idProduto);
+
+        if (!resultadoGravacaoDetalhes.getIsSucesso()) {
+            return BaseDTO.buildFalha("não foi possível gravar os processos e matérias primas do produto",
+                    novoProduto.getNome() + " foi cadastrado");
+        }
+
+        return BaseDTO.buildSucesso("produto e detalhes gravados com sucesso");
     }
 
-    private List<ProcessoModel> converterProcessosParaModel(ProdutoDTO dto) {
-        List<ProcessoModel> processos = new ArrayList<>();
+    private BaseDTO validarDados(ProdutoModel produto, List<ProcessoModel> processos,
+                                 List<MateriaPrimaModel> materiasPrimas) {
+        var resultadoValidacaoProduto = produtoValidator.validar(produto);
+        var resultadoValidacaoProcessos = validarProcessos(processos);
+        var resultadoValidacaoMateriasPrimas = validarMateriasPrimas(materiasPrimas);
 
-        dto.getProcessos().stream()
-                .map(processoConverter::converterParaModel)
-                .forEach(processos::add);
+        if (!resultadoValidacaoProcessos.getIsSucesso()) {
+            return BaseDTO.buildFalha("um processo ou mais inválidos", resultadoValidacaoProcessos.getData());
+        }
 
-        return processos;
+        if (!resultadoValidacaoMateriasPrimas.getIsSucesso()) {
+            return BaseDTO.buildFalha("uma ou mais matérias primas inválidas",
+                    resultadoValidacaoMateriasPrimas.getData());
+        }
+
+        if (!resultadoValidacaoProduto.isValido()) {
+            return BaseDTO.buildFalha("produto inválido", resultadoValidacaoProduto.getFalhas());
+        }
+
+        return BaseDTO.buildSucesso("dados válidos");
     }
 
-    private List<ItensProdutoModel> converterItensProdutoParaListModel(ProdutoDTO dto, ProdutoModel novoProduto) {
-        return dto.getItensProdutos().stream()
-                .map(ip -> {
-                    var materiaPrima = materiaPrimaConverter.converterParaModel(ip.getMateriaPrima());
+    private BaseDTO validarProcessos(List<ProcessoModel> processos) {
+        List<String> falhas = new ArrayList<>();
 
-                    double valor = materiaPrima.getValor() * ip.getQuantidade();
+        processos.forEach(p -> {
+            var resultado = processoValidator.validar(p);
 
-                    return new ItensProdutoModel(ip.getQuantidade(), novoProduto, valor, materiaPrima);
-                })
+            if (!resultado.isValido()) {
+                falhas.addAll(resultado.getFalhas());
+            }
+        });
+
+        if (!falhas.isEmpty()) {
+            return BaseDTO.buildFalha("Processo(s) inválido(s)", falhas);
+        }
+
+        return BaseDTO.buildSucesso("Todos os processos são válidos");
+    }
+
+    private BaseDTO validarMateriasPrimas(List<MateriaPrimaModel> materiasPrimas) {
+        List<String> falhas = materiasPrimas.stream()
+                .map(materiaPrimaValidator::validar)
+                .filter(resultado -> !resultado.isValido())
+                .flatMap(resultado -> resultado.getFalhas().stream())
+                .collect(Collectors.toList());
+
+        if (!falhas.isEmpty()) {
+            return BaseDTO.buildFalha("matérias primas(s) inválida(s)", falhas);
+        }
+
+        return BaseDTO.buildSucesso("Todas as matérias primas são válidas");
+    }
+
+    private List<ProcessoModel> buscarProcessos(ProdutoDTO dto) {
+        return dto.getProcessos().stream()
+                .map(p -> processoDAO.buscarPorEtapa(p.getEtapa()))
                 .collect(Collectors.toList());
     }
 
-    private  BaseDTO gravarProduto(ProdutoModel produto){
-        return produtoDAO.criar(produto);
+    private List<MateriaPrimaModel> buscarMateriasPrimas(ProdutoDTO dto) {
+        return dto.getItensProdutos().stream()
+                .map(ip -> materiaPrimaDAO.buscarPorNome(ip.getNomeMateriaPrima()))
+                .collect(Collectors.toList());
     }
 
-    private  Boolean gravarItensProdutos(List<ItensProdutoModel> itensProdutos){
-        for (var ip: itensProdutos) {
-            var resultadoCriacaoItemProduto = itensProdutoDAO.criar(ip);
-            if(!resultadoCriacaoItemProduto.getIsSucesso()){
-                return  false;
+    private double calcularSubtotalMateriaPrima(MateriaPrimaModel materiaPrima, ItemProdutoDTO dto) {
+        return materiaPrima.getValor() * dto.getQuantidade();
+    }
+
+    private List<ItemProdutoModel> criarItensProdutos(ProdutoDTO dto) throws RuntimeException {
+        List<ItemProdutoModel> output = new ArrayList<>();
+
+        dto.getItensProdutos().forEach(ip -> {
+            var produto = produtoDAO.buscarPorNome(ip.getNomeProduto());
+
+            if (produto == null) {
+                throw new RuntimeException("não foi possível encontrar o produto " + ip.getNomeProduto());
             }
+
+            var materiaPrima = materiaPrimaDAO.buscarPorNome(ip.getNomeMateriaPrima());
+
+            if (materiaPrima == null) {
+                throw new RuntimeException("não foi possível encontrar a matéria-prima " + ip.getNomeMateriaPrima());
+            }
+
+            var subTotal = calcularSubtotalMateriaPrima(materiaPrima, ip);
+
+            var itemProduto = new ItemProdutoModel(ip.getQuantidade(), produto, subTotal, materiaPrima);
+            output.add(itemProduto);
+        });
+
+        return output;
+    }
+
+    private boolean isProdutoCadastrado(ProdutoDTO dto) {
+        var produtoEncontrado = produtoDAO.buscarPorNome(dto.getNome());
+        return produtoEncontrado != null;
+    }
+
+    private boolean isUnidadeMedidaCadastrada(ProdutoDTO dto) {
+        return unidadeMedidaDAO.buscarPorSigla(dto.getUnidadeMedida().getSigla()) != null;
+    }
+
+    private boolean isTipoProdutoCadastrado(ProdutoDTO dto) {
+        return tipoProdutoDAO.buscarPorNome(dto.getTipoProduto().getNome()) != null;
+    }
+
+    private BaseDTO validarEntrada(ProdutoDTO dto) {
+        var resultadoValidacao = produtoDTOValidator.validar(dto);
+
+        if (resultadoValidacao.isValido()) {
+            return BaseDTO.buildSucesso("dados de entrada válidos");
         }
-        return  true;
+
+        return BaseDTO.buildFalha("dados de entrada inválidos", resultadoValidacao);
     }
 }

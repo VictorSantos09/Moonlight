@@ -2,7 +2,7 @@ package com.moonlight.moonlightapp.models;
 
 /**
  * Classe que representa um valor de um produto a ser fabricado.
- * 
+ *
  * @author victor.santos09
  */
 public class ValorProdutoModel extends BaseModel {

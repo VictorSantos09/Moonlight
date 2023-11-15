@@ -2,7 +2,7 @@ package com.moonlight.moonlightapp.models;
 
 /**
  * Classe que representa um tipo de matéria prima de um produto a ser fabricado.
- * 
+ *
  * @author victor.santos09
  */
 public class TipoMateriaPrimaModel extends BaseModel {

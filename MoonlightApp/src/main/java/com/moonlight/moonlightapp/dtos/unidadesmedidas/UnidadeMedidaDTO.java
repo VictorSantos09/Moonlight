@@ -1,17 +1,12 @@
-package com.moonlight.moonlightapp.models;
+package com.moonlight.moonlightapp.dtos.unidadesmedidas;
 
-/**
- * Classe que representa uma unidade de medida de uma matéria prima ou um
- * produto a ser fabricado.
- *
- * @author victor.santos09
- */
-public class UnidadeMedidaModel extends BaseModel {
+import com.moonlight.moonlightapp.dtos.DTO;
 
+public class UnidadeMedidaDTO implements DTO {
     private String nome;
     private String sigla;
 
-    public UnidadeMedidaModel(String nome, String sigla) {
+    public UnidadeMedidaDTO(String nome, String sigla) {
         this.nome = nome;
         this.sigla = sigla;
     }

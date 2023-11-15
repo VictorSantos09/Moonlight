@@ -1,6 +1,8 @@
 package com.moonlight.moonlightapp.dtos.processos;
 
-public class ProcessoDTO {
+import com.moonlight.moonlightapp.dtos.DTO;
+
+public class ProcessoDTO implements DTO {
     private String etapa;
     private Double custo;
 
