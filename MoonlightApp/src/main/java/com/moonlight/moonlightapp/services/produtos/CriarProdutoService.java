@@ -1,5 +1,6 @@
 package com.moonlight.moonlightapp.services.produtos;
 
+import com.moonlight.moonlightapp.converters.ProdutoConverter;
 import com.moonlight.moonlightapp.daos.MateriaPrimaDAO;
 import com.moonlight.moonlightapp.daos.ProcessoDAO;
 import com.moonlight.moonlightapp.daos.ProdutoDAO;
@@ -9,6 +10,7 @@ import com.moonlight.moonlightapp.dtos.produtos.ItemProdutoDTO;
 import com.moonlight.moonlightapp.dtos.produtos.ProdutoDTO;
 import com.moonlight.moonlightapp.models.*;
 import com.moonlight.moonlightapp.services.CalcularValorRecomendadoProdutoService;
+import com.moonlight.moonlightapp.validators.ProdutoValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,27 +20,35 @@ public final class CriarProdutoService {
     private final ProcessoDAO processoDAO;
     private final ProdutoDAO produtoDAO;
     private final MateriaPrimaDAO materiaPrimaDAO;
+    private final ProdutoConverter produtoConverter;
+    private final ProdutoValidator produtoValidator;
 
     public CriarProdutoService() {
         processoDAO = new ProcessoDAO();
         produtoDAO = new ProdutoDAO();
         materiaPrimaDAO = new MateriaPrimaDAO();
+        produtoConverter = new ProdutoConverter();
+        produtoValidator = new ProdutoValidator();
     }
 
     public BaseDTO criar(ProdutoDTO dto) {
+        ProdutoModel produto = produtoConverter.converterFrom(dto);
+        var resultadoValidacao = produtoValidator.validar(produto);
+
+        if (!resultadoValidacao.isValido()) {
+            return BaseDTO.buildFalha("produto inválido", resultadoValidacao.getFalhas());
+        }
+
         List<ProcessoDTO> processosDtos = dto.getProcessos();
         List<ItemProdutoDTO> itensProdutosDtos = dto.getItensProdutos();
-        UnidadeMedidaModel unidadeMedida = dto.getUnidadeMedida();
-        TipoProdutoModel tipoProduto = dto.getTipoProduto();
 
         List<ProcessoModel> processosModels = buscarProcessos(processosDtos);
+        List<MateriaPrimaModel> materiasPrimas = buscarMateriasPrimas(itensProdutosDtos);
 
-        List<MateriaPrimaModel> materiasPrimas = extrairMateriasPrimas(itensProdutosDtos);
+        var valorRecomendado = CalcularValorRecomendadoProdutoService.calcularProcessos(processosModels,
+                materiasPrimas);
 
-        var valorRecomendado = CalcularValorRecomendadoProdutoService.calcularProcessos(processosModels, materiasPrimas);
-
-        ProdutoModel produto = new ProdutoModel(dto.getNome(), dto.getDescricao(), unidadeMedida,
-                tipoProduto, valorRecomendado, dto.getValor());
+        produto.getValorProduto().setValorRecomendado(valorRecomendado);
 
         BaseDTO resultadoGravacaoProduto = produtoDAO.criar(produto);
 
@@ -46,7 +56,7 @@ public final class CriarProdutoService {
             return BaseDTO.buildFalha("não foi possível gravar o produto");
         }
 
-        List<ItemProdutoModel> itensProdutosModels = converterItensProdutosParaModel(itensProdutosDtos);
+        List<ItemProdutoModel> itensProdutosModels = buscarItensProdutos(itensProdutosDtos);
 
         var idProduto = produtoDAO.buscarPorNome(produto.getNome()).getId();
 
@@ -71,7 +81,7 @@ public final class CriarProdutoService {
         return output;
     }
 
-    private List<ItemProdutoModel> converterItensProdutosParaModel(List<ItemProdutoDTO> dtos) {
+    private List<ItemProdutoModel> buscarItensProdutos(List<ItemProdutoDTO> dtos) {
         List<ItemProdutoModel> output = new ArrayList<>();
 
         dtos.forEach(x -> {
@@ -89,7 +99,7 @@ public final class CriarProdutoService {
         return output;
     }
 
-    private List<MateriaPrimaModel> extrairMateriasPrimas(List<ItemProdutoDTO> itensProdutosDtos) {
+    private List<MateriaPrimaModel> buscarMateriasPrimas(List<ItemProdutoDTO> itensProdutosDtos) {
         return itensProdutosDtos.stream()
                 .map(itemProduto -> materiaPrimaDAO.buscarPorNome(itemProduto.getNomeMateriaPrima()))
                 .collect(Collectors.toList());

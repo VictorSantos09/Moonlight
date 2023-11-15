@@ -26,7 +26,8 @@ public final class ProdutoDAO extends ConexaoBanco
         itensProdutoDAO = new ItensProdutoDAO();
     }
 
-    public BaseDTO criarDetalhes(List<ProcessoModel> processos, List<ItemProdutoModel> itensProdutos, int idProduto) throws  RuntimeException {
+    public BaseDTO criarDetalhes(List<ProcessoModel> processos, List<ItemProdutoModel> itensProdutos, int idProduto)
+            throws RuntimeException {
         try {
             var resultadosProcessos = salvarProcessos(idProduto, processos);
             var resultadosItensProdutos = salvarItensProdutos(itensProdutos);
@@ -39,7 +40,7 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    public BaseDTO criar(ProdutoModel model) throws  RuntimeException {
+    public BaseDTO criar(ProdutoModel model) throws RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -61,7 +62,7 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    public BaseDTO atualizar(ProdutoModel modelAtualizado) throws  RuntimeException {
+    public BaseDTO atualizar(ProdutoModel modelAtualizado) throws RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -82,7 +83,7 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    public BaseDTO deletar(ProdutoModel model) throws  RuntimeException{
+    public BaseDTO deletar(ProdutoModel model) throws RuntimeException {
         try {
             Connection conexao = connect();
 
@@ -192,7 +193,8 @@ public final class ProdutoDAO extends ConexaoBanco
         itensProdutos.forEach(ip -> {
             var resultadoGravacao = itensProdutoDAO.criar(ip);
 
-            output.add(ip.getProduto().getNome() + " - " + ip.getMateriaPrima().getNome() + (resultadoGravacao.getIsSucesso() ? "CRIADO" : "NÂO CRIADO"));
+            output.add(ip.getProduto().getNome() + " - " + ip.getMateriaPrima().getNome()
+                    + (resultadoGravacao.getIsSucesso() ? "CRIADO" : "NÂO CRIADO"));
         });
 
         return output;

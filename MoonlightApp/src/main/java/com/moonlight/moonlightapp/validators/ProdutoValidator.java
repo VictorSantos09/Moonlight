@@ -6,40 +6,44 @@ import com.moonlight.moonlightapp.models.UnidadeMedidaModel;
 import com.moonlight.moonlightapp.models.ValorProdutoModel;
 import com.moonlight.moonlightapp.validators.contracts.ModelValidator;
 
-public class ProdutoValidator implements ModelValidator<ProdutoModel> {
-    private ResultadoValidacao resultado = new ResultadoValidacao(false);
+public class ProdutoValidator extends BaseModelValidator
+        implements ModelValidator<ProdutoModel> {
+
     private final UnidadeMedidaValidator unidadeMedidaValidator = new UnidadeMedidaValidator();
     private final TipoProdutoValidator tipoProdutoValidator = new TipoProdutoValidator();
     private final ValorProdutoValidator valorProdutoValidator = new ValorProdutoValidator();
 
     @Override
     public ResultadoValidacao validar(ProdutoModel model) {
-
         if (model == null)
-            resultado.addFalha("produto inválido");
+            build("produto inválido");
 
         if (model.getNome().isEmpty() || model.getNome().isBlank())
-            resultado.addFalha("nome do produto inválido");
+            build("nome do produto inválido");
 
         if (model.getDescricao().isEmpty() || model.getDescricao().isBlank())
-            resultado.addFalha("descrição do produto inválida");
+            build("descrição do produto inválida");
 
-        if (!validarTipoProduto(model.getTipo()).isValido())
-
-            return ResultadoValidacao.buildSucesso("produto válido");
+        validarTipoProduto(model.getTipo());
+        validarUnidadeMedida(model.getUnidadeMedida());
+        validarValorProduto(model.getValorProduto());
 
         return resultado;
     }
 
     private void validarUnidadeMedida(UnidadeMedidaModel model) {
-        return unidadeMedidaValidator.validar(model);
+        var resultado = unidadeMedidaValidator.validar(model);
+        build(resultado);
     }
 
     private void validarTipoProduto(TipoProdutoModel model) {
-        return tipoProdutoValidator.validar(model);
+        var resultado = tipoProdutoValidator.validar(model);
+        build(resultado);
     }
 
     private void validarValorProduto(ValorProdutoModel model) {
-        return valorProdutoValidator.validar(model);
+        var resultado = valorProdutoValidator.validar(model);
+        build(resultado);
     }
+
 }

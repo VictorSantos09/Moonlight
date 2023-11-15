@@ -12,14 +12,6 @@ public class ResultadoValidacao {
         falhas = new ArrayList<>();
     }
 
-    public void addFalha(String falha) {
-        falhas.add(falha);
-    }
-
-    public void removeFalha(String falha) {
-        falhas.remove(falha);
-    }
-
     public List<String> getFalhas() {
         return falhas;
     }
@@ -34,13 +26,5 @@ public class ResultadoValidacao {
 
     public void setValido(boolean isValido) {
         this.isValido = isValido;
-    }
-
-    public static ResultadoValidacao buildSucesso(String mensagem) {
-        return new ResultadoValidacao(true);
-    }
-
-    public static ResultadoValidacao buildFalha(String mensagem) {
-        return new ResultadoValidacao(false);
     }
 }
