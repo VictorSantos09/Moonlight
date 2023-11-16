@@ -1,6 +1,7 @@
-package com.moonlight.moonlightapp.validators;
+package com.moonlight.moonlightapp.validators.models;
 
 import com.moonlight.moonlightapp.models.TipoMateriaPrimaModel;
+import com.moonlight.moonlightapp.validators.BaseValidator;
 import com.moonlight.moonlightapp.validators.contracts.ModelValidator;
 
 public class TipoMateriaPrimaValidator extends BaseValidator
