@@ -10,9 +10,9 @@ import com.moonlight.moonlightapp.models.MateriaPrimaModel;
 import com.moonlight.moonlightapp.models.ProcessoModel;
 import com.moonlight.moonlightapp.models.ProdutoModel;
 import com.moonlight.moonlightapp.services.CalcularValorRecomendadoProdutoService;
-import com.moonlight.moonlightapp.validators.MateriaPrimaValidator;
-import com.moonlight.moonlightapp.validators.ProcessoValidator;
-import com.moonlight.moonlightapp.validators.ProdutoValidator;
+import com.moonlight.moonlightapp.validators.models.MateriaPrimaValidator;
+import com.moonlight.moonlightapp.validators.models.ProcessoValidator;
+import com.moonlight.moonlightapp.validators.models.ProdutoValidator;
 import com.moonlight.moonlightapp.validators.dtos.ProdutoDTOValidator;
 
 import java.util.ArrayList;

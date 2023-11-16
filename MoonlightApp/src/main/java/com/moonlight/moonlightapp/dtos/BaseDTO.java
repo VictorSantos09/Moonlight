@@ -47,8 +47,8 @@ public final class BaseDTO {
         return new BaseDTO(mensagem, isSucesso, data, isException);
     }
 
-    public static BaseDTO buildException(Exception e) {
-        return new BaseDTO(e.getMessage(), false, e.getMessage(), true);
+    public static BaseDTO buildException(String messagem, Exception e) {
+        return new BaseDTO(messagem, false, e.getMessage(), true);
     }
 
     public String getMensagem() {

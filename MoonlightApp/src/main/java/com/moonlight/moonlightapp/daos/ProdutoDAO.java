@@ -94,7 +94,7 @@ public final class ProdutoDAO extends ConexaoBanco
         try {
             Connection conexao = connect();
 
-            PreparedStatement ps = conexao.prepareStatement("DELETE FROM produtos WHERE ID_PRODUTO = ?");
+            PreparedStatement ps = conexao.prepareStatement("CALL spDeletarProdutosEDetalhes(?)");
             ps.setInt(1, model.getId());
 
             ps.executeUpdate();

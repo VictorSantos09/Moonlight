@@ -1,6 +1,7 @@
-package com.moonlight.moonlightapp.validators;
+package com.moonlight.moonlightapp.validators.models;
 
 import com.moonlight.moonlightapp.models.ProcessoModel;
+import com.moonlight.moonlightapp.validators.BaseValidator;
 import com.moonlight.moonlightapp.validators.contracts.ModelValidator;
 
 public class ProcessoValidator extends BaseValidator
