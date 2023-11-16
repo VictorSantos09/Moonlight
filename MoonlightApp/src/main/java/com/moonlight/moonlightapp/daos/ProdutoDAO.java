@@ -128,7 +128,7 @@ public final class ProdutoDAO extends ConexaoBanco
         try {
             Connection conexao = connect();
 
-            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM produtos WHERE NOME = ?");
+            PreparedStatement ps = conexao.prepareStatement("CALL spBuscarProdutoPorNome(?)");
 
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
@@ -139,6 +139,23 @@ public final class ProdutoDAO extends ConexaoBanco
         } finally {
             disconnect();
         }
+    }
+
+    public List<ProdutoModel> buscarTodos() {
+        try {
+            Connection conexao = connect();
+
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM produtos");
+
+            ResultSet rs = ps.executeQuery();
+            return buiList(rs);
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar todos os produtos. Erro: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+
     }
 
     private ProdutoModel Build(ResultSet rs) throws SQLException {
@@ -163,6 +180,32 @@ public final class ProdutoDAO extends ConexaoBanco
         } else {
             return null;
         }
+    }
+
+    private List<ProdutoModel> buiList(ResultSet rs) throws SQLException {
+        List<ProdutoModel> produtos = new ArrayList<>();
+
+        while (rs.next()) {
+            int idProduto = rs.getInt(1);
+            String nome = rs.getString(2);
+            String descricao = rs.getString(3);
+            int idValorProduto = rs.getInt(4);
+            int idUnidadeMedida = rs.getInt(5);
+            int idTipoProduto = rs.getInt(6);
+
+            ValorProdutoModel valorProduto = buscarValorProdutoPorId(idValorProduto);
+            UnidadeMedidaModel unidadeMedida = buscarUnidadeMedidaPorId(idUnidadeMedida);
+            TipoProdutoModel tipoProduto = buscarTipoProdutoPorId(idTipoProduto);
+
+            ProdutoModel produto = new ProdutoModel(nome, descricao, unidadeMedida, tipoProduto,
+                    valorProduto.getValorRecomendado(), valorProduto.getValor());
+
+            produto.setId(idProduto);
+
+            produtos.add(produto);
+        }
+
+        return produtos;
     }
 
     private ValorProdutoModel buscarValorProdutoPorId(int id) {

@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `moonlight` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `moonlight`;
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: moonlight
 -- ------------------------------------------------------
--- Server version	8.0.35
+-- Server version	8.0.23
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -40,6 +38,15 @@ CREATE TABLE `itens_produtos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `itens_produtos`
+--
+
+LOCK TABLES `itens_produtos` WRITE;
+/*!40000 ALTER TABLE `itens_produtos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `itens_produtos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `materias_primas`
 --
 
@@ -65,6 +72,15 @@ CREATE TABLE `materias_primas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `materias_primas`
+--
+
+LOCK TABLES `materias_primas` WRITE;
+/*!40000 ALTER TABLE `materias_primas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `materias_primas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `processos`
 --
 
@@ -80,6 +96,15 @@ CREATE TABLE `processos` (
   UNIQUE KEY `ETAPA_UNIQUE` (`ETAPA`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `processos`
+--
+
+LOCK TABLES `processos` WRITE;
+/*!40000 ALTER TABLE `processos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `processos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `produtos`
@@ -108,6 +133,15 @@ CREATE TABLE `produtos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `produtos`
+--
+
+LOCK TABLES `produtos` WRITE;
+/*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `produtos_processos`
 --
 
@@ -128,6 +162,15 @@ CREATE TABLE `produtos_processos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `produtos_processos`
+--
+
+LOCK TABLES `produtos_processos` WRITE;
+/*!40000 ALTER TABLE `produtos_processos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `produtos_processos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tipos_materias_primas`
 --
 
@@ -144,6 +187,15 @@ CREATE TABLE `tipos_materias_primas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `tipos_materias_primas`
+--
+
+LOCK TABLES `tipos_materias_primas` WRITE;
+/*!40000 ALTER TABLE `tipos_materias_primas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tipos_materias_primas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tipos_produtos`
 --
 
@@ -158,6 +210,15 @@ CREATE TABLE `tipos_produtos` (
   UNIQUE KEY `IDX_TIPOS_PRODUTOS_002` (`NOME`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipos_produtos`
+--
+
+LOCK TABLES `tipos_produtos` WRITE;
+/*!40000 ALTER TABLE `tipos_produtos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tipos_produtos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `unidades_medidas`
@@ -178,6 +239,15 @@ CREATE TABLE `unidades_medidas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `unidades_medidas`
+--
+
+LOCK TABLES `unidades_medidas` WRITE;
+/*!40000 ALTER TABLE `unidades_medidas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `unidades_medidas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `valores_produtos`
 --
 
@@ -192,6 +262,15 @@ CREATE TABLE `valores_produtos` (
   UNIQUE KEY `IDX_VALORES_PRODUTOS_001` (`ID_VALOR_PRODUTO`) /*!80000 INVISIBLE */
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `valores_produtos`
+--
+
+LOCK TABLES `valores_produtos` WRITE;
+/*!40000 ALTER TABLE `valores_produtos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `valores_produtos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'moonlight'
@@ -261,6 +340,25 @@ BEGIN
 	UPDATE VALORES_PRODUTOS SET
     VALOR_RECOMENDADO = valorRecomendado,
     VALOR = valor;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spBuscarProdutoPorNome` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spBuscarProdutoPorNome`(nome VARCHAR(45))
+BEGIN
+	SELECT * FROM produtos WHERE NOME = nome;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -402,4 +500,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-15 21:44:21
+-- Dump completed on 2023-11-16 20:25:04
