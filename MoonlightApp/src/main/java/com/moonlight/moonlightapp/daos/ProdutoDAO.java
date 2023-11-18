@@ -1,6 +1,7 @@
 package com.moonlight.moonlightapp.daos;
 
 import com.moonlight.moonlightapp.daos.contracts.BuscarPorNomeDAO;
+import com.moonlight.moonlightapp.daos.contracts.IsCadastrado;
 import com.moonlight.moonlightapp.daos.contracts.ModelDAO;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
 import com.moonlight.moonlightapp.models.*;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ProdutoDAO extends ConexaoBanco
-        implements ModelDAO<ProdutoModel>, BuscarPorNomeDAO<ProdutoModel> {
+        implements ModelDAO<ProdutoModel>, BuscarPorNomeDAO<ProdutoModel>, IsCadastrado<String> {
     private final ValorProdutoDAO valorProdutoDAO;
     private final UnidadeMedidaDAO unidadeMedidaDAO;
     private final TipoProdutoDAO tipoProdutoDAO;
@@ -75,11 +76,12 @@ public final class ProdutoDAO extends ConexaoBanco
 
             var ps = conexao.prepareStatement("CALL spAtualizarProduto(?, ?, ?, ?, ?, ?, ?)");
             ps.setInt(1, modelAtualizado.getId());
-            ps.setString(2, modelAtualizado.getDescricao());
-            ps.setDouble(3, modelAtualizado.getValorProduto().getValorRecomendado());
-            ps.setDouble(4, modelAtualizado.getValorProduto().getValor());
-            ps.setInt(5, modelAtualizado.getUnidadeMedida().getId());
-            ps.setInt(6, modelAtualizado.getTipo().getId());
+            ps.setString(2, modelAtualizado.getNome());
+            ps.setString(3, modelAtualizado.getDescricao());
+            ps.setDouble(4, modelAtualizado.getValorProduto().getValorRecomendado());
+            ps.setDouble(5, modelAtualizado.getValorProduto().getValor());
+            ps.setInt(6, modelAtualizado.getUnidadeMedida().getId());
+            ps.setInt(7, modelAtualizado.getTipo().getId());
             ps.executeUpdate();
 
             return BaseDTO.buildSucesso("Produto atualizado com sucesso", null);
@@ -105,6 +107,11 @@ public final class ProdutoDAO extends ConexaoBanco
         } finally {
             disconnect();
         }
+    }
+
+    @Override
+    public Boolean isCadastrado(String nome) throws RuntimeException {
+        return buscarPorNome(nome) != null;
     }
 
     public ProdutoModel buscarPorId(int id) throws RuntimeException {
@@ -148,7 +155,7 @@ public final class ProdutoDAO extends ConexaoBanco
             PreparedStatement ps = conexao.prepareStatement("SELECT * FROM produtos");
 
             ResultSet rs = ps.executeQuery();
-            return buiList(rs);
+            return buildList(rs);
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao buscar todos os produtos. Erro: " + e.getMessage());
@@ -173,6 +180,7 @@ public final class ProdutoDAO extends ConexaoBanco
 
             ProdutoModel produto = new ProdutoModel(nome, descricao, unidadeMedida, tipoProduto,
                     valorProduto.getValorRecomendado(), valorProduto.getValor());
+            produto.getValorProduto().setId(idValorProduto);
 
             produto.setId(idProduto);
 
@@ -182,7 +190,7 @@ public final class ProdutoDAO extends ConexaoBanco
         }
     }
 
-    private List<ProdutoModel> buiList(ResultSet rs) throws SQLException {
+    private List<ProdutoModel> buildList(ResultSet rs) throws SQLException {
         List<ProdutoModel> produtos = new ArrayList<>();
 
         while (rs.next()) {

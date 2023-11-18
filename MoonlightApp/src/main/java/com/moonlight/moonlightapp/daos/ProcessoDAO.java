@@ -1,5 +1,6 @@
 package com.moonlight.moonlightapp.daos;
 
+import com.moonlight.moonlightapp.daos.contracts.IsCadastrado;
 import com.moonlight.moonlightapp.daos.contracts.ModelDAO;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
 import com.moonlight.moonlightapp.models.ProcessoModel;
@@ -11,7 +12,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProcessoDAO extends ConexaoBanco implements ModelDAO<ProcessoModel> {
+public class ProcessoDAO extends ConexaoBanco
+        implements ModelDAO<ProcessoModel>, IsCadastrado<String> {
+
 
     public ProcessoModel buscarPorEtapa(String etapa) throws RuntimeException {
         try {
@@ -104,21 +107,9 @@ public class ProcessoDAO extends ConexaoBanco implements ModelDAO<ProcessoModel>
         }
     }
 
-    public List<ProcessoModel> buscarPorProdutoId(int id) throws RuntimeException {
-        try {
-            Connection conexao = connect();
-
-            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM processos WHERE ID_PRODUTO = ?");
-            ps.setInt(1, id);
-
-            ResultSet rs = ps.executeQuery();
-
-            return buildList(rs);
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao buscar processos por produto id: " + e.getMessage());
-        } finally {
-            disconnect();
-        }
+    @Override
+    public Boolean isCadastrado(String etapa) throws RuntimeException {
+        return buscarPorEtapa(etapa) != null;
     }
 
     public List<ProcessoModel> buscarTodos() throws RuntimeException {
@@ -147,7 +138,7 @@ public class ProcessoDAO extends ConexaoBanco implements ModelDAO<ProcessoModel>
             processo.setId(id);
             return processo;
         } else {
-            return  null;
+            return null;
         }
     }
 

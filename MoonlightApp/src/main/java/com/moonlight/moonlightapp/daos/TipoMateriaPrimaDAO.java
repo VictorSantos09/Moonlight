@@ -65,4 +65,8 @@ public class TipoMateriaPrimaDAO extends ConexaoBanco
             return  null;
         }
     }
+
+    public  Boolean isCadastrado(TipoMateriaPrimaModel model){
+        return  buscarPorNome(model.getNome()) != null;
+     }
 }

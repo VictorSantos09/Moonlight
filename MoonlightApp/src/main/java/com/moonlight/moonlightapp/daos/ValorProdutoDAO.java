@@ -54,9 +54,10 @@ public final class ValorProdutoDAO extends ConexaoBanco
         try {
             var conexao = connect();
 
-            PreparedStatement ps = conexao.prepareStatement("CALL spAtualizarValoresProduto(?, ?)");
+            PreparedStatement ps = conexao.prepareStatement("CALL spAtualizarProdutoValores(?,?,?)");
             ps.setDouble(1, modelAtualizado.getValorRecomendado());
             ps.setDouble(2, modelAtualizado.getValor());
+            ps.setInt(3,modelAtualizado.getId());
 
             ps.execute();
 

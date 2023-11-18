@@ -2,9 +2,7 @@ package com.moonlight.moonlightapp.daos;
 
 import com.moonlight.moonlightapp.daos.contracts.ModelDAO;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
-import com.moonlight.moonlightapp.models.ProcessoModel;
-import com.moonlight.moonlightapp.models.ProdutoModel;
-import com.moonlight.moonlightapp.models.ProdutoProcessoModel;
+import com.moonlight.moonlightapp.models.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -47,9 +45,8 @@ public class ProdutoProcessosDAO extends ConexaoBanco
     @Override
     public BaseDTO atualizar(ProdutoProcessoModel modelAtualizado) throws RuntimeException {
         try {
-            Connection conexao = connect();
-            String sql = "UPDATE produto_processos SET id_produto = ?, id_processo = ? WHERE ID_PRODUTO_PROCESSO = ?";
-            PreparedStatement ps = conexao.prepareStatement(sql);
+            var conexao = connect();
+            PreparedStatement ps = conexao.prepareStatement("CALL spAtualizarProdutoProcesso(?,?,?)");
 
             ps.setInt(1, modelAtualizado.getProduto().getId());
             ps.setInt(2, modelAtualizado.getProcesso().getId());
@@ -104,21 +101,48 @@ public class ProdutoProcessosDAO extends ConexaoBanco
     public List<ProcessoModel> buscarPorProdutoId(int id) {
         try {
             Connection conexao = connect();
-            String sql = "SELECT * FROM produtos_processos WHERE ID_PRODUTO = ?";
+            String sql = "SELECT ID_PROCESSO FROM produtos_processos WHERE ID_PRODUTO = ?";
             PreparedStatement ps = conexao.prepareStatement(sql);
 
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
 
-            List<ProcessoModel> processos = new ArrayList<>();
+            List<ProcessoModel> output = new ArrayList<>();
+            while(rs.next()){
+                var idProcesso = rs.getInt(1);
+                var processo = processoDAO.buscarPorId(idProcesso);
+                output.add(processo);
+            }
 
-            throw new RuntimeException("metodo nao implementado");
+            return  output;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao buscar ProdutoProcessos por id: " + e.getMessage());
         } finally {
             disconnect();
         }
+    }
+
+    public ProdutoProcessoModel buscar(ProdutoProcessoModel model) throws RuntimeException {
+        try {
+            var conexao = connect();
+            var ps = conexao.prepareStatement("SELECT * FROM produtos_processos WHERE ID_PRODUTO = ? AND ID_PROCESSO = ?");
+
+            ps.setInt(1, model.getProduto().getId());
+            ps.setInt(2, model.getProcesso().getId());
+
+            var rs = ps.executeQuery();
+
+            return build(rs);
+        } catch (Exception e) {
+            throw new RuntimeException("não foi possível buscar o produto processo", e);
+        } finally {
+            disconnect();
+        }
+    }
+
+    public Boolean isCadastrado(ProdutoProcessoModel model) {
+        return buscar(model) != null;
     }
 
     private ProdutoProcessoModel build(ResultSet rs) throws SQLException {
@@ -135,7 +159,7 @@ public class ProdutoProcessosDAO extends ConexaoBanco
 
             return produtoProcessos;
         } else {
-            return  null;
+            return null;
         }
     }
 
