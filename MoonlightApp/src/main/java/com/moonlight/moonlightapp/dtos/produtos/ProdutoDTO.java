@@ -16,13 +16,13 @@ import java.util.List;
 public class ProdutoDTO implements DTO {
     private final String nome;
     private final String descricao;
-    private final Integer valor;
+    private final Double valor;
     private final List<ProcessoDTO> processos;
     private final List<ItemProdutoDTO> itensProdutos;
     private final TipoProdutoDTO tipoProduto;
     private final UnidadeMedidaDTO unidadeMedida;
 
-    public ProdutoDTO(String nome, String descricao, Integer valor, List<ProcessoDTO> processos,
+    public ProdutoDTO(String nome, String descricao, Double valor, List<ProcessoDTO> processos,
                       List<ItemProdutoDTO> itensProdutos, TipoProdutoDTO tipoProduto, UnidadeMedidaDTO unidadeMedida) {
         this.nome = nome;
         this.descricao = descricao;
@@ -41,7 +41,7 @@ public class ProdutoDTO implements DTO {
         return descricao;
     }
 
-    public Integer getValor() {
+    public Double getValor() {
         return valor;
     }
 
