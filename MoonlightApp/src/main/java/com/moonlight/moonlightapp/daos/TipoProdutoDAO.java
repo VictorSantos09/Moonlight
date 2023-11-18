@@ -52,6 +52,10 @@ public class TipoProdutoDAO extends ConexaoBanco
         }
     }
 
+    public  Boolean isCadastrado(String nome){
+        return  buscarPorNome(nome) != null;
+    }
+
     private TipoProdutoModel build(ResultSet rs) throws SQLException {
         if (rs.next()) {
             var id = rs.getInt(1);

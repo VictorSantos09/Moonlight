@@ -4,24 +4,24 @@ public class ProdutoProcessoModel extends BaseModel {
     private ProcessoModel processo;
     private ProdutoModel produto;
 
-    public ProdutoProcessoModel(final ProcessoModel processo, final ProdutoModel produto) {
+    public ProdutoProcessoModel( ProcessoModel processo,  ProdutoModel produto) {
         this.processo = processo;
         this.produto = produto;
     }
 
     public ProcessoModel getProcesso() {
-        return this.processo;
+        return processo;
     }
 
-    public void setProcesso(final ProcessoModel processo) {
+    public void setProcesso(ProcessoModel processo) {
         this.processo = processo;
     }
 
     public ProdutoModel getProduto() {
-        return this.produto;
+        return produto;
     }
 
-    public void setProduto(final ProdutoModel produto) {
+    public void setProduto( ProdutoModel produto) {
         this.produto = produto;
     }
 }

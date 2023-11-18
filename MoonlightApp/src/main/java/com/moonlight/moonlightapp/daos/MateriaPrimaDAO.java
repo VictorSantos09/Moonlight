@@ -1,6 +1,7 @@
 package com.moonlight.moonlightapp.daos;
 
 import com.moonlight.moonlightapp.daos.contracts.BuscarPorNomeDAO;
+import com.moonlight.moonlightapp.daos.contracts.IsCadastrado;
 import com.moonlight.moonlightapp.daos.contracts.ModelDAO;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
 import com.moonlight.moonlightapp.models.MateriaPrimaModel;
@@ -13,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MateriaPrimaDAO extends ConexaoBanco
-        implements ModelDAO<MateriaPrimaModel>, BuscarPorNomeDAO<MateriaPrimaModel> {
+        implements ModelDAO<MateriaPrimaModel>, BuscarPorNomeDAO<MateriaPrimaModel>, IsCadastrado<String> {
 
     private final UnidadeMedidaDAO unidadeMedidaDAO;
     private final TipoMateriaPrimaDAO tipoMateriaPrimaDAO;
@@ -105,10 +106,15 @@ public class MateriaPrimaDAO extends ConexaoBanco
     }
 
     @Override
+    public Boolean isCadastrado(String nome) throws RuntimeException {
+        return buscarPorNome(nome) != null;
+    }
+
+    @Override
     public MateriaPrimaModel buscarPorId(int id) throws RuntimeException {
         try {
             Connection conexao = connect();
-            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM materias_primas WHERE id = ?");
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM materias_primas WHERE ID_MATERIA_PRIMA = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 

@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `moonlight` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `moonlight`;
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: moonlight
 -- ------------------------------------------------------
--- Server version	8.0.23
+-- Server version	8.0.35
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,7 +20,7 @@
 --
 -- Dumping routines for database 'moonlight'
 --
-/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarItensProduto` */;
+/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarProduto` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -28,7 +30,43 @@
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarItensProduto`(quantidade INT, idproduto INT, idMateriaPrima INT, subtotal DOUBLE, idItemProduto INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarProduto`(idProduto INT, nome VARCHAR(45), descricao VARCHAR(200), valorRecomendado DOUBLE, valor DOUBLE, idUnidadeMedida INT, idTipoProduto INT)
+BEGIN
+	DECLARE idValorProduto INT;
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+    END;
+    
+    START TRANSACTION;
+		SELECT ID_VALOR_PRODUTO FROM produtos WHERE ID_PRODUTO = idProduto INTO idValorProduto;
+        
+		CALL spAtualizarProdutoValores(valorRecomendado, valor, idValorProduto);
+		
+        UPDATE produtos SET
+        NOME = UPPER(nome),
+        DESCRICAO = UPPER(descricao),
+        ID_UNIDADE_MEDIDA = idUnidadeMedida,
+        ID_TIPO_PRODUTO = idTipoProduto
+        WHERE ID_PRODUTO = idProduto;
+    COMMIT;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarProdutoItens` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarProdutoItens`(quantidade INT, idproduto INT, idMateriaPrima INT, subtotal DOUBLE, idItemProduto INT)
 BEGIN
 	UPDATE itens_produtos SET 
     QUANTIDADE = quantidade,
@@ -42,7 +80,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarProduto` */;
+/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarProdutoProcesso` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -52,23 +90,25 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarProduto`(idProduto INT, nome VARCHAR(45), descricao VARCHAR(200), valorRecomendado DOUBLE, valor DOUBLE, idUnidadeMedida INT, idTipoProduto INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarProdutoProcesso`(idProduto INT, idProcesso INT, idProdutoProcesso INT)
 BEGIN
-	UPDATE produtos SET
-    NOME = nome,
-    DESCRICAO = descricao,
-    VALOR_RECOMENDADO = valorRecomendado,
-    VALOR = valor,
-    ID_UNIDADE_MEDIDA = idUnidadeMedida,
-    ID_TIPO_PRODUTO = idTipoProduto
-    WHERE ID_PRODUTO = idProduto;
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+    END;
+    
+    START TRANSACTION;
+		UPDATE produtos_processos SET
+        ID_PROCESSO = idProcesso
+        WHERE ID_PRODUTO_PROCESSO = idProdutoProcesso;
+    COMMIT;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarValoresProdutos` */;
+/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarProdutoValores` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -78,11 +118,12 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarValoresProdutos`(valorRecomendado double, valor double)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarProdutoValores`(valorRecomendado DOUBLE, valor DOUBLE, idValorProduto INT)
 BEGIN
 	UPDATE VALORES_PRODUTOS SET
     VALOR_RECOMENDADO = valorRecomendado,
-    VALOR = valor;
+    VALOR = valor
+    WHERE ID_VALOR_PRODUTO = idValorProduto;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -243,4 +284,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-16 20:24:03
+-- Dump completed on 2023-11-18 20:01:52

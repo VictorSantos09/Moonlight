@@ -15,10 +15,28 @@ import java.util.List;
 
 public class ItensProdutoDAO extends ConexaoBanco
         implements ModelDAO<ItemProdutoModel> {
-    private final MateriaPrimaDAO _materiaPrimaDAO;
+    private final MateriaPrimaDAO materiaPrimaDAO;
 
     public ItensProdutoDAO() {
-        _materiaPrimaDAO = new MateriaPrimaDAO();
+        materiaPrimaDAO = new MateriaPrimaDAO();
+    }
+
+    public ItemProdutoModel buscar(Integer idProduto, Integer idMateriaPrima) throws RuntimeException {
+        try {
+            var conexao = connect();
+            var ps = conexao.prepareStatement("SELECT * FROM itens_produtos " +
+                    "WHERE ID_PRODUTO = ? AND ID_MATERIA_PRIMA = ?");
+
+            ps.setInt(1,idProduto);
+            ps.setInt(2, idMateriaPrima);
+            ResultSet rs = ps.executeQuery();
+
+            return build(rs);
+        } catch (Exception e) {
+            throw new RuntimeException("um erro ocorreu ao buscar o item produto", e);
+        } finally {
+            disconnect();
+        }
     }
 
     @Override
@@ -30,7 +48,7 @@ public class ItensProdutoDAO extends ConexaoBanco
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            return build(rs).get(0);
+            return buildList(rs).get(0);
         } catch (SQLException e) {
             throw new RuntimeException("Um erro ocorreu ao buscar o ItensProduto por ID: " + e.getMessage());
         } finally {
@@ -46,13 +64,18 @@ public class ItensProdutoDAO extends ConexaoBanco
             ps.setInt(1, idProduto);
 
             ResultSet rs = ps.executeQuery();
-            return build(rs);
+            return buildList(rs);
         } catch (SQLException e) {
             throw new RuntimeException(
                     "Um erro ocorreu ao buscar os itensProdutos por meio do produto: " + e.getMessage());
         } finally {
             disconnect();
         }
+    }
+
+    public List<MateriaPrimaModel> buscarMateriasPrimasDoProduto(int idProduto) {
+        var itensProdutos = buscarPorProdutoId(idProduto);
+        return itensProdutos.stream().map(ItemProdutoModel::getMateriaPrima).toList();
     }
 
     @Override
@@ -81,7 +104,7 @@ public class ItensProdutoDAO extends ConexaoBanco
         try {
             Connection conexao = connect();
 
-            PreparedStatement ps = conexao.prepareStatement("CALL spAtualizarItensProduto(?, ?, ? , ?, ?)");
+            PreparedStatement ps = conexao.prepareStatement("CALL spAtualizarProdutoItens(?, ?, ? , ?, ?)");
             ps.setInt(1, modelAtualizado.getQuantidade());
             ps.setInt(2, modelAtualizado.getProduto().getId());
             ps.setInt(3, modelAtualizado.getMateriaPrima().getId());
@@ -112,9 +135,10 @@ public class ItensProdutoDAO extends ConexaoBanco
         }
     }
 
-    private List<ItemProdutoModel> build(ResultSet rs) throws SQLException {
+    private List<ItemProdutoModel> buildList(ResultSet rs) throws SQLException {
         List<ItemProdutoModel> output = new ArrayList<>();
-        if (rs.next()) {
+
+        while (rs.next()) {
             int idItemProduto = rs.getInt(1);
             int quantidade = rs.getInt(2);
             int idProduto = rs.getInt(3);
@@ -128,15 +152,33 @@ public class ItensProdutoDAO extends ConexaoBanco
             itensProduto.setId(idItemProduto);
 
             output.add(itensProduto);
-        } else {
-            return List.of();
         }
 
         return output;
     }
 
+    private ItemProdutoModel build(ResultSet rs) throws SQLException {
+        if (rs.next()) {
+            int idItemProduto = rs.getInt(1);
+            int quantidade = rs.getInt(2);
+            int idProduto = rs.getInt(3);
+            int idMateriaPrima = rs.getInt(4);
+            double subtotal = rs.getDouble(5);
+
+            ProdutoModel produtoModel = buscarProdutoPorId(idProduto);
+            MateriaPrimaModel materiaPrimaModel = buscarMateriaPrimaPorId(idMateriaPrima);
+
+            var itensProduto = new ItemProdutoModel(quantidade, produtoModel, subtotal, materiaPrimaModel);
+            itensProduto.setId(idItemProduto);
+
+            return itensProduto;
+        } else {
+            return null;
+        }
+    }
+
     private MateriaPrimaModel buscarMateriaPrimaPorId(int id) {
-        return _materiaPrimaDAO.buscarPorId(id);
+        return materiaPrimaDAO.buscarPorId(id);
     }
 
     private ProdutoModel buscarProdutoPorId(int id) {

@@ -5,7 +5,7 @@ import com.moonlight.moonlightapp.validators.models.ResultadoValidacao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseValidator {
+public abstract class BaseValidator {
     protected final List<String> falhas;
     public BaseValidator() {
         falhas = new ArrayList<>();

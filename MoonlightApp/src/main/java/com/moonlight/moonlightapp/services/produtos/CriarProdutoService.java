@@ -61,11 +61,11 @@ public final class CriarProdutoService {
             return BaseDTO.buildFalha("matéria(s) prima(s) não encontrada(s)");
         }
 
-        if (!isUnidadeMedidaCadastrada(dto)) {
+        if (!unidadeMedidaDAO.isCadastrado(dto.getUnidadeMedida().getSigla())) {
             return BaseDTO.buildFalha("unidade de medida não cadastrada");
         }
 
-        if (!isTipoProdutoCadastrado(dto)) {
+        if (!tipoProdutoDAO.isCadastrado(dto.getTipoProduto().getNome())) {
             return BaseDTO.buildFalha("tipo do produto não cadastrado");
         }
 
@@ -76,12 +76,16 @@ public final class CriarProdutoService {
             return resultadoValidacaoDados;
         }
 
-        var valorRecomendado = CalcularValorRecomendadoProdutoService.calcular(processosModels, materiaPrimaModels);
+        var itensProdutosModels = criarItensProdutos(dto);
+        if (itensProdutosModels.isEmpty()) {
+            return BaseDTO.buildFalha("não foi possível criar os itens do produto");
+        }
+
+        var valorRecomendado = CalcularValorRecomendadoProdutoService.calcular(processosModels, itensProdutosModels);
 
         novoProduto.getValorProduto().setValorRecomendado(valorRecomendado);
 
-        var isProdutoCadastrado = isProdutoCadastrado(dto);
-        if (isProdutoCadastrado) {
+        if (produtoDAO.isCadastrado(dto.getNome())) {
             return BaseDTO.buildFalha("produto já cadastrado", dto.getNome() + "já foi cadastrado");
         }
 
@@ -90,11 +94,6 @@ public final class CriarProdutoService {
         if (!resultadoGravacaoProduto.getIsSucesso()) {
             return BaseDTO.buildFalha("não foi possível salvar o produto",
                     resultadoGravacaoProduto.getMensagem());
-        }
-
-        var itensProdutosModels = criarItensProdutos(dto);
-        if (itensProdutosModels.isEmpty()) {
-            return BaseDTO.buildFalha("não foi possível criar os itens do produto");
         }
 
         var idProduto = produtoDAO.buscarPorNome(novoProduto.getNome()).getId();
@@ -206,19 +205,6 @@ public final class CriarProdutoService {
         });
 
         return output;
-    }
-
-    private boolean isProdutoCadastrado(ProdutoDTO dto) {
-        var produtoEncontrado = produtoDAO.buscarPorNome(dto.getNome());
-        return produtoEncontrado != null;
-    }
-
-    private boolean isUnidadeMedidaCadastrada(ProdutoDTO dto) {
-        return unidadeMedidaDAO.buscarPorSigla(dto.getUnidadeMedida().getSigla()) != null;
-    }
-
-    private boolean isTipoProdutoCadastrado(ProdutoDTO dto) {
-        return tipoProdutoDAO.buscarPorNome(dto.getTipoProduto().getNome()) != null;
     }
 
     private BaseDTO validarEntrada(ProdutoDTO dto) {

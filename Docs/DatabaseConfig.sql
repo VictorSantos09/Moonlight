@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `moonlight` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `moonlight`;
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: moonlight
 -- ------------------------------------------------------
--- Server version	8.0.23
+-- Server version	8.0.35
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -34,17 +36,8 @@ CREATE TABLE `itens_produtos` (
   KEY `IND_MATERIAS_PRIMAS_ITENS_PRODUTOS_002` (`ID_PRODUTO`),
   CONSTRAINT `FK_MATERIAS_PRIMAS_ITENS_PRODUTOS_002` FOREIGN KEY (`ID_MATERIA_PRIMA`) REFERENCES `materias_primas` (`ID_MATERIA_PRIMA`),
   CONSTRAINT `FK_PRODUTOS_ITENS_PRODUTOS_001` FOREIGN KEY (`ID_PRODUTO`) REFERENCES `produtos` (`ID_PRODUTO`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `itens_produtos`
---
-
-LOCK TABLES `itens_produtos` WRITE;
-/*!40000 ALTER TABLE `itens_produtos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `itens_produtos` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `materias_primas`
@@ -72,15 +65,6 @@ CREATE TABLE `materias_primas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `materias_primas`
---
-
-LOCK TABLES `materias_primas` WRITE;
-/*!40000 ALTER TABLE `materias_primas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `materias_primas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `processos`
 --
 
@@ -96,15 +80,6 @@ CREATE TABLE `processos` (
   UNIQUE KEY `ETAPA_UNIQUE` (`ETAPA`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `processos`
---
-
-LOCK TABLES `processos` WRITE;
-/*!40000 ALTER TABLE `processos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `processos` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `produtos`
@@ -129,17 +104,8 @@ CREATE TABLE `produtos` (
   CONSTRAINT `fk_PRODUTOS_TIPOS_PRODUTOS1` FOREIGN KEY (`ID_TIPO_PRODUTO`) REFERENCES `tipos_produtos` (`ID_TIPO_PRODUTO`),
   CONSTRAINT `fk_PRODUTOS_UNIDADES_MEDIDAS1` FOREIGN KEY (`ID_UNIDADE_MEDIDA`) REFERENCES `unidades_medidas` (`ID_UNIDADE_MEDIDA`),
   CONSTRAINT `FK_VALORES_PRODUTOS_PRODUTOS` FOREIGN KEY (`ID_VALOR_PRODUTO`) REFERENCES `valores_produtos` (`ID_VALOR_PRODUTO`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `produtos`
---
-
-LOCK TABLES `produtos` WRITE;
-/*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `produtos_processos`
@@ -158,17 +124,8 @@ CREATE TABLE `produtos_processos` (
   KEY `IND_PRODUTOS_PROCESSOS_002` (`ID_PRODUTO`),
   CONSTRAINT `FK_PRODUTOS_PROCESSOS_PROCESSOS` FOREIGN KEY (`ID_PROCESSO`) REFERENCES `processos` (`ID_PROCESSO`),
   CONSTRAINT `FK_PRODUTOS_PROCESSOS_PRODUTOS` FOREIGN KEY (`ID_PRODUTO`) REFERENCES `produtos` (`ID_PRODUTO`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `produtos_processos`
---
-
-LOCK TABLES `produtos_processos` WRITE;
-/*!40000 ALTER TABLE `produtos_processos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `produtos_processos` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `tipos_materias_primas`
@@ -187,15 +144,6 @@ CREATE TABLE `tipos_materias_primas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tipos_materias_primas`
---
-
-LOCK TABLES `tipos_materias_primas` WRITE;
-/*!40000 ALTER TABLE `tipos_materias_primas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipos_materias_primas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `tipos_produtos`
 --
 
@@ -210,15 +158,6 @@ CREATE TABLE `tipos_produtos` (
   UNIQUE KEY `IDX_TIPOS_PRODUTOS_002` (`NOME`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tipos_produtos`
---
-
-LOCK TABLES `tipos_produtos` WRITE;
-/*!40000 ALTER TABLE `tipos_produtos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipos_produtos` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `unidades_medidas`
@@ -239,15 +178,6 @@ CREATE TABLE `unidades_medidas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `unidades_medidas`
---
-
-LOCK TABLES `unidades_medidas` WRITE;
-/*!40000 ALTER TABLE `unidades_medidas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `unidades_medidas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `valores_produtos`
 --
 
@@ -260,22 +190,69 @@ CREATE TABLE `valores_produtos` (
   `VALOR` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_VALOR_PRODUTO`),
   UNIQUE KEY `IDX_VALORES_PRODUTOS_001` (`ID_VALOR_PRODUTO`) /*!80000 INVISIBLE */
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `valores_produtos`
+-- Temporary view structure for view `vw_verinformacoesproduto`
 --
 
-LOCK TABLES `valores_produtos` WRITE;
-/*!40000 ALTER TABLE `valores_produtos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `valores_produtos` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `vw_verinformacoesproduto`;
+/*!50001 DROP VIEW IF EXISTS `vw_verinformacoesproduto`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vw_verinformacoesproduto` AS SELECT 
+ 1 AS `NOME`,
+ 1 AS `DESCRICAO`,
+ 1 AS `NOME UNIDADE MEDIDA`,
+ 1 AS `SIGLA UNIDADE MEDIDA`,
+ 1 AS `TIPO`,
+ 1 AS `VALOR`,
+ 1 AS `VALOR RECOMENDADO`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vw_verprocessosproduto`
+--
+
+DROP TABLE IF EXISTS `vw_verprocessosproduto`;
+/*!50001 DROP VIEW IF EXISTS `vw_verprocessosproduto`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vw_verprocessosproduto` AS SELECT 
+ 1 AS `NOME`,
+ 1 AS `DESCRICAO`,
+ 1 AS `VALOR`,
+ 1 AS `VALOR_RECOMENDADO`,
+ 1 AS `ETAPA`,
+ 1 AS `CUSTO`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vw_verprodutositens`
+--
+
+DROP TABLE IF EXISTS `vw_verprodutositens`;
+/*!50001 DROP VIEW IF EXISTS `vw_verprodutositens`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vw_verprodutositens` AS SELECT 
+ 1 AS `PRODUTO`,
+ 1 AS `DESCRICAO`,
+ 1 AS `TIPO PRODUTO`,
+ 1 AS `UNIDADE MEDIDA PRODUTO`,
+ 1 AS `MATÉRIA PRIMA NECESSÁRIA`,
+ 1 AS `DESCRIÇÃO MATÉRIA PRIMA`,
+ 1 AS `TIPO MATÉRIA PRIMA`,
+ 1 AS `VALOR MATÉRIA PRIMA`,
+ 1 AS `QUANTIDADE NECESSÁRIA MATÉRIA PRIMA`,
+ 1 AS `SUBTOTAL`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Dumping routines for database 'moonlight'
 --
-/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarItensProduto` */;
+/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarProduto` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -285,7 +262,43 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarItensProduto`(quantidade INT, idproduto INT, idMateriaPrima INT, subtotal DOUBLE, idItemProduto INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarProduto`(idProduto INT, nome VARCHAR(45), descricao VARCHAR(200), valorRecomendado DOUBLE, valor DOUBLE, idUnidadeMedida INT, idTipoProduto INT)
+BEGIN
+	DECLARE idValorProduto INT;
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+    END;
+    
+    START TRANSACTION;
+		SELECT ID_VALOR_PRODUTO FROM produtos WHERE ID_PRODUTO = idProduto INTO idValorProduto;
+        
+		CALL spAtualizarProdutoValores(valorRecomendado, valor, idValorProduto);
+		
+        UPDATE produtos SET
+        NOME = UPPER(nome),
+        DESCRICAO = UPPER(descricao),
+        ID_UNIDADE_MEDIDA = idUnidadeMedida,
+        ID_TIPO_PRODUTO = idTipoProduto
+        WHERE ID_PRODUTO = idProduto;
+    COMMIT;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarProdutoItens` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarProdutoItens`(quantidade INT, idproduto INT, idMateriaPrima INT, subtotal DOUBLE, idItemProduto INT)
 BEGIN
 	UPDATE itens_produtos SET 
     QUANTIDADE = quantidade,
@@ -299,7 +312,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarProduto` */;
+/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarProdutoProcesso` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -309,23 +322,25 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarProduto`(idProduto INT, nome VARCHAR(45), descricao VARCHAR(200), valorRecomendado DOUBLE, valor DOUBLE, idUnidadeMedida INT, idTipoProduto INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarProdutoProcesso`(idProduto INT, idProcesso INT, idProdutoProcesso INT)
 BEGIN
-	UPDATE produtos SET
-    NOME = nome,
-    DESCRICAO = descricao,
-    VALOR_RECOMENDADO = valorRecomendado,
-    VALOR = valor,
-    ID_UNIDADE_MEDIDA = idUnidadeMedida,
-    ID_TIPO_PRODUTO = idTipoProduto
-    WHERE ID_PRODUTO = idProduto;
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+    END;
+    
+    START TRANSACTION;
+		UPDATE produtos_processos SET
+        ID_PROCESSO = idProcesso
+        WHERE ID_PRODUTO_PROCESSO = idProdutoProcesso;
+    COMMIT;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarValoresProdutos` */;
+/*!50003 DROP PROCEDURE IF EXISTS `spAtualizarProdutoValores` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -335,11 +350,12 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarValoresProdutos`(valorRecomendado double, valor double)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAtualizarProdutoValores`(valorRecomendado DOUBLE, valor DOUBLE, idValorProduto INT)
 BEGIN
 	UPDATE VALORES_PRODUTOS SET
     VALOR_RECOMENDADO = valorRecomendado,
-    VALOR = valor;
+    VALOR = valor
+    WHERE ID_VALOR_PRODUTO = idValorProduto;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -490,6 +506,60 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Final view structure for view `vw_verinformacoesproduto`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vw_verinformacoesproduto`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_verinformacoesproduto` AS select `p`.`NOME` AS `NOME`,`p`.`DESCRICAO` AS `DESCRICAO`,`um`.`NOME` AS `NOME UNIDADE MEDIDA`,`um`.`SIGLA` AS `SIGLA UNIDADE MEDIDA`,`tp`.`NOME` AS `TIPO`,`vp`.`VALOR` AS `VALOR`,`vp`.`VALOR_RECOMENDADO` AS `VALOR RECOMENDADO` from (((`produtos` `p` join `unidades_medidas` `um` on((`um`.`ID_UNIDADE_MEDIDA` = `p`.`ID_UNIDADE_MEDIDA`))) join `tipos_produtos` `tp` on((`tp`.`ID_TIPO_PRODUTO` = `p`.`ID_TIPO_PRODUTO`))) join `valores_produtos` `vp` on((`vp`.`ID_VALOR_PRODUTO` = `p`.`ID_VALOR_PRODUTO`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vw_verprocessosproduto`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vw_verprocessosproduto`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_verprocessosproduto` AS select `p`.`NOME` AS `NOME`,`p`.`DESCRICAO` AS `DESCRICAO`,`vp`.`VALOR` AS `VALOR`,`vp`.`VALOR_RECOMENDADO` AS `VALOR_RECOMENDADO`,`pro`.`ETAPA` AS `ETAPA`,`pro`.`CUSTO` AS `CUSTO` from (((`produtos_processos` `pp` join `produtos` `p` on((`p`.`ID_PRODUTO` = `pp`.`ID_PRODUTO`))) join `processos` `pro` on((`pro`.`ID_PROCESSO` = `pp`.`ID_PROCESSO`))) join `valores_produtos` `vp` on((`vp`.`ID_VALOR_PRODUTO` = `p`.`ID_VALOR_PRODUTO`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vw_verprodutositens`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vw_verprodutositens`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_verprodutositens` AS select `p`.`NOME` AS `PRODUTO`,`p`.`DESCRICAO` AS `DESCRICAO`,`tpr`.`NOME` AS `TIPO PRODUTO`,`um`.`NOME` AS `UNIDADE MEDIDA PRODUTO`,`mp`.`NOME` AS `MATÉRIA PRIMA NECESSÁRIA`,`mp`.`DESCRICAO` AS `DESCRIÇÃO MATÉRIA PRIMA`,`tmp`.`NOME` AS `TIPO MATÉRIA PRIMA`,`mp`.`VALOR` AS `VALOR MATÉRIA PRIMA`,`ip`.`QUANTIDADE` AS `QUANTIDADE NECESSÁRIA MATÉRIA PRIMA`,`ip`.`SUBTOTAL` AS `SUBTOTAL` from (((((`itens_produtos` `ip` join `materias_primas` `mp` on((`mp`.`ID_MATERIA_PRIMA` = `ip`.`ID_MATERIA_PRIMA`))) join `produtos` `p` on((`p`.`ID_PRODUTO` = `ip`.`ID_PRODUTO`))) join `tipos_materias_primas` `tmp` on((`tmp`.`ID_TIPO_MATERIA_PRIMA` = `mp`.`ID_TIPO_MATERIA_PRIMA`))) join `unidades_medidas` `um` on((`um`.`ID_UNIDADE_MEDIDA` = `mp`.`ID_UNIDADE_MEDIDA`))) join `tipos_produtos` `tpr` on((`tpr`.`ID_TIPO_PRODUTO` = `p`.`ID_TIPO_PRODUTO`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -500,4 +570,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-16 20:25:04
+-- Dump completed on 2023-11-18 19:59:51

@@ -12,11 +12,11 @@ public class ItemProdutoModel extends BaseModel {
     private MateriaPrimaModel materiaPrima;
     private double subTotal;
 
-    public ItemProdutoModel(int quantidade, ProdutoModel produto, double subTotal, MateriaPrimaModel materiasPrima) {
+    public ItemProdutoModel(int quantidade, ProdutoModel produto, double subTotal, MateriaPrimaModel materiaPrima) {
         this.quantidade = quantidade;
         this.produto = produto;
         this.subTotal = subTotal;
-        this.materiaPrima = materiasPrima;
+        this.materiaPrima = materiaPrima;
     }
 
     public int getQuantidade() {
