@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TipoProdutoDAO extends ConexaoBanco
         implements BuscarPorNomeDAO<TipoProdutoModel>, BuscarPorIdDAO<TipoProdutoModel> {
@@ -52,8 +54,26 @@ public class TipoProdutoDAO extends ConexaoBanco
         }
     }
 
-    public  Boolean isCadastrado(String nome){
-        return  buscarPorNome(nome) != null;
+    public List<TipoProdutoModel> buscarTodos() throws RuntimeException {
+        try {
+            Connection conexao = connect();
+
+            String sql = "SELECT * FROM tipos_produtos";
+
+            PreparedStatement ps = conexao.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            return buildList(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("um erro ocorreu ao buscar todos os tipos de produtos. Erro: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+    }
+
+    public Boolean isCadastrado(String nome) {
+        return buscarPorNome(nome) != null;
     }
 
     private TipoProdutoModel build(ResultSet rs) throws SQLException {
@@ -66,7 +86,19 @@ public class TipoProdutoDAO extends ConexaoBanco
 
             return tipoProduto;
         } else {
-            return  null;
+            return null;
         }
+    }
+
+    private List<TipoProdutoModel> buildList(ResultSet rs) throws SQLException {
+        List<TipoProdutoModel> tiposProdutos = new ArrayList<>();
+
+        while (rs.next()) {
+            var tipoProduto = build(rs);
+
+            tiposProdutos.add(tipoProduto);
+        }
+
+        return tiposProdutos.isEmpty() ? List.of() : tiposProdutos;
     }
 }
