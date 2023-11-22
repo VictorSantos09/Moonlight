@@ -194,6 +194,22 @@ CREATE TABLE `valores_produtos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Temporary view structure for view `vw_relatorio`
+--
+
+DROP TABLE IF EXISTS `vw_relatorio`;
+/*!50001 DROP VIEW IF EXISTS `vw_relatorio`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vw_relatorio` AS SELECT 
+ 1 AS `NOME`,
+ 1 AS `TIPO`,
+ 1 AS `VALOR`,
+ 1 AS `VALOR_RECOMENDADO`,
+ 1 AS `SUBTOTAL`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary view structure for view `vw_verinformacoesproduto`
 --
 
@@ -508,6 +524,24 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
+-- Final view structure for view `vw_relatorio`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vw_relatorio`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_relatorio` AS select `p`.`NOME` AS `NOME`,`tp`.`NOME` AS `TIPO`,`vp`.`VALOR` AS `VALOR`,`vp`.`VALOR_RECOMENDADO` AS `VALOR_RECOMENDADO`,`ip`.`SUBTOTAL` AS `SUBTOTAL` from (((`itens_produtos` `ip` join `produtos` `p` on((`p`.`ID_PRODUTO` = `ip`.`ID_PRODUTO`))) join `valores_produtos` `vp` on((`vp`.`ID_VALOR_PRODUTO` = `p`.`ID_VALOR_PRODUTO`))) join `tipos_produtos` `tp` on((`tp`.`ID_TIPO_PRODUTO` = `p`.`ID_TIPO_PRODUTO`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `vw_verinformacoesproduto`
 --
 
@@ -570,4 +604,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-18 19:59:51
+-- Dump completed on 2023-11-22 16:07:32
