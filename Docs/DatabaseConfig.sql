@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `moonlight` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `moonlight`;
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: moonlight
 -- ------------------------------------------------------
--- Server version	8.0.35
+-- Server version	8.0.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -36,7 +36,7 @@ CREATE TABLE `itens_produtos` (
   KEY `IND_MATERIAS_PRIMAS_ITENS_PRODUTOS_002` (`ID_PRODUTO`),
   CONSTRAINT `FK_MATERIAS_PRIMAS_ITENS_PRODUTOS_002` FOREIGN KEY (`ID_MATERIA_PRIMA`) REFERENCES `materias_primas` (`ID_MATERIA_PRIMA`),
   CONSTRAINT `FK_PRODUTOS_ITENS_PRODUTOS_001` FOREIGN KEY (`ID_PRODUTO`) REFERENCES `produtos` (`ID_PRODUTO`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +61,7 @@ CREATE TABLE `materias_primas` (
   KEY `IND_TIPOS_MATERIAS_PRIMAS_MATERIAS_PRIMAS_002` (`ID_TIPO_MATERIA_PRIMA`),
   CONSTRAINT `FK_TIPOS_MATERIAS_PRIMAS_MATERIAS_PRIMAS_002` FOREIGN KEY (`ID_TIPO_MATERIA_PRIMA`) REFERENCES `tipos_materias_primas` (`ID_TIPO_MATERIA_PRIMA`),
   CONSTRAINT `FK_UNIDADES_MEDIDAS_MATERIAS_PRIMAS_001` FOREIGN KEY (`ID_UNIDADE_MEDIDA`) REFERENCES `unidades_medidas` (`ID_UNIDADE_MEDIDA`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +78,7 @@ CREATE TABLE `processos` (
   PRIMARY KEY (`ID_PROCESSO`),
   UNIQUE KEY `IDX_PROCESSOS_001` (`ID_PROCESSO`),
   UNIQUE KEY `ETAPA_UNIQUE` (`ETAPA`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +104,7 @@ CREATE TABLE `produtos` (
   CONSTRAINT `fk_PRODUTOS_TIPOS_PRODUTOS1` FOREIGN KEY (`ID_TIPO_PRODUTO`) REFERENCES `tipos_produtos` (`ID_TIPO_PRODUTO`),
   CONSTRAINT `fk_PRODUTOS_UNIDADES_MEDIDAS1` FOREIGN KEY (`ID_UNIDADE_MEDIDA`) REFERENCES `unidades_medidas` (`ID_UNIDADE_MEDIDA`),
   CONSTRAINT `FK_VALORES_PRODUTOS_PRODUTOS` FOREIGN KEY (`ID_VALOR_PRODUTO`) REFERENCES `valores_produtos` (`ID_VALOR_PRODUTO`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +124,7 @@ CREATE TABLE `produtos_processos` (
   KEY `IND_PRODUTOS_PROCESSOS_002` (`ID_PRODUTO`),
   CONSTRAINT `FK_PRODUTOS_PROCESSOS_PROCESSOS` FOREIGN KEY (`ID_PROCESSO`) REFERENCES `processos` (`ID_PROCESSO`),
   CONSTRAINT `FK_PRODUTOS_PROCESSOS_PRODUTOS` FOREIGN KEY (`ID_PRODUTO`) REFERENCES `produtos` (`ID_PRODUTO`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +140,7 @@ CREATE TABLE `tipos_materias_primas` (
   PRIMARY KEY (`ID_TIPO_MATERIA_PRIMA`),
   UNIQUE KEY `IDX_TIPOS_MATERIAS_PRIMAS_001` (`ID_TIPO_MATERIA_PRIMA`),
   UNIQUE KEY `IDX_TIPOS_MATERIAS_PRIMAS_002` (`NOME`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +156,7 @@ CREATE TABLE `tipos_produtos` (
   PRIMARY KEY (`ID_TIPO_PRODUTO`),
   UNIQUE KEY `IDX_TIPOS_PRODUTOS_001` (`ID_TIPO_PRODUTO`),
   UNIQUE KEY `IDX_TIPOS_PRODUTOS_002` (`NOME`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +174,7 @@ CREATE TABLE `unidades_medidas` (
   UNIQUE KEY `IDX_UNIDADES_MEDIDAS_001` (`ID_UNIDADE_MEDIDA`),
   UNIQUE KEY `IDX_UNIDADES_MEDIDAS_002` (`SIGLA`),
   UNIQUE KEY `IDX_UNIDADES_MEDIDAS_003` (`NOME`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,8 +190,40 @@ CREATE TABLE `valores_produtos` (
   `VALOR` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_VALOR_PRODUTO`),
   UNIQUE KEY `IDX_VALORES_PRODUTOS_001` (`ID_VALOR_PRODUTO`) /*!80000 INVISIBLE */
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Temporary view structure for view `vw_valortotal_itensproduto`
+--
+
+DROP TABLE IF EXISTS `vw_valortotal_itensproduto`;
+/*!50001 DROP VIEW IF EXISTS `vw_valortotal_itensproduto`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vw_valortotal_itensproduto` AS SELECT 
+ 1 AS `PRODUTO`,
+ 1 AS `VALOR_VENDA_PRODUTO`,
+ 1 AS `NOME_MATERIA_PRIMA`,
+ 1 AS `VALOR_MATERIA_PRIMA`,
+ 1 AS `QUANTIDADE_UTILIZADA`,
+ 1 AS `SUBTOTAL`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vw_valortotal_processosproduto`
+--
+
+DROP TABLE IF EXISTS `vw_valortotal_processosproduto`;
+/*!50001 DROP VIEW IF EXISTS `vw_valortotal_processosproduto`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vw_valortotal_processosproduto` AS SELECT 
+ 1 AS `NOME`,
+ 1 AS `DESCRICAO`,
+ 1 AS `VALOR`,
+ 1 AS `SUBTOTAL`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Temporary view structure for view `vw_verinformacoesproduto`
@@ -222,8 +254,6 @@ SET @saved_cs_client     = @@character_set_client;
 /*!50001 CREATE VIEW `vw_verprocessosproduto` AS SELECT 
  1 AS `NOME`,
  1 AS `DESCRICAO`,
- 1 AS `VALOR`,
- 1 AS `VALOR_RECOMENDADO`,
  1 AS `ETAPA`,
  1 AS `CUSTO`*/;
 SET character_set_client = @saved_cs_client;
@@ -239,13 +269,13 @@ SET @saved_cs_client     = @@character_set_client;
 /*!50001 CREATE VIEW `vw_verprodutositens` AS SELECT 
  1 AS `PRODUTO`,
  1 AS `DESCRICAO`,
- 1 AS `TIPO PRODUTO`,
- 1 AS `UNIDADE MEDIDA PRODUTO`,
- 1 AS `MATÉRIA PRIMA NECESSÁRIA`,
- 1 AS `DESCRIÇÃO MATÉRIA PRIMA`,
- 1 AS `TIPO MATÉRIA PRIMA`,
- 1 AS `VALOR MATÉRIA PRIMA`,
- 1 AS `QUANTIDADE NECESSÁRIA MATÉRIA PRIMA`,
+ 1 AS `TIPO_PRODUTO`,
+ 1 AS `UNIDADE_MEDIDA_PRODUTO`,
+ 1 AS `MATERIA_PRIMA_NECESSÁRIA`,
+ 1 AS `DESCRIÇÃO_MATERIA_PRIMA`,
+ 1 AS `TIPO_MATERIA_PRIMA`,
+ 1 AS `VALOR_MATERIA_PRIMA`,
+ 1 AS `QUANTIDADE_NECESSARIA_MATERIA_PRIMA`,
  1 AS `SUBTOTAL`*/;
 SET character_set_client = @saved_cs_client;
 
@@ -372,9 +402,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spBuscarProdutoPorNome`(nome VARCHAR(45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spBuscarProdutoPorNome`(nomeProduto VARCHAR(45))
 BEGIN
-	SELECT * FROM produtos WHERE NOME = nome;
+	SELECT * FROM produtos WHERE NOME = nomeProduto;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -508,6 +538,42 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
+-- Final view structure for view `vw_valortotal_itensproduto`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vw_valortotal_itensproduto`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_valortotal_itensproduto` AS select `pr`.`NOME` AS `PRODUTO`,`vp`.`VALOR` AS `VALOR_VENDA_PRODUTO`,`mp`.`NOME` AS `NOME_MATERIA_PRIMA`,`mp`.`VALOR` AS `VALOR_MATERIA_PRIMA`,sum(`ip`.`QUANTIDADE`) AS `QUANTIDADE_UTILIZADA`,sum(`ip`.`SUBTOTAL`) AS `SUBTOTAL` from (((`itens_produtos` `ip` join `materias_primas` `mp` on((`mp`.`ID_MATERIA_PRIMA` = `ip`.`ID_MATERIA_PRIMA`))) join `produtos` `pr` on((`pr`.`ID_PRODUTO` = `ip`.`ID_PRODUTO`))) join `valores_produtos` `vp` on((`vp`.`ID_VALOR_PRODUTO` = `pr`.`ID_VALOR_PRODUTO`))) group by `pr`.`NOME` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vw_valortotal_processosproduto`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vw_valortotal_processosproduto`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_valortotal_processosproduto` AS select `p`.`NOME` AS `NOME`,`p`.`DESCRICAO` AS `DESCRICAO`,`vp`.`VALOR` AS `VALOR`,sum(`pr`.`CUSTO`) AS `SUBTOTAL` from (((`produtos_processos` `pp` join `produtos` `p` on((`p`.`ID_PRODUTO` = `pp`.`ID_PRODUTO`))) join `valores_produtos` `vp` on((`vp`.`ID_VALOR_PRODUTO` = `p`.`ID_VALOR_PRODUTO`))) join `processos` `pr` on((`pr`.`ID_PROCESSO` = `pp`.`ID_PROCESSO`))) group by `p`.`NOME` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `vw_verinformacoesproduto`
 --
 
@@ -538,7 +604,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vw_verprocessosproduto` AS select `p`.`NOME` AS `NOME`,`p`.`DESCRICAO` AS `DESCRICAO`,`vp`.`VALOR` AS `VALOR`,`vp`.`VALOR_RECOMENDADO` AS `VALOR_RECOMENDADO`,`pro`.`ETAPA` AS `ETAPA`,`pro`.`CUSTO` AS `CUSTO` from (((`produtos_processos` `pp` join `produtos` `p` on((`p`.`ID_PRODUTO` = `pp`.`ID_PRODUTO`))) join `processos` `pro` on((`pro`.`ID_PROCESSO` = `pp`.`ID_PROCESSO`))) join `valores_produtos` `vp` on((`vp`.`ID_VALOR_PRODUTO` = `p`.`ID_VALOR_PRODUTO`))) */;
+/*!50001 VIEW `vw_verprocessosproduto` AS select `p`.`NOME` AS `NOME`,`p`.`DESCRICAO` AS `DESCRICAO`,`pro`.`ETAPA` AS `ETAPA`,`pro`.`CUSTO` AS `CUSTO` from (((`produtos_processos` `pp` join `produtos` `p` on((`p`.`ID_PRODUTO` = `pp`.`ID_PRODUTO`))) join `processos` `pro` on((`pro`.`ID_PROCESSO` = `pp`.`ID_PROCESSO`))) join `valores_produtos` `vp` on((`vp`.`ID_VALOR_PRODUTO` = `p`.`ID_VALOR_PRODUTO`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -556,7 +622,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vw_verprodutositens` AS select `p`.`NOME` AS `PRODUTO`,`p`.`DESCRICAO` AS `DESCRICAO`,`tpr`.`NOME` AS `TIPO PRODUTO`,`um`.`NOME` AS `UNIDADE MEDIDA PRODUTO`,`mp`.`NOME` AS `MATÉRIA PRIMA NECESSÁRIA`,`mp`.`DESCRICAO` AS `DESCRIÇÃO MATÉRIA PRIMA`,`tmp`.`NOME` AS `TIPO MATÉRIA PRIMA`,`mp`.`VALOR` AS `VALOR MATÉRIA PRIMA`,`ip`.`QUANTIDADE` AS `QUANTIDADE NECESSÁRIA MATÉRIA PRIMA`,`ip`.`SUBTOTAL` AS `SUBTOTAL` from (((((`itens_produtos` `ip` join `materias_primas` `mp` on((`mp`.`ID_MATERIA_PRIMA` = `ip`.`ID_MATERIA_PRIMA`))) join `produtos` `p` on((`p`.`ID_PRODUTO` = `ip`.`ID_PRODUTO`))) join `tipos_materias_primas` `tmp` on((`tmp`.`ID_TIPO_MATERIA_PRIMA` = `mp`.`ID_TIPO_MATERIA_PRIMA`))) join `unidades_medidas` `um` on((`um`.`ID_UNIDADE_MEDIDA` = `mp`.`ID_UNIDADE_MEDIDA`))) join `tipos_produtos` `tpr` on((`tpr`.`ID_TIPO_PRODUTO` = `p`.`ID_TIPO_PRODUTO`))) */;
+/*!50001 VIEW `vw_verprodutositens` AS select `p`.`NOME` AS `PRODUTO`,`p`.`DESCRICAO` AS `DESCRICAO`,`tpr`.`NOME` AS `TIPO_PRODUTO`,`um`.`NOME` AS `UNIDADE_MEDIDA_PRODUTO`,`mp`.`NOME` AS `MATERIA_PRIMA_NECESSÁRIA`,`mp`.`DESCRICAO` AS `DESCRIÇÃO_MATERIA_PRIMA`,`tmp`.`NOME` AS `TIPO_MATERIA_PRIMA`,`mp`.`VALOR` AS `VALOR_MATERIA_PRIMA`,`ip`.`QUANTIDADE` AS `QUANTIDADE_NECESSARIA_MATERIA_PRIMA`,`ip`.`SUBTOTAL` AS `SUBTOTAL` from (((((`itens_produtos` `ip` join `materias_primas` `mp` on((`mp`.`ID_MATERIA_PRIMA` = `ip`.`ID_MATERIA_PRIMA`))) join `produtos` `p` on((`p`.`ID_PRODUTO` = `ip`.`ID_PRODUTO`))) join `tipos_materias_primas` `tmp` on((`tmp`.`ID_TIPO_MATERIA_PRIMA` = `mp`.`ID_TIPO_MATERIA_PRIMA`))) join `unidades_medidas` `um` on((`um`.`ID_UNIDADE_MEDIDA` = `mp`.`ID_UNIDADE_MEDIDA`))) join `tipos_produtos` `tpr` on((`tpr`.`ID_TIPO_PRODUTO` = `p`.`ID_TIPO_PRODUTO`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -570,4 +636,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-18 19:59:51
+-- Dump completed on 2023-11-23 17:31:38
