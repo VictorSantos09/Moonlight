@@ -13,12 +13,17 @@ public class ProdutoModel extends BaseModel {
     private TipoProdutoModel tipo;
 
     public ProdutoModel(String nome, String descricao,
-                        UnidadeMedidaModel unidadeMedida, TipoProdutoModel tipo, double valorRecomendado, double valor) {
+            UnidadeMedidaModel unidadeMedida, TipoProdutoModel tipo, double valorRecomendado, double valor) {
         this.nome = nome;
         this.descricao = descricao;
         this.unidadeMedida = unidadeMedida;
         this.tipo = tipo;
         valorProduto = new ValorProdutoModel(valorRecomendado, valor);
+    }
+
+    @Override
+    public String toString() {
+        return nome;
     }
 
     public String getNome() {

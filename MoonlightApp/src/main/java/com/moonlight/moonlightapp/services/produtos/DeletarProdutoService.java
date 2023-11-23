@@ -13,15 +13,15 @@ public class DeletarProdutoService {
     }
 
     public BaseDTO deletar(String nome) {
-        var isNomeValido = DefaultValidator.isBlankOrEmpty(nome);
-        if (!isNomeValido) {
+        if (DefaultValidator.isBlankOrEmpty(nome)) {
             return BaseDTO.buildFalha("nome inválido");
         }
 
-        var produtoEncontrado = buscarProdutoPorNome(nome);
-        if (produtoEncontrado == null) {
-            return BaseDTO.buildFalha("produto " + nome + " não encontrado");
+        if (!produtoDAO.isCadastrado(nome)) {
+            return BaseDTO.buildFalha("produto não encontrado");
         }
+
+        var produtoEncontrado = buscarProdutoPorNome(nome);
 
         var resultadoDeletacao = deletarProduto(produtoEncontrado);
         if (!resultadoDeletacao.getIsSucesso()) {
