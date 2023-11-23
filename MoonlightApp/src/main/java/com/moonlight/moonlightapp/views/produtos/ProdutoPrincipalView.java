@@ -57,6 +57,11 @@ public class ProdutoPrincipalView extends javax.swing.JFrame {
 
         btnAbrirMenuDeletarProduto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAbrirMenuDeletarProduto.setText("Deletar");
+        btnAbrirMenuDeletarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirMenuDeletarProdutoActionPerformed(evt);
+            }
+        });
 
         btnAbrirMenuAtualizarProduto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAbrirMenuAtualizarProduto.setText("Atualizar");
@@ -119,6 +124,11 @@ public class ProdutoPrincipalView extends javax.swing.JFrame {
         VisualizarProdutoView view = new VisualizarProdutoView();
         view.setVisible(true);
     }//GEN-LAST:event_btnAbrirMenuVisualizarProdutoActionPerformed
+
+    private void btnAbrirMenuDeletarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirMenuDeletarProdutoActionPerformed
+        RemoverProdutoView view = new RemoverProdutoView();
+        view.setVisible(true);
+    }//GEN-LAST:event_btnAbrirMenuDeletarProdutoActionPerformed
 
     /**
      * @param args the command line arguments
