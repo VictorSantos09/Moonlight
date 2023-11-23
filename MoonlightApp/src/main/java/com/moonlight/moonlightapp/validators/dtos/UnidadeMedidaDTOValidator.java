@@ -12,9 +12,6 @@ public class UnidadeMedidaDTOValidator extends BaseValidator
         if (isBlankOrEmpty(dto.getNome())) {
             addFailure("nome da unidade de medida inválido");
         }
-        if (isBlankOrEmpty(dto.getSigla())) {
-            addFailure("sigla da unidade de medida inválida");
-        }
 
         return build();
     }

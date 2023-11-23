@@ -15,7 +15,6 @@ import java.util.List;
 public class ProcessoDAO extends ConexaoBanco
         implements ModelDAO<ProcessoModel>, IsCadastrado<String> {
 
-
     public ProcessoModel buscarPorEtapa(String etapa) throws RuntimeException {
         try {
             Connection conexao = connect();
@@ -144,7 +143,10 @@ public class ProcessoDAO extends ConexaoBanco
 
     private List<ProcessoModel> buildList(ResultSet rs) throws SQLException {
         List<ProcessoModel> processos = new ArrayList<>();
-        processos.add(build(rs));
+        while (rs.next()) {
+            var processo = build(rs);
+            processos.add(processo);
+        }
         return processos;
     }
 }

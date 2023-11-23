@@ -25,6 +25,7 @@ public final class CriarProdutoService {
     private final UnidadeMedidaDAO unidadeMedidaDAO;
     private final TipoProdutoDAO tipoProdutoDAO;
     private final MateriaPrimaDAO materiaPrimaDAO;
+    private final ValorProdutoDAO valorProdutoDAO;
     private final ProdutoConverter produtoConverter;
     private final ProdutoValidator produtoValidator;
     private final ProcessoValidator processoValidator;
@@ -37,6 +38,7 @@ public final class CriarProdutoService {
         unidadeMedidaDAO = new UnidadeMedidaDAO();
         tipoProdutoDAO = new TipoProdutoDAO();
         materiaPrimaDAO = new MateriaPrimaDAO();
+        valorProdutoDAO = new ValorProdutoDAO();
         produtoConverter = new ProdutoConverter();
         produtoValidator = new ProdutoValidator();
         processoValidator = new ProcessoValidator();
@@ -61,7 +63,7 @@ public final class CriarProdutoService {
             return BaseDTO.buildFalha("matéria(s) prima(s) não encontrada(s)");
         }
 
-        if (!unidadeMedidaDAO.isCadastrado(dto.getUnidadeMedida().getSigla())) {
+        if (!unidadeMedidaDAO.isCadastradoPorNome(dto.getUnidadeMedida().getNome())) {
             return BaseDTO.buildFalha("unidade de medida não cadastrada");
         }
 
@@ -76,17 +78,8 @@ public final class CriarProdutoService {
             return resultadoValidacaoDados;
         }
 
-        var itensProdutosModels = criarItensProdutos(dto);
-        if (itensProdutosModels.isEmpty()) {
-            return BaseDTO.buildFalha("não foi possível criar os itens do produto");
-        }
-
-        var valorRecomendado = CalcularValorRecomendadoProdutoService.calcular(processosModels, itensProdutosModels);
-
-        novoProduto.getValorProduto().setValorRecomendado(valorRecomendado);
-
         if (produtoDAO.isCadastrado(dto.getNome())) {
-            return BaseDTO.buildFalha("produto já cadastrado", dto.getNome() + "já foi cadastrado");
+            return BaseDTO.buildFalha("produto já cadastrado ", dto.getNome() + " já foi cadastrado");
         }
 
         BaseDTO resultadoGravacaoProduto = produtoDAO.criar(novoProduto);
@@ -96,13 +89,23 @@ public final class CriarProdutoService {
                     resultadoGravacaoProduto.getMensagem());
         }
 
-        var idProduto = produtoDAO.buscarPorNome(novoProduto.getNome()).getId();
+        var itensProdutosModels = criarItensProdutos(dto);
+        if (itensProdutosModels.isEmpty()) {
+            return BaseDTO.buildFalha("não foi possível criar os itens do produto");
+        }
 
-        if (idProduto <= 0) {
+        novoProduto = produtoDAO.buscarPorNome(novoProduto.getNome());
+
+        if (novoProduto == null) {
             return BaseDTO.buildFalha("não foi possível encontrar o produto salvo");
         }
 
-        BaseDTO resultadoGravacaoDetalhes = produtoDAO.criarDetalhes(processosModels, itensProdutosModels, idProduto);
+        Double valorRecomendado = CalcularValorRecomendadoProdutoService.calcular(processosModels, itensProdutosModels);
+        novoProduto.getValorProduto().setValorRecomendado(valorRecomendado);
+        valorProdutoDAO.atualizar(novoProduto.getValorProduto());
+
+        BaseDTO resultadoGravacaoDetalhes = produtoDAO.criarDetalhes(processosModels, itensProdutosModels,
+                novoProduto.getId());
 
         if (!resultadoGravacaoDetalhes.getIsSucesso()) {
             return BaseDTO.buildFalha("não foi possível gravar os processos e matérias primas do produto",
@@ -113,7 +116,7 @@ public final class CriarProdutoService {
     }
 
     private BaseDTO validarDados(ProdutoModel produto, List<ProcessoModel> processos,
-                                 List<MateriaPrimaModel> materiasPrimas) {
+            List<MateriaPrimaModel> materiasPrimas) {
         var resultadoValidacaoProduto = produtoValidator.validar(produto);
         var resultadoValidacaoProcessos = validarProcessos(processos);
         var resultadoValidacaoMateriasPrimas = validarMateriasPrimas(materiasPrimas);

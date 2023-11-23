@@ -3,11 +3,14 @@ package com.moonlight.moonlightapp.daos;
 import com.moonlight.moonlightapp.daos.contracts.BuscarPorIdDAO;
 import com.moonlight.moonlightapp.daos.contracts.BuscarPorNomeDAO;
 import com.moonlight.moonlightapp.models.UnidadeMedidaModel;
+import com.mysql.cj.protocol.Resultset;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UnidadeMedidaDAO extends ConexaoBanco
         implements BuscarPorNomeDAO<UnidadeMedidaModel>, BuscarPorIdDAO<UnidadeMedidaModel> {
@@ -73,8 +76,31 @@ public class UnidadeMedidaDAO extends ConexaoBanco
         }
     }
 
-    public  Boolean isCadastrado(String sigla){
-        return  buscarPorSigla(sigla) != null;
+    public List<UnidadeMedidaModel> buscarTodos() {
+        try {
+            Connection conexao = connect();
+
+            String sql = "SELECT * FROM unidades_medidas";
+
+            PreparedStatement ps = conexao.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            return buildList(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(
+                    "um erro ocorreu ao buscar todas as unidades de medida. Erro: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+    }
+
+    public Boolean isCadastrado(String sigla) {
+        return buscarPorSigla(sigla) != null;
+    }
+
+    public Boolean isCadastradoPorNome(String nome) {
+        return buscarPorNome(nome) != null;
     }
 
     private UnidadeMedidaModel build(ResultSet rs) throws SQLException {
@@ -88,7 +114,18 @@ public class UnidadeMedidaDAO extends ConexaoBanco
 
             return unidadeMedida;
         } else {
-            return  null;
+            return null;
         }
+    }
+
+    private List<UnidadeMedidaModel> buildList(ResultSet rs) throws SQLException {
+        List<UnidadeMedidaModel> unidadesMedidas = new ArrayList<>();
+        while (rs.next()) {
+
+            var unidadeMedida = build(rs);
+            unidadesMedidas.add(unidadeMedida);
+
+        }
+        return unidadesMedidas.isEmpty() ? List.of() : unidadesMedidas;
     }
 }

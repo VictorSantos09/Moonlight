@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MateriaPrimaDAO extends ConexaoBanco
         implements ModelDAO<MateriaPrimaModel>, BuscarPorNomeDAO<MateriaPrimaModel>, IsCadastrado<String> {
@@ -34,6 +36,20 @@ public class MateriaPrimaDAO extends ConexaoBanco
             ResultSet rs = ps.executeQuery();
 
             return build(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar matéria-prima por nome: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+    }
+
+    public List<MateriaPrimaModel> buscarTodos() throws RuntimeException{
+          try {
+            Connection conexao = connect();
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM materias_primas");
+            ResultSet rs = ps.executeQuery();
+
+            return buildList(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao buscar matéria-prima por nome: " + e.getMessage());
         } finally {
@@ -147,6 +163,30 @@ public class MateriaPrimaDAO extends ConexaoBanco
         } else {
             return  null;
         }
+    }
+
+    private List<MateriaPrimaModel> buildList(ResultSet rs) throws SQLException{
+        List<MateriaPrimaModel> output = new ArrayList<>();
+           while (rs.next()) {
+            int id = rs.getInt(1);
+            String nome = rs.getString(2);
+            String descricao = rs.getString(3);
+            double valor = rs.getDouble(4);
+            int quantidade = rs.getInt(5);
+            int idUnidadeMedida = rs.getInt(6);
+            int idTipoMateriaPrima = rs.getInt(7);
+
+            UnidadeMedidaModel unidadeMedida = buscarUnidadeMedidaPorId(idUnidadeMedida);
+            TipoMateriaPrimaModel tipoMateriaPrima = buscarTipoMateriaPrimaPorId(idTipoMateriaPrima);
+
+            MateriaPrimaModel materiaPrima = new MateriaPrimaModel(nome, descricao, valor, quantidade, unidadeMedida,
+                    tipoMateriaPrima);
+            materiaPrima.setId(id);
+
+            output.add(materiaPrima);
+        }
+
+        return output.isEmpty() ? List.of() : output;
     }
 
     private UnidadeMedidaModel buscarUnidadeMedidaPorId(int id) {
