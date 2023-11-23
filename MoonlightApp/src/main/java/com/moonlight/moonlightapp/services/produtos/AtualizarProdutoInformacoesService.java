@@ -36,7 +36,7 @@ public class AtualizarProdutoInformacoesService {
             return BaseDTO.buildFalha("produto não encontrado");
         }
 
-        if (!unidadeMedidaDAO.isCadastrado(dto.getUnidadeMedida().getSigla())) {
+        if (!unidadeMedidaDAO.isCadastradoPorNome(dto.getUnidadeMedida().getNome())) {
             return BaseDTO.buildFalha("unidade de medida não encontrada");
         }
 
@@ -45,7 +45,7 @@ public class AtualizarProdutoInformacoesService {
         }
 
         var produtoOriginal = produtoDAO.buscarPorNome(dto.getNomeOriginal());
-        var unidadeMedida = unidadeMedidaDAO.buscarPorSigla(dto.getUnidadeMedida().getSigla());
+        var unidadeMedida = unidadeMedidaDAO.buscarPorNome(dto.getUnidadeMedida().getNome());
         var tipo = tipoProdutoDAO.buscarPorNome(dto.getTipoProduto().getNome());
 
         var produtoAtualizado = new ProdutoModel(dto.getNomeNovo(), dto.getDescricao(), unidadeMedida, tipo,
