@@ -23,10 +23,5 @@ public class MoonlightApp {
         }
         ProdutoPrincipalView view = new ProdutoPrincipalView();
         view.setVisible(true);
-        RemoverProcessoService service = new RemoverProcessoService();
-
-        var res = service.remover("me");
-        JOptionPane.showMessageDialog(null, res.getMensagem());
     }
-
 }
