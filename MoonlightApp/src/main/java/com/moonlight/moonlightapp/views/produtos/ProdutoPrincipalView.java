@@ -4,6 +4,8 @@
  */
 package com.moonlight.moonlightapp.views.produtos;
 
+import com.moonlight.moonlightapp.views.relatorios.RelatorioView;
+
 /**
  *
  * @author victor.santos8
@@ -32,6 +34,7 @@ public class ProdutoPrincipalView extends javax.swing.JFrame {
         btnAbrirMenuDeletarProduto = new javax.swing.JButton();
         btnAbrirMenuAtualizarProduto = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnRelatorio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal Produto");
@@ -69,6 +72,14 @@ public class ProdutoPrincipalView extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Selecione o que deseja fazer");
 
+        btnRelatorio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnRelatorio.setText("Relatório");
+        btnRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRelatorioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,13 +96,15 @@ public class ProdutoPrincipalView extends javax.swing.JFrame {
                             .addComponent(btnAbrirMenuCadastrarProduto)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(btnAbrirMenuDeletarProduto))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnRelatorio)
+                                    .addComponent(btnAbrirMenuDeletarProduto)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +121,9 @@ public class ProdutoPrincipalView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAbrirMenuAtualizarProduto)
                     .addComponent(btnAbrirMenuDeletarProduto))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addGap(59, 59, 59)
+                .addComponent(btnRelatorio)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,6 +144,11 @@ public class ProdutoPrincipalView extends javax.swing.JFrame {
         RemoverProdutoView view = new RemoverProdutoView();
         view.setVisible(true);
     }//GEN-LAST:event_btnAbrirMenuDeletarProdutoActionPerformed
+
+    private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
+       RelatorioView view = new RelatorioView();
+       view.setVisible(true);
+    }//GEN-LAST:event_btnRelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,6 +190,7 @@ public class ProdutoPrincipalView extends javax.swing.JFrame {
     private javax.swing.JButton btnAbrirMenuCadastrarProduto;
     private javax.swing.JButton btnAbrirMenuDeletarProduto;
     private javax.swing.JButton btnAbrirMenuVisualizarProduto;
+    private javax.swing.JButton btnRelatorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
