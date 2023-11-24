@@ -5,6 +5,7 @@
 package com.moonlight.moonlightapp;
 
 import com.moonlight.moonlightapp.daos.ConexaoBanco;
+import com.moonlight.moonlightapp.services.processos.RemoverProcessoService;
 import com.moonlight.moonlightapp.views.produtos.CriarProdutoView;
 import com.moonlight.moonlightapp.views.produtos.ProdutoPrincipalView;
 
@@ -22,5 +23,10 @@ public class MoonlightApp {
         }
         ProdutoPrincipalView view = new ProdutoPrincipalView();
         view.setVisible(true);
+        RemoverProcessoService service = new RemoverProcessoService();
+
+        var res = service.remover("me");
+        JOptionPane.showMessageDialog(null, res.getMensagem());
     }
+
 }
