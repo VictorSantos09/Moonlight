@@ -33,12 +33,15 @@ public class VisualizarProdutoView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVisualizarProdutos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        btnVerProcessos = new javax.swing.JButton();
+        btnVerItensNecessarios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Visualizar Produtos");
@@ -69,6 +72,22 @@ public class VisualizarProdutoView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Seus Produtos");
 
+        btnVerProcessos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVerProcessos.setText("Ver Processos");
+        btnVerProcessos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerProcessosActionPerformed(evt);
+            }
+        });
+
+        btnVerItensNecessarios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVerItensNecessarios.setText("Ver Itens Necessários");
+        btnVerItensNecessarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerItensNecessariosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,6 +100,12 @@ public class VisualizarProdutoView extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(btnVerProcessos)
+                .addGap(33, 33, 33)
+                .addComponent(btnVerItensNecessarios)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,13 +113,27 @@ public class VisualizarProdutoView extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
-                .addGap(60, 60, 60))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVerProcessos)
+                    .addComponent(btnVerItensNecessarios))
+                .addGap(19, 19, 19))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVerItensNecessariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerItensNecessariosActionPerformed
+        VisualizarProdutoItensView view = new VisualizarProdutoItensView();
+        view.setVisible(true);
+    }//GEN-LAST:event_btnVerItensNecessariosActionPerformed
+
+    private void btnVerProcessosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnVerProcessosActionPerformed
+        VisualizarProdutoProcessosView view = new VisualizarProdutoProcessosView();
+        view.setVisible(true);
+    }// GEN-LAST:event_btnVerProcessosActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowOpened
         var produtos = buscarProdutoService.buscarTodos();
@@ -160,6 +199,8 @@ public class VisualizarProdutoView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVerItensNecessarios;
+    private javax.swing.JButton btnVerProcessos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblVisualizarProdutos;
