@@ -16,6 +16,11 @@ public class UnidadeMedidaModel extends BaseModel {
         this.sigla = sigla;
     }
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
     public String getNome() {
         return nome;
     }

@@ -50,7 +50,7 @@ public class RelatorioDAO extends ConexaoBanco {
     public ProdutoFabricacaoMaisBaratoRelatorio buscarFabricacaoMaisBarata() throws RuntimeException {
         try {
             var conexao = connect();
-            var rs = conexao.prepareStatement("SELECT * FROM moonlight.vw_relatorio ORDER BY SUBTOTAL DESC LIMIT 1;")
+            var rs = conexao.prepareStatement("SELECT * FROM moonlight.vw_relatorio ORDER BY SUBTOTAL LIMIT 1;")
                     .executeQuery();
 
             var resultado = build(rs);

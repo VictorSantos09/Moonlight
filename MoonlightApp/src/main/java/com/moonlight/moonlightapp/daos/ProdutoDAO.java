@@ -96,8 +96,8 @@ public final class ProdutoDAO extends ConexaoBanco
         try {
             Connection conexao = connect();
 
-            PreparedStatement ps = conexao.prepareStatement("CALL spDeletarProdutosEDetalhes(?)");
-            ps.setInt(1, model.getId());
+            PreparedStatement ps = conexao.prepareStatement("CALL spDeletarProdutoEDetalhes(?)");
+            ps.setString(1, model.getNome());
 
             ps.executeUpdate();
 

@@ -13,6 +13,11 @@ public class TipoMateriaPrimaModel extends BaseModel {
         this.nome = nome;
     }
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
     public String getNome() {
         return nome;
     }

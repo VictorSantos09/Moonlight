@@ -99,6 +99,10 @@ public class UnidadeMedidaDAO extends ConexaoBanco
         return buscarPorSigla(sigla) != null;
     }
 
+    public Boolean isCadastradoPorNome(String nome) {
+        return buscarPorNome(nome) != null;
+    }
+
     private UnidadeMedidaModel build(ResultSet rs) throws SQLException {
         if (rs.next()) {
             var id = rs.getInt(1);
