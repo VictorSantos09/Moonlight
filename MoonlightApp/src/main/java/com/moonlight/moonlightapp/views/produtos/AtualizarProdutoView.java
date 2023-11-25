@@ -4,12 +4,18 @@
  */
 package com.moonlight.moonlightapp.views.produtos;
 
+import javax.swing.JOptionPane;
+
 import com.moonlight.moonlightapp.daos.ProdutoDAO;
 import com.moonlight.moonlightapp.daos.TipoProdutoDAO;
 import com.moonlight.moonlightapp.daos.UnidadeMedidaDAO;
+import com.moonlight.moonlightapp.dtos.produtos.AtualizarInformacoesProdutoDTO;
+import com.moonlight.moonlightapp.dtos.produtos.TipoProdutoDTO;
+import com.moonlight.moonlightapp.dtos.unidadesmedidas.UnidadeMedidaDTO;
 import com.moonlight.moonlightapp.models.ProdutoModel;
 import com.moonlight.moonlightapp.models.TipoProdutoModel;
 import com.moonlight.moonlightapp.models.UnidadeMedidaModel;
+import com.moonlight.moonlightapp.services.produtos.AtualizarProdutoInformacoesService;
 
 /**
  *
@@ -19,6 +25,7 @@ public class AtualizarProdutoView extends javax.swing.JFrame {
     private final UnidadeMedidaDAO unidadeMedidaDAO;
     private final ProdutoDAO produtoDAO;
     private final TipoProdutoDAO tipoProdutoDAO;
+    private final AtualizarProdutoInformacoesService atualizarProdutoInformacoesService;
 
     /**
      * Creates new form AtualizarProdutoView
@@ -27,6 +34,7 @@ public class AtualizarProdutoView extends javax.swing.JFrame {
         unidadeMedidaDAO = new UnidadeMedidaDAO();
         produtoDAO = new ProdutoDAO();
         tipoProdutoDAO = new TipoProdutoDAO();
+        atualizarProdutoInformacoesService = new AtualizarProdutoInformacoesService();
         initComponents();
     }
 
@@ -37,7 +45,8 @@ public class AtualizarProdutoView extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lblNome = new javax.swing.JLabel();
@@ -85,10 +94,12 @@ public class AtualizarProdutoView extends javax.swing.JFrame {
         lblTipo.setText("Tipo");
 
         cbUnidadesMedidas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbUnidadesMedidas.setModel(new javax.swing.DefaultComboBoxModel<>());
+        cbUnidadesMedidas.setModel(
+                new javax.swing.DefaultComboBoxModel<>());
 
         cbTipo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>());
+        cbTipo.setModel(
+                new javax.swing.DefaultComboBoxModel<>());
 
         lblAtualizarProduto.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblAtualizarProduto.setText("Atualizar Produto");
@@ -101,7 +112,8 @@ public class AtualizarProdutoView extends javax.swing.JFrame {
         lblSelecioneProduto.setText("Selecione o Produto");
 
         cbProdutos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbProdutos.setModel(new javax.swing.DefaultComboBoxModel<>());
+        cbProdutos.setModel(
+                new javax.swing.DefaultComboBoxModel<>());
         cbProdutos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbProdutosItemStateChanged(evt);
@@ -110,92 +122,153 @@ public class AtualizarProdutoView extends javax.swing.JFrame {
 
         btnAtualizar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         btnVoltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTipo)
-                        .addGap(120, 120, 120)
-                        .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblValor)
-                        .addGap(55, 55, 55)
-                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblUnidadeMedida)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbUnidadesMedidas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDescricao)
-                            .addComponent(lblNome))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAtualizarProduto, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAtualizar)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnVoltar))
-                    .addComponent(lblSelecioneProduto, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cbProdutos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblTipo)
+                                                .addGap(120, 120, 120)
+                                                .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblValor)
+                                                .addGap(55, 55, 55)
+                                                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 167,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblUnidadeMedida)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cbUnidadesMedidas, 0,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(lblDescricao)
+                                                        .addComponent(lblNome))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
+                                                                false)
+                                                        .addComponent(jScrollPane1)
+                                                        .addComponent(txtNome))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81,
+                                        Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblAtualizarProduto, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                layout.createSequentialGroup()
+                                                        .addComponent(btnAtualizar)
+                                                        .addGap(40, 40, 40)
+                                                        .addComponent(btnVoltar))
+                                        .addComponent(lblSelecioneProduto, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(cbProdutos, javax.swing.GroupLayout.Alignment.TRAILING,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE, 321,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAtualizarProduto)
-                    .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblSelecioneProduto)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblDescricao)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblValor)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUnidadeMedida)
-                    .addComponent(cbUnidadesMedidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTipo)
-                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAtualizar)
-                    .addComponent(btnVoltar))
-                .addGap(31, 31, 31))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblAtualizarProduto)
+                                        .addComponent(lblNome)
+                                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(58, 58, 58)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblSelecioneProduto)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cbProdutos, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblDescricao)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36,
+                                        Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblValor)
+                                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(43, 43, 43)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblUnidadeMedida)
+                                        .addComponent(cbUnidadesMedidas, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67,
+                                        Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblTipo)
+                                        .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnAtualizar)
+                                        .addComponent(btnVoltar))
+                                .addGap(31, 31, 31)));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbProdutosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbProdutosItemStateChanged
+    private void cbProdutosItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_cbProdutosItemStateChanged
         var produtoSelecionado = (ProdutoModel) cbProdutos.getSelectedItem();
-        
+
         txtDescricao.setText(produtoSelecionado.getDescricao());
         txtNome.setText(produtoSelecionado.getNome());
         txtValor.setText(String.valueOf(produtoSelecionado.getValorProduto().getValor()));
-    }//GEN-LAST:event_cbProdutosItemStateChanged
+        
+        cbTipo.getModel().setSelectedItem(produtoSelecionado.getTipo());
+        cbTipo.setSelectedItem(produtoSelecionado.getTipo());
+        cbUnidadesMedidas.getModel().setSelectedItem(produtoSelecionado.getUnidadeMedida());
+    }// GEN-LAST:event_cbProdutosItemStateChanged
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnVoltarActionPerformed
+        this.setVisible(false);
+        this.dispose();
+    }// GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAtualizarActionPerformed
+        var produtoOriginal = (ProdutoModel) cbProdutos.getSelectedItem();
+
+        var unidadeMedida = (UnidadeMedidaModel) cbUnidadesMedidas.getSelectedItem();
+        var tipoProduto = (TipoProdutoModel) cbTipo.getSelectedItem();
+
+        var unidadeMedidaDto = new UnidadeMedidaDTO(unidadeMedida.getNome());
+        var tipoProdutoDto = new TipoProdutoDTO(tipoProduto.getNome());
+
+        var dto = new AtualizarInformacoesProdutoDTO(txtNome.getText(), produtoOriginal.getNome(),
+                txtDescricao.getText(),
+                unidadeMedidaDto, tipoProdutoDto, Double.parseDouble(txtValor.getText()));
+
+        var resultadoAtualizacao = atualizarProdutoInformacoesService.atualizar(dto);
+        JOptionPane.showMessageDialog(null, resultadoAtualizacao.getMensagem());
+        
+        this.setVisible(false);
+        this.dispose();
+    }// GEN-LAST:event_btnAtualizarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowOpened
         cbProdutos.removeAll();
@@ -205,6 +278,10 @@ public class AtualizarProdutoView extends javax.swing.JFrame {
         produtoDAO.buscarTodos().forEach(produto -> cbProdutos.addItem(produto));
         tipoProdutoDAO.buscarTodos().forEach(tipo -> cbTipo.addItem(tipo));
         unidadeMedidaDAO.buscarTodos().forEach(unidade -> cbUnidadesMedidas.addItem(unidade));
+
+        var produtoSelecionado = (ProdutoModel) cbProdutos.getSelectedItem();
+        cbTipo.setSelectedItem(produtoSelecionado.getTipo());
+        cbUnidadesMedidas.setSelectedItem(produtoSelecionado.getUnidadeMedida());
     }// GEN-LAST:event_formWindowOpened
 
     /**

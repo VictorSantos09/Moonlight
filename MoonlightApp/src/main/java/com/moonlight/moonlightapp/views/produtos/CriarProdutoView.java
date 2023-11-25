@@ -331,7 +331,7 @@ public class CriarProdutoView extends javax.swing.JFrame {
                 var descricao = txtDescricao.getText();
                 var valor = Double.parseDouble(txtValor.getText());
 
-                UnidadeMedidaDTO unidadeMedidaDTO = new UnidadeMedidaDTO(unidadeMedida, null);
+                UnidadeMedidaDTO unidadeMedidaDTO = new UnidadeMedidaDTO(unidadeMedida);
                 TipoProdutoDTO tipoProdutoDTO = new TipoProdutoDTO(tipoProduto);
 
                 List<String> etapasProcessos = lstProcessos.getSelectedValuesList();
