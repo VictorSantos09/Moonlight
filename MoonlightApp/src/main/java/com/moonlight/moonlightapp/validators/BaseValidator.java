@@ -7,6 +7,7 @@ import java.util.List;
 
 public abstract class BaseValidator {
     protected final List<String> falhas;
+
     public BaseValidator() {
         falhas = new ArrayList<>();
     }
@@ -48,9 +49,8 @@ public abstract class BaseValidator {
     }
 
     protected boolean isZeroOrNegativte(Double input) {
-        return DefaultValidator.isZeroOrNegativte(input);
+        return DefaultValidator.isZeroOrNegative(input);
     }
-
 
     private void criarFalha(String falha) {
         if (!falhas.contains(falha)) {

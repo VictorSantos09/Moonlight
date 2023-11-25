@@ -55,7 +55,6 @@ public class RemoverProdutoView extends javax.swing.JFrame {
         });
 
         cbProdutosParaRemover.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbProdutosParaRemover.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblSelecioneProdutoParaRemover.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblSelecioneProdutoParaRemover.setText("Selecione o Produto");

@@ -95,10 +95,10 @@ public class AtualizarProdutoView extends javax.swing.JFrame {
         lblTipo.setText("Tipo");
 
         cbUnidadesMedidas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbUnidadesMedidas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbUnidadesMedidas.setModel(new javax.swing.DefaultComboBoxModel<>());
 
         cbTipo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>());
 
         lblAtualizarProduto.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblAtualizarProduto.setText("Atualizar Produto");
@@ -111,7 +111,7 @@ public class AtualizarProdutoView extends javax.swing.JFrame {
         lblSelecioneProduto.setText("Selecione o Produto");
 
         cbProdutos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbProdutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbProdutos.setModel(new javax.swing.DefaultComboBoxModel<>());
         cbProdutos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbProdutosItemStateChanged(evt);
