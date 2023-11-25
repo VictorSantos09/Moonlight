@@ -1,5 +1,8 @@
 package com.moonlight.moonlightapp.services.produtos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.moonlight.moonlightapp.daos.ItensProdutoDAO;
 import com.moonlight.moonlightapp.daos.MateriaPrimaDAO;
 import com.moonlight.moonlightapp.daos.ProdutoDAO;
@@ -25,69 +28,111 @@ public class AtualizarProdutoItemService {
     public BaseDTO atualizar(AtualizarItemProdutoDTO dto) {
         var resultadoValidacaoEntrada = validarEntrada(dto);
 
-        if(!resultadoValidacaoEntrada.getIsSucesso()){
+        if (!resultadoValidacaoEntrada.getIsSucesso()) {
             return resultadoValidacaoEntrada;
-        }
-
-        if (!materiaPrimaDAO.isCadastrado(dto.getNomeMateriaPrimaNova())) {
-            return BaseDTO.buildFalha("matéria prima nova não encontrada");
-        }
-
-        if (!materiaPrimaDAO.isCadastrado(dto.getNomeMateriaPrimaAtual())) {
-            return BaseDTO.buildFalha("matéria prima atual não encontrada");
         }
 
         if (!produtoDAO.isCadastrado(dto.getNomeProduto())) {
             return BaseDTO.buildFalha("produto não encontrado");
         }
 
-        var materiaPrimaAtual = materiaPrimaDAO.buscarPorNome(dto.getNomeMateriaPrimaAtual());
-        var materiaPrimaNova = materiaPrimaDAO.buscarPorNome(dto.getNomeMateriaPrimaNova());
-        var produto = produtoDAO.buscarPorNome(dto.getNomeProduto());
-
-        var subtotal = calcularSubtotal(materiaPrimaNova, dto);
-
-        var itemProdutoOriginal = itensProdutoDAO.buscar(produto.getId(), materiaPrimaAtual.getId());
-        if (itemProdutoOriginal == null) {
-            return BaseDTO.buildFalha("produto com matéria prima não encontrado");
+        var resultadoVerificacao = verificarNovasMateriasPrimas(dto);
+        if (!resultadoVerificacao.getIsSucesso()) {
+            return resultadoVerificacao;
         }
 
-        var itemProdutoAtualizado = new ItemProdutoModel(dto.getQuantidade(), produto, subtotal, materiaPrimaNova);
-        itemProdutoAtualizado.setId(itemProdutoOriginal.getId());
-
-        var resultadoAtualizacao = itensProdutoDAO.atualizar(itemProdutoAtualizado);
-        if (!resultadoAtualizacao.getIsSucesso()) {
-            return BaseDTO.buildFalha("não foi possível atualizar a matéria prima do produto");
+        var resultadoRemocao = removerMateriasPrimasProduto(dto);
+        if (!resultadoRemocao.getIsSucesso()) {
+            return resultadoRemocao;
         }
 
-        var resultadoValorRecomendado = atualizarProdutoValorRecomendadoService.atualizar(produto);
-
-        if (!resultadoValorRecomendado.getIsSucesso()) {
-            return BaseDTO.buildFalha("não foi possível atualizar o valor recomendado", "produto atualizado");
+        var resultadoGravacao = cadastrarNovosItens(dto);
+        if (!resultadoGravacao.getIsSucesso()) {
+            return resultadoGravacao;
         }
-
         return BaseDTO.buildSucesso("produto e matéria prima atualizados");
     }
 
-    private Double calcularSubtotal(MateriaPrimaModel materiaPrima, AtualizarItemProdutoDTO dto) {
-        return materiaPrima.getValor() * dto.getQuantidade();
+    private Double calcularSubtotal(MateriaPrimaModel materiaPrima, Integer quantidade) {
+        return materiaPrima.getValor() * quantidade;
 
     }
 
     private BaseDTO validarEntrada(AtualizarItemProdutoDTO dto) {
-        if (DefaultValidator.isBlankOrEmpty(dto.getNomeMateriaPrimaAtual())) {
-            return BaseDTO.buildFalha("nome da matéria atual inválida");
-        }
+        List<String> erros = new ArrayList<>();
         if (DefaultValidator.isBlankOrEmpty(dto.getNomeProduto())) {
             return BaseDTO.buildFalha("nome do produto inválido");
         }
-        if (DefaultValidator.isBlankOrEmpty(dto.getNomeMateriaPrimaNova())) {
-            return BaseDTO.buildFalha("nome da matéria prima nova inválida");
-        }
-        if (DefaultValidator.isZeroOrNegativte(dto.getQuantidade())) {
-            return BaseDTO.buildFalha("quantidade inválida");
-        }
 
-        return  BaseDTO.buildSucesso("dados válidos");
+        dto.getMateriasPrimasQuantidade().keySet().forEach(m -> {
+            if (DefaultValidator.isBlankOrEmpty(m)) {
+                erros.add("nome da matéria prima inválida");
+            }
+
+            if (DefaultValidator.isZeroOrNegativte(dto.getMateriasPrimasQuantidade().get(m))) {
+                erros.add("quantidade da matéria prima inválida");
+            }
+        });
+
+        return erros.isEmpty() ? BaseDTO.buildSucesso("dados válidos")
+                : BaseDTO.buildFalha("informações inválidas", erros);
+    }
+
+    private BaseDTO verificarNovasMateriasPrimas(AtualizarItemProdutoDTO dto) {
+        List<String> erros = new ArrayList<>();
+
+        dto.getMateriasPrimasQuantidade().keySet().forEach(m -> {
+            if (!materiaPrimaDAO.isCadastrado(m)) {
+                erros.add("matéria prima " + m + " não encontrado");
+            }
+        });
+
+        return erros.isEmpty() ? BaseDTO.buildSucesso("matérias primas encontrados")
+                : BaseDTO.buildFalha("uma matéria prima ou mais não encontrada", erros);
+    }
+
+    private BaseDTO removerMateriasPrimasProduto(AtualizarItemProdutoDTO dto) {
+        var produto = produtoDAO.buscarPorNome(dto.getNomeProduto());
+        var itensProdutos = itensProdutoDAO.buscarPorProdutoId(produto.getId());
+
+        List<String> erros = new ArrayList<>();
+
+        itensProdutos.forEach(ip -> {
+            var resultado = itensProdutoDAO.deletar(ip);
+            if (!resultado.getIsSucesso()) {
+                erros.add(resultado.getMensagem());
+            }
+        });
+
+        return erros.isEmpty() ? BaseDTO.buildSucesso("itens do produto deletados com sucesso")
+                : BaseDTO.buildFalha("um item do produto ou mais não foram apagados", erros);
+    }
+
+    private BaseDTO cadastrarNovosItens(AtualizarItemProdutoDTO dto) {
+        var produto = produtoDAO.buscarPorNome(dto.getNomeProduto());
+        List<String> erros = new ArrayList<>();
+
+        for (var mq : dto.getMateriasPrimasQuantidade().keySet()) {
+            var materiaPrima = materiaPrimaDAO.buscarPorNome(mq);
+
+            var subtotal = calcularSubtotal(materiaPrima, dto.getMateriasPrimasQuantidade().get(mq));
+
+            var novoItemProduto = new ItemProdutoModel(dto.getMateriasPrimasQuantidade().get(mq), produto, subtotal,
+                    materiaPrima);
+
+            var resultadoAtualizacao = itensProdutoDAO.criar(novoItemProduto);
+            if (!resultadoAtualizacao.getIsSucesso()) {
+                erros.add("não foi possível atualizar a matéria prima do produto");
+            }
+
+            var resultadoValorRecomendado = atualizarProdutoValorRecomendadoService.atualizar(produto);
+
+            if (!resultadoValorRecomendado.getIsSucesso()) {
+                erros.add("não foi possível atualizar o valor recomendado, produto atualizado");
+            }
+
+        }
+        return erros.isEmpty() ? BaseDTO.buildSucesso("itens do produto criados com sucesso")
+                : BaseDTO.buildFalha("um item do produto ou mais não foram criados", erros);
     }
 }
