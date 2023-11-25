@@ -10,6 +10,8 @@ import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoProcessosView;
 import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoView;
 import com.moonlight.moonlightapp.views.produtos.CriarProdutoView;
 import com.moonlight.moonlightapp.views.produtos.RemoverProdutoView;
+import com.moonlight.moonlightapp.views.produtos.VisualizarProdutoItensView;
+import com.moonlight.moonlightapp.views.produtos.VisualizarProdutoProcessosView;
 import com.moonlight.moonlightapp.views.produtos.VisualizarProdutoView;
 import com.moonlight.moonlightapp.views.relatorios.RelatorioView;
 
@@ -41,12 +43,15 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnAdicionarProduto = new javax.swing.JMenuItem();
-        mnVisualizarProdutos = new javax.swing.JMenuItem();
         mnRemoverProduto = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnAtualizarProduto = new javax.swing.JMenuItem();
         mnAtualizarProcessos = new javax.swing.JMenuItem();
         mnAtualizarMateriasPrimas = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        mnVisualizarProdutos = new javax.swing.JMenuItem();
+        mnVisualizarProcessos = new javax.swing.JMenuItem();
+        mnVisualizarMateriasPrimas = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         mnRelatorio = new javax.swing.JMenu();
@@ -58,6 +63,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Moonlight");
 
         lblMoonlight.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblMoonlight.setText("Moonlight");
@@ -78,14 +84,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         });
         jMenu1.add(mnAdicionarProduto);
 
-        mnVisualizarProdutos.setText("Visualizar");
-        mnVisualizarProdutos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnVisualizarProdutosActionPerformed(evt);
-            }
-        });
-        jMenu1.add(mnVisualizarProdutos);
-
         mnRemoverProduto.setText("Remover");
         mnRemoverProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +93,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenu1.add(mnRemoverProduto);
         jMenu1.add(jSeparator1);
 
-        mnAtualizarProduto.setText("Atualizar");
+        mnAtualizarProduto.setText("Atualizar Informações");
         mnAtualizarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnAtualizarProdutoActionPerformed(evt);
@@ -118,6 +116,31 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             }
         });
         jMenu1.add(mnAtualizarMateriasPrimas);
+        jMenu1.add(jSeparator2);
+
+        mnVisualizarProdutos.setText("Visualizar Informações");
+        mnVisualizarProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnVisualizarProdutosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnVisualizarProdutos);
+
+        mnVisualizarProcessos.setText("Visualizar Processos");
+        mnVisualizarProcessos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnVisualizarProcessosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnVisualizarProcessos);
+
+        mnVisualizarMateriasPrimas.setText("Visualizar Matérias Primas");
+        mnVisualizarMateriasPrimas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnVisualizarMateriasPrimasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnVisualizarMateriasPrimas);
 
         jMenuBar1.add(jMenu1);
 
@@ -245,6 +268,16 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         view.setVisible(true);
     }//GEN-LAST:event_mnConsultaRelatorioActionPerformed
 
+    private void mnVisualizarProcessosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnVisualizarProcessosActionPerformed
+        VisualizarProdutoProcessosView view = new VisualizarProdutoProcessosView();
+        view.setVisible(true);
+    }//GEN-LAST:event_mnVisualizarProcessosActionPerformed
+
+    private void mnVisualizarMateriasPrimasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnVisualizarMateriasPrimasActionPerformed
+        VisualizarProdutoItensView view = new VisualizarProdutoItensView();
+        view.setVisible(true);
+    }//GEN-LAST:event_mnVisualizarMateriasPrimasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -289,6 +322,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JLabel lblDicaMenuSuperior;
     private javax.swing.JLabel lblMoonlight;
@@ -299,6 +333,8 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnConsultaRelatorio;
     private javax.swing.JMenu mnRelatorio;
     private javax.swing.JMenuItem mnRemoverProduto;
+    private javax.swing.JMenuItem mnVisualizarMateriasPrimas;
+    private javax.swing.JMenuItem mnVisualizarProcessos;
     private javax.swing.JMenuItem mnVisualizarProdutos;
     private javax.swing.JMenuItem mnVisualizarTipoMateriaPrima;
     private javax.swing.JMenuItem mnVisualizarTipoProduto;
