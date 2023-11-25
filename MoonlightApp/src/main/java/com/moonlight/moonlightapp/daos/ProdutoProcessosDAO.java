@@ -98,7 +98,7 @@ public class ProdutoProcessosDAO extends ConexaoBanco
         }
     }
 
-    public List<ProcessoModel> buscarPorProdutoId(int id) {
+    public List<ProcessoModel> buscarProcessosPorProdutoId(int id) {
         try {
             Connection conexao = connect();
             String sql = "SELECT ID_PROCESSO FROM produtos_processos WHERE ID_PRODUTO = ?";
@@ -109,13 +109,42 @@ public class ProdutoProcessosDAO extends ConexaoBanco
             ResultSet rs = ps.executeQuery();
 
             List<ProcessoModel> output = new ArrayList<>();
-            while(rs.next()){
+            while (rs.next()) {
                 var idProcesso = rs.getInt(1);
                 var processo = processoDAO.buscarPorId(idProcesso);
                 output.add(processo);
             }
 
-            return  output;
+            return output;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar ProdutoProcessos por id: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+    }
+
+    public List<ProdutoProcessoModel> buscarPorProdutoId(int id) {
+        try {
+            Connection conexao = connect();
+            String sql = "SELECT * FROM produtos_processos WHERE ID_PRODUTO = ?";
+            PreparedStatement ps = conexao.prepareStatement(sql);
+
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            List<ProdutoProcessoModel> output = new ArrayList<>();
+            while (rs.next()) {
+                var idProdutoProcesso = rs.getInt(1);
+                var produto = produtoDAO.buscarPorId(rs.getInt(2));
+                var processo = processoDAO.buscarPorId(rs.getInt(3));
+
+                var produtoProcesso = new ProdutoProcessoModel(processo, produto);
+                produtoProcesso.setId(idProdutoProcesso);
+                output.add(produtoProcesso);
+            }
+
+            return output;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao buscar ProdutoProcessos por id: " + e.getMessage());
         } finally {
@@ -126,7 +155,8 @@ public class ProdutoProcessosDAO extends ConexaoBanco
     public ProdutoProcessoModel buscar(ProdutoProcessoModel model) throws RuntimeException {
         try {
             var conexao = connect();
-            var ps = conexao.prepareStatement("SELECT * FROM produtos_processos WHERE ID_PRODUTO = ? AND ID_PROCESSO = ?");
+            var ps = conexao
+                    .prepareStatement("SELECT * FROM produtos_processos WHERE ID_PRODUTO = ? AND ID_PROCESSO = ?");
 
             ps.setInt(1, model.getProduto().getId());
             ps.setInt(2, model.getProcesso().getId());

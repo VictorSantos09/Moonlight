@@ -29,9 +29,9 @@ public class AtualizarProdutoValorRecomendadoService {
     }
 
     private Double recalcularValorRecomendado(ProdutoModel produto) {
-        var processos = produtoProcessosDAO.buscarPorProdutoId(produto.getId());
+        var processos = produtoProcessosDAO.buscarProcessosPorProdutoId(produto.getId());
         var itensProdutos = itensProdutoDAO.buscarPorProdutoId(produto.getId());
-        
+
         return CalcularValorRecomendadoProdutoService.calcular(processos, itensProdutos);
     }
 }
