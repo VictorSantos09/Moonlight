@@ -6,6 +6,7 @@ package com.moonlight.moonlightapp;
 
 import com.moonlight.moonlightapp.daos.ConexaoBanco;
 import com.moonlight.moonlightapp.services.processos.RemoverProcessoService;
+import com.moonlight.moonlightapp.views.principal.MenuPrincipalView;
 import com.moonlight.moonlightapp.views.produtos.CriarProdutoView;
 import com.moonlight.moonlightapp.views.produtos.ProdutoPrincipalView;
 
@@ -21,7 +22,7 @@ public class MoonlightApp {
         if (!isConexaoOk) {
             JOptionPane.showMessageDialog(null, "Falha ao conectar ao banco de dados");
         }
-        ProdutoPrincipalView view = new ProdutoPrincipalView();
+        MenuPrincipalView view = new MenuPrincipalView();
         view.setVisible(true);
     }
 }
