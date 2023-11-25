@@ -5,6 +5,7 @@
 package com.moonlight.moonlightapp.views.principal;
 
 import com.moonlight.moonlightapp.services.produtos.DeletarProdutoService;
+import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoProcessosView;
 import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoView;
 import com.moonlight.moonlightapp.views.produtos.CriarProdutoView;
 import com.moonlight.moonlightapp.views.produtos.RemoverProdutoView;
@@ -40,8 +41,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         mnAdicionarProduto = new javax.swing.JMenuItem();
         mnVisualizarProdutos = new javax.swing.JMenuItem();
-        mnAtualizarProduto = new javax.swing.JMenuItem();
         mnRemoverProduto = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mnAtualizarProduto = new javax.swing.JMenuItem();
+        mnAtualizarProcessos = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         mnRelatorio = new javax.swing.JMenu();
@@ -81,6 +85,15 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         });
         jMenu1.add(mnVisualizarProdutos);
 
+        mnRemoverProduto.setText("Remover");
+        mnRemoverProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnRemoverProdutoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnRemoverProduto);
+        jMenu1.add(jSeparator1);
+
         mnAtualizarProduto.setText("Atualizar");
         mnAtualizarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,13 +102,16 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         });
         jMenu1.add(mnAtualizarProduto);
 
-        mnRemoverProduto.setText("Remover");
-        mnRemoverProduto.addActionListener(new java.awt.event.ActionListener() {
+        mnAtualizarProcessos.setText("Atualizar Processos");
+        mnAtualizarProcessos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnRemoverProdutoActionPerformed(evt);
+                mnAtualizarProcessosActionPerformed(evt);
             }
         });
-        jMenu1.add(mnRemoverProduto);
+        jMenu1.add(mnAtualizarProcessos);
+
+        jMenuItem2.setText("Atualizar Matérias Primas");
+        jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
 
@@ -203,6 +219,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         view.setVisible(true);
     }//GEN-LAST:event_mnRemoverProdutoActionPerformed
 
+    private void mnAtualizarProcessosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAtualizarProcessosActionPerformed
+        AtualizarProdutoProcessosView view = new AtualizarProdutoProcessosView();
+        view.setVisible(true);
+    }//GEN-LAST:event_mnAtualizarProcessosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -245,12 +266,15 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JLabel lblDicaMenuSuperior;
     private javax.swing.JLabel lblMoonlight;
     private javax.swing.JMenuItem mnAdicionarProduto;
+    private javax.swing.JMenuItem mnAtualizarProcessos;
     private javax.swing.JMenuItem mnAtualizarProduto;
     private javax.swing.JMenu mnRelatorio;
     private javax.swing.JMenuItem mnRemoverProduto;
