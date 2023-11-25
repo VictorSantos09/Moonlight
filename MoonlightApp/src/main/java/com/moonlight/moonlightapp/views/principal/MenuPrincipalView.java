@@ -5,6 +5,7 @@
 package com.moonlight.moonlightapp.views.principal;
 
 import com.moonlight.moonlightapp.services.produtos.DeletarProdutoService;
+import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoItensView;
 import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoProcessosView;
 import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoView;
 import com.moonlight.moonlightapp.views.produtos.CriarProdutoView;
@@ -45,11 +46,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnAtualizarProduto = new javax.swing.JMenuItem();
         mnAtualizarProcessos = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mnAtualizarMateriasPrimas = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         mnRelatorio = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        mnConsultaRelatorio = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         mnVisualizarTipoProduto = new javax.swing.JMenuItem();
         mnVisualizarTipoMateriaPrima = new javax.swing.JMenuItem();
@@ -110,8 +111,13 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         });
         jMenu1.add(mnAtualizarProcessos);
 
-        jMenuItem2.setText("Atualizar Matérias Primas");
-        jMenu1.add(jMenuItem2);
+        mnAtualizarMateriasPrimas.setText("Atualizar Matérias Primas");
+        mnAtualizarMateriasPrimas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnAtualizarMateriasPrimasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnAtualizarMateriasPrimas);
 
         jMenuBar1.add(jMenu1);
 
@@ -128,8 +134,13 @@ public class MenuPrincipalView extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem5.setText("Consultar");
-        mnRelatorio.add(jMenuItem5);
+        mnConsultaRelatorio.setText("Consultar");
+        mnConsultaRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnConsultaRelatorioActionPerformed(evt);
+            }
+        });
+        mnRelatorio.add(mnConsultaRelatorio);
 
         jMenuBar1.add(mnRelatorio);
 
@@ -224,6 +235,16 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         view.setVisible(true);
     }//GEN-LAST:event_mnAtualizarProcessosActionPerformed
 
+    private void mnAtualizarMateriasPrimasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAtualizarMateriasPrimasActionPerformed
+        AtualizarProdutoItensView view = new AtualizarProdutoItensView();
+        view.setVisible(true);
+    }//GEN-LAST:event_mnAtualizarMateriasPrimasActionPerformed
+
+    private void mnConsultaRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnConsultaRelatorioActionPerformed
+        RelatorioView view = new RelatorioView();
+        view.setVisible(true);
+    }//GEN-LAST:event_mnConsultaRelatorioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -266,16 +287,16 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JLabel lblDicaMenuSuperior;
     private javax.swing.JLabel lblMoonlight;
     private javax.swing.JMenuItem mnAdicionarProduto;
+    private javax.swing.JMenuItem mnAtualizarMateriasPrimas;
     private javax.swing.JMenuItem mnAtualizarProcessos;
     private javax.swing.JMenuItem mnAtualizarProduto;
+    private javax.swing.JMenuItem mnConsultaRelatorio;
     private javax.swing.JMenu mnRelatorio;
     private javax.swing.JMenuItem mnRemoverProduto;
     private javax.swing.JMenuItem mnVisualizarProdutos;

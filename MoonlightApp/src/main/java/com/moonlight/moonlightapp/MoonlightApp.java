@@ -5,10 +5,7 @@
 package com.moonlight.moonlightapp;
 
 import com.moonlight.moonlightapp.daos.ConexaoBanco;
-import com.moonlight.moonlightapp.services.processos.RemoverProcessoService;
 import com.moonlight.moonlightapp.views.principal.MenuPrincipalView;
-import com.moonlight.moonlightapp.views.produtos.CriarProdutoView;
-import com.moonlight.moonlightapp.views.produtos.ProdutoPrincipalView;
 
 import javax.swing.*;
 
@@ -18,11 +15,16 @@ import javax.swing.*;
 public class MoonlightApp {
 
     public static void main(String[] args) {
-        boolean isConexaoOk = ConexaoBanco.testConnection();
-        if (!isConexaoOk) {
-            JOptionPane.showMessageDialog(null, "Falha ao conectar ao banco de dados");
+        try {
+            boolean isConexaoOk = ConexaoBanco.testConnection();
+            if (!isConexaoOk) {
+                JOptionPane.showMessageDialog(null, "Falha ao conectar ao banco de dados");
+            }
+
+            MenuPrincipalView view = new MenuPrincipalView();
+            view.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "um erro ocorreu. Erro: " + e.getMessage());
         }
-        MenuPrincipalView view = new MenuPrincipalView();
-        view.setVisible(true);
     }
 }
