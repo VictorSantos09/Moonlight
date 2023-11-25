@@ -35,6 +35,9 @@ public class ProdutoPrincipalView extends javax.swing.JFrame {
         btnAbrirMenuAtualizarProduto = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnRelatorio = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal Produto");
@@ -85,6 +88,14 @@ public class ProdutoPrincipalView extends javax.swing.JFrame {
             }
         });
 
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,7 +139,7 @@ public class ProdutoPrincipalView extends javax.swing.JFrame {
                     .addComponent(btnAbrirMenuDeletarProduto))
                 .addGap(59, 59, 59)
                 .addComponent(btnRelatorio)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -203,5 +214,8 @@ public class ProdutoPrincipalView extends javax.swing.JFrame {
     private javax.swing.JButton btnRelatorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
