@@ -1,25 +1,22 @@
 package com.moonlight.moonlightapp.dtos.produtos;
 
+import java.util.List;
+
 public class AtualizarProcessoProdutoDTO {
     private final String nomeProduto;
-    private final String etapaAtual;
-    private final String novaEtapa;
+    private final List<String> etapas;
 
-    public AtualizarProcessoProdutoDTO(String nomeProduto, String etapaAtual, String novaEtapa) {
+    public AtualizarProcessoProdutoDTO(String nomeProduto, List<String> etapas) {
         this.nomeProduto = nomeProduto;
-        this.etapaAtual = etapaAtual;
-        this.novaEtapa = novaEtapa;
+        this.etapas = etapas;
     }
 
     public String getNomeProduto() {
         return nomeProduto;
     }
 
-    public String getEtapaAtual() {
-        return etapaAtual;
+    public List<String> getEtapas() {
+        return etapas;
     }
 
-    public String getNovaEtapa() {
-        return novaEtapa;
-    }
 }

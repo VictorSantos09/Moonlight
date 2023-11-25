@@ -163,7 +163,7 @@ public class VisualizarProdutoProcessosView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um produto");
         }
 
-        var produtosProcessos = produtoProcessosDAO.buscarPorProdutoId(produtoSelecionado.getId());
+        var produtosProcessos = produtoProcessosDAO.buscarProcessosPorProdutoId(produtoSelecionado.getId());
 
         if (produtosProcessos == null || produtosProcessos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não há processos para este produto");

@@ -1,5 +1,8 @@
 package com.moonlight.moonlightapp.services.produtos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.moonlight.moonlightapp.daos.ProcessoDAO;
 import com.moonlight.moonlightapp.daos.ProdutoDAO;
 import com.moonlight.moonlightapp.daos.ProdutoProcessosDAO;
@@ -32,54 +35,87 @@ public class AtualizarProdutoProcessoService {
             return BaseDTO.buildFalha("produto não encontrado");
         }
 
-        if (!processoDAO.isCadastrado(dto.getNovaEtapa())) {
-            return BaseDTO.buildFalha("processo não encontrado");
+        var resultadoValidacaoNovasEtapas = verificarNovasEtapas(dto);
+        if (!resultadoValidacaoNovasEtapas.getIsSucesso()) {
+            return resultadoValidacaoNovasEtapas;
         }
 
-        var produto = produtoDAO.buscarPorNome(dto.getNomeProduto());
-        var processo = processoDAO.buscarPorEtapa(dto.getEtapaAtual());
-
-        var produtoProcessoParaBuscar = new ProdutoProcessoModel(processo, produto);
-
-        if (!produtoProcessosDAO.isCadastrado(produtoProcessoParaBuscar)) {
-            return BaseDTO.buildFalha("produto com o processo não encontrado");
+        var resultadoRemocao = removerProcessosDoProduto(dto);
+        if (!resultadoRemocao.getIsSucesso()) {
+            return resultadoRemocao;
         }
 
-        var produtoProcessoOriginal = produtoProcessosDAO.buscar(produtoProcessoParaBuscar);
-
-        var novoProcesso = processoDAO.buscarPorEtapa(dto.getNovaEtapa());
-
-        var produtoProcessoAtualizado = new ProdutoProcessoModel(novoProcesso, produto);
-
-        produtoProcessoAtualizado.setId(produtoProcessoOriginal.getId());
-
-        var resultadoAtualizacao = produtoProcessosDAO.atualizar(produtoProcessoAtualizado);
-
-        if (!resultadoAtualizacao.getIsSucesso()) {
-            return BaseDTO.buildFalha("não foi possível atualizar o processo do produto",
-                    resultadoAtualizacao.getMensagem());
+        var resultadoCriacao = cadastrarNovosProcesso(dto);
+        if (!resultadoCriacao.getIsSucesso()) {
+            return resultadoCriacao;
         }
 
-        var resultadoValorRecomendado = atualizarProdutoValorRecomendadoService.atualizar(produtoProcessoAtualizado.getProduto());
-        if (!resultadoValorRecomendado.getIsSucesso()) {
-            return BaseDTO.buildFalha("não foi possível atualizar o valor recomendado",
-                    "processo do produto atualizado");
-        }
-
-        return BaseDTO.buildSucesso("processo do produto atualizado com sucesso");
+        return BaseDTO.buildSucesso("processo do produto atualizados com sucesso");
     }
 
     private BaseDTO validarEntrada(AtualizarProcessoProdutoDTO dto) {
-        if (DefaultValidator.isBlankOrEmpty(dto.getEtapaAtual())) {
-            return BaseDTO.buildFalha("etapa atual inválida");
-        }
-        if (DefaultValidator.isBlankOrEmpty(dto.getNovaEtapa())) {
-            return BaseDTO.buildFalha("nova etapa inválida");
-        }
         if (DefaultValidator.isBlankOrEmpty(dto.getNomeProduto())) {
             return BaseDTO.buildFalha("nome do produto inválido");
         }
 
         return BaseDTO.buildSucesso("dados válidos");
+    }
+
+    private BaseDTO verificarNovasEtapas(AtualizarProcessoProdutoDTO dto) {
+        List<String> erros = new ArrayList<>();
+
+        dto.getEtapas().forEach(e -> {
+            if (!processoDAO.isCadastrado(e)) {
+                erros.add("processo " + e + " não encontrado");
+            }
+        });
+
+        return erros.isEmpty() ? BaseDTO.buildSucesso("processos encontrados")
+                : BaseDTO.buildFalha("um processo ou mais não encontrado", erros);
+    }
+
+    private BaseDTO removerProcessosDoProduto(AtualizarProcessoProdutoDTO dto) {
+        var produto = produtoDAO.buscarPorNome(dto.getNomeProduto());
+        var produtoProcessos = produtoProcessosDAO.buscarPorProdutoId(produto.getId());
+
+        List<String> erros = new ArrayList<>();
+
+        produtoProcessos.forEach(pp -> {
+            var resultado = produtoProcessosDAO.deletar(pp);
+
+            if (!resultado.getIsSucesso()) {
+                erros.add(resultado.getMensagem());
+            }
+        });
+
+        return erros.isEmpty() ? BaseDTO.buildSucesso("processos do produto deletados com sucesso")
+                : BaseDTO.buildFalha("um processo ou mais não foram apagados", erros);
+    }
+
+    private BaseDTO cadastrarNovosProcesso(AtualizarProcessoProdutoDTO dto) {
+        var produto = produtoDAO.buscarPorNome(dto.getNomeProduto());
+        List<String> erros = new ArrayList<>();
+
+        for (var e : dto.getEtapas()) {
+            var processo = processoDAO.buscarPorEtapa(e);
+
+            var novoProdutoProcesso = new ProdutoProcessoModel(processo, produto);
+
+            var resultadoGravacao = produtoProcessosDAO.criar(novoProdutoProcesso);
+
+            if (!resultadoGravacao.getIsSucesso()) {
+                erros.add(resultadoGravacao.getMensagem());
+            } else {
+                var resultadoValorRecomendado = atualizarProdutoValorRecomendadoService
+                        .atualizar(novoProdutoProcesso.getProduto());
+
+                if (!resultadoValorRecomendado.getIsSucesso()) {
+                    return BaseDTO.buildFalha("não foi possível atualizar o valor recomendado",
+                            "processo do produto atualizado");
+                }
+            }
+        }
+        return erros.isEmpty() ? BaseDTO.buildSucesso("processos do produto criados com sucesso")
+                : BaseDTO.buildFalha("um processo ou mais não foram criados", erros);
     }
 }
