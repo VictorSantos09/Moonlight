@@ -36,7 +36,7 @@ public class VisualizarProdutoItensView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,7 +48,7 @@ public class VisualizarProdutoItensView extends javax.swing.JFrame {
         lblBuscarItensProduto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Itens do Produto");
+        setTitle("Visualizar Itens do Produto");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -56,26 +56,26 @@ public class VisualizarProdutoItensView extends javax.swing.JFrame {
         });
 
         tbProdutoItens.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null, null, null }
-                },
-                new String[] {
-                        "Item", "Tipo", "Unidade Medida", "Quantidade", "Valor", "Subtotal"
-                }) {
-            Class[] types = new Class[] {
-                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class,
-                    java.lang.Double.class, java.lang.Double.class
+            new Object [][] {
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Item", "Tipo", "Unidade Medida", "Quantidade", "Valor", "Subtotal"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
             };
-            boolean[] canEdit = new boolean[] {
-                    false, false, false, false, false, false
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tbProdutoItens);
@@ -97,9 +97,8 @@ public class VisualizarProdutoItensView extends javax.swing.JFrame {
         });
 
         cbProdutos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbProdutos.setModel(new javax.swing.DefaultComboBoxModel<ProdutoModel>());
 
-        lblSelecionarProduto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblSelecionarProduto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblSelecionarProduto.setText("Selecione o Produto");
 
         lblBuscarItensProduto.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -108,39 +107,37 @@ public class VisualizarProdutoItensView extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1136,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblSelecionarProduto)
-                                                .addGap(46, 46, 46)
-                                                .addComponent(cbProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 216,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(50, 50, 50)
-                                                .addComponent(btnBuscar)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnVoltar))
-                                        .addComponent(lblBuscarItensProduto))
-                                .addContainerGap(16, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblBuscarItensProduto)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(cbProdutos, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(lblSelecionarProduto)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnBuscar)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnVoltar))))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(lblBuscarItensProduto)
-                                .addGap(31, 31, 31)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lblSelecionarProduto)
-                                        .addComponent(cbProdutos, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnBuscar)
-                                        .addComponent(btnVoltar))
-                                .addGap(93, 93, 93)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 543,
-                                        Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(lblBuscarItensProduto)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSelecionarProduto)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnVoltar))
+                .addGap(18, 18, 18)
+                .addComponent(cbProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE))
+        );
 
         pack();
         setLocationRelativeTo(null);
