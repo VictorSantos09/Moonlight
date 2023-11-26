@@ -69,7 +69,7 @@ public class AtualizarProdutoItemService {
                 erros.add("nome da matéria prima inválida");
             }
 
-            if (DefaultValidator.isZeroOrNegativte(dto.getMateriasPrimasQuantidade().get(m))) {
+            if (DefaultValidator.isZeroOrNegative(dto.getMateriasPrimasQuantidade().get(m))) {
                 erros.add("quantidade da matéria prima inválida");
             }
         });

@@ -45,7 +45,7 @@ public abstract class BaseValidator {
     }
 
     protected boolean isZeroOrNegativte(Integer input) {
-        return DefaultValidator.isZeroOrNegativte(input);
+        return DefaultValidator.isZeroOrNegative(input);
     }
 
     protected boolean isZeroOrNegativte(Double input) {
