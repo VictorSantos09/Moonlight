@@ -329,7 +329,7 @@ public class AtualizarProdutoProcessosView extends javax.swing.JFrame {
                         List<String> etapas = new ArrayList<>();
 
                         for (int i = 0; i < quantidadeProcessosAtuais; i++) {
-                                String etapa = tbProcessos.getValueAt(i, 0).toString();
+                                String etapa = tbProcessosAtuais.getValueAt(i, 0).toString();
                                 etapas.add(etapa);
                         }
 
