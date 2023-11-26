@@ -112,18 +112,13 @@
             <Property name="text" type="java.lang.String" value="Tipos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mnVisualizarTipoProduto">
+            <MenuItem class="javax.swing.JMenuItem" name="mnConsultarTipos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Visualizar Produto"/>
+                <Property name="text" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnVisualizarTipoProdutoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnConsultarTiposActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mnVisualizarTipoMateriaPrima">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Visualizar Mat&#xe9;ria Prima"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -132,10 +127,13 @@
             <Property name="text" type="java.lang.String" value="Unidades Medidas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+            <MenuItem class="javax.swing.JMenuItem" name="mnConsultarUnidadesMedidas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnConsultarUnidadesMedidasActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

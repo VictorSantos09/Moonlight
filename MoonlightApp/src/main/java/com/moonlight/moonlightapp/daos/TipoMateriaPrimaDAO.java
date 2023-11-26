@@ -3,11 +3,14 @@ package com.moonlight.moonlightapp.daos;
 import com.moonlight.moonlightapp.daos.contracts.BuscarPorIdDAO;
 import com.moonlight.moonlightapp.daos.contracts.BuscarPorNomeDAO;
 import com.moonlight.moonlightapp.models.TipoMateriaPrimaModel;
+import com.moonlight.moonlightapp.models.TipoProdutoModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TipoMateriaPrimaDAO extends ConexaoBanco
         implements BuscarPorNomeDAO<TipoMateriaPrimaModel>, BuscarPorIdDAO<TipoMateriaPrimaModel> {
@@ -26,7 +29,8 @@ public class TipoMateriaPrimaDAO extends ConexaoBanco
 
             return build(rs);
         } catch (SQLException e) {
-            throw new RuntimeException("um erro ocorreu ao buscar o tipo de materia prima por nome. Erro: " + e.getMessage());
+            throw new RuntimeException(
+                    "um erro ocorreu ao buscar o tipo de materia prima por nome. Erro: " + e.getMessage());
         } finally {
             disconnect();
         }
@@ -46,7 +50,27 @@ public class TipoMateriaPrimaDAO extends ConexaoBanco
 
             return build(rs);
         } catch (SQLException e) {
-            throw new RuntimeException("um erro ocorreu ao buscar o tipo de materia prima por id. Erro: " + e.getMessage());
+            throw new RuntimeException(
+                    "um erro ocorreu ao buscar o tipo de materia prima por id. Erro: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+    }
+
+    public List<TipoMateriaPrimaModel> buscarTodos() {
+        try {
+            Connection conexao = connect();
+
+            String sql = "SELECT * FROM tipos_materias_primas";
+
+            PreparedStatement ps = conexao.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            return buildList(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(
+                    "um erro ocorreu ao buscar o tipo de materia prima por id. Erro: " + e.getMessage());
         } finally {
             disconnect();
         }
@@ -57,16 +81,32 @@ public class TipoMateriaPrimaDAO extends ConexaoBanco
             var id = rs.getInt(1);
             String nome = rs.getString(2);
 
-            var tipoProduto = new TipoMateriaPrimaModel(nome);
-            tipoProduto.setId(id);
+            var tipoMateriaPrima = new TipoMateriaPrimaModel(nome);
+            tipoMateriaPrima.setId(id);
 
-            return tipoProduto;
+            return tipoMateriaPrima;
         } else {
-            return  null;
+            return null;
         }
     }
 
-    public  Boolean isCadastrado(TipoMateriaPrimaModel model){
-        return  buscarPorNome(model.getNome()) != null;
-     }
+    private List<TipoMateriaPrimaModel> buildList(ResultSet rs) throws SQLException {
+        List<TipoMateriaPrimaModel> output = new ArrayList<>();
+
+        while (rs.next()) {
+            var id = rs.getInt(1);
+            String nome = rs.getString(2);
+
+            var tipoMateriaPrima = new TipoMateriaPrimaModel(nome);
+            tipoMateriaPrima.setId(id);
+
+            output.add(tipoMateriaPrima);
+        }
+
+        return output;
+    }
+
+    public Boolean isCadastrado(TipoMateriaPrimaModel model) {
+        return buscarPorNome(model.getNome()) != null;
+    }
 }

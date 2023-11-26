@@ -14,6 +14,8 @@ import com.moonlight.moonlightapp.views.produtos.VisualizarProdutoItensView;
 import com.moonlight.moonlightapp.views.produtos.VisualizarProdutoProcessosView;
 import com.moonlight.moonlightapp.views.produtos.VisualizarProdutoView;
 import com.moonlight.moonlightapp.views.relatorios.RelatorioView;
+import com.moonlight.moonlightapp.views.tipos.VisualizarTiposView;
+import com.moonlight.moonlightapp.views.unidadesmedidas.VisualizarUnidadesMedidasView;
 
 /**
  *
@@ -57,10 +59,9 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         mnRelatorio = new javax.swing.JMenu();
         mnConsultaRelatorio = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        mnVisualizarTipoProduto = new javax.swing.JMenuItem();
-        mnVisualizarTipoMateriaPrima = new javax.swing.JMenuItem();
+        mnConsultarTipos = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        mnConsultarUnidadesMedidas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Moonlight");
@@ -169,23 +170,25 @@ public class MenuPrincipalView extends javax.swing.JFrame {
 
         jMenu5.setText("Tipos");
 
-        mnVisualizarTipoProduto.setText("Visualizar Produto");
-        mnVisualizarTipoProduto.addActionListener(new java.awt.event.ActionListener() {
+        mnConsultarTipos.setText("Consultar");
+        mnConsultarTipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnVisualizarTipoProdutoActionPerformed(evt);
+                mnConsultarTiposActionPerformed(evt);
             }
         });
-        jMenu5.add(mnVisualizarTipoProduto);
-
-        mnVisualizarTipoMateriaPrima.setText("Visualizar Matéria Prima");
-        jMenu5.add(mnVisualizarTipoMateriaPrima);
+        jMenu5.add(mnConsultarTipos);
 
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Unidades Medidas");
 
-        jMenuItem6.setText("Consultar");
-        jMenu6.add(jMenuItem6);
+        mnConsultarUnidadesMedidas.setText("Consultar");
+        mnConsultarUnidadesMedidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnConsultarUnidadesMedidasActionPerformed(evt);
+            }
+        });
+        jMenu6.add(mnConsultarUnidadesMedidas);
 
         jMenuBar1.add(jMenu6);
 
@@ -229,9 +232,10 @@ public class MenuPrincipalView extends javax.swing.JFrame {
        view.setVisible(true);
     }//GEN-LAST:event_mnRelatorioActionPerformed
 
-    private void mnVisualizarTipoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnVisualizarTipoProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mnVisualizarTipoProdutoActionPerformed
+    private void mnConsultarTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnConsultarTiposActionPerformed
+        VisualizarTiposView view = new VisualizarTiposView();
+        view.setVisible(true);
+    }//GEN-LAST:event_mnConsultarTiposActionPerformed
 
     private void mnAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAdicionarProdutoActionPerformed
         CriarProdutoView view = new CriarProdutoView();
@@ -278,6 +282,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         view.setVisible(true);
     }//GEN-LAST:event_mnVisualizarMateriasPrimasActionPerformed
 
+    private void mnConsultarUnidadesMedidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnConsultarUnidadesMedidasActionPerformed
+        VisualizarUnidadesMedidasView view = new VisualizarUnidadesMedidasView();
+        view.setVisible(true);
+    }//GEN-LAST:event_mnConsultarUnidadesMedidasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -320,7 +329,6 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel lblBemVindo;
@@ -331,12 +339,12 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnAtualizarProcessos;
     private javax.swing.JMenuItem mnAtualizarProduto;
     private javax.swing.JMenuItem mnConsultaRelatorio;
+    private javax.swing.JMenuItem mnConsultarTipos;
+    private javax.swing.JMenuItem mnConsultarUnidadesMedidas;
     private javax.swing.JMenu mnRelatorio;
     private javax.swing.JMenuItem mnRemoverProduto;
     private javax.swing.JMenuItem mnVisualizarMateriasPrimas;
     private javax.swing.JMenuItem mnVisualizarProcessos;
     private javax.swing.JMenuItem mnVisualizarProdutos;
-    private javax.swing.JMenuItem mnVisualizarTipoMateriaPrima;
-    private javax.swing.JMenuItem mnVisualizarTipoProduto;
     // End of variables declaration//GEN-END:variables
 }
