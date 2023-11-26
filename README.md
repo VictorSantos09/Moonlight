@@ -27,7 +27,7 @@ O sistema de gerenciamento de custos tem como objetivo auxiliar os microempreend
 ## Screenshots
 
 Tela Inicial
-![Tela Inicial](public/img/telaInicial.png)
+![Tela Inicial](public/img/TelaInicial.png)
 
 Criar Produto
 ![Criar Produto](public/img/CriarProduto.png)
