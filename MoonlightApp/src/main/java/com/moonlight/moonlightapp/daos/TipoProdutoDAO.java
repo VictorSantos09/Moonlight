@@ -94,7 +94,11 @@ public class TipoProdutoDAO extends ConexaoBanco
         List<TipoProdutoModel> tiposProdutos = new ArrayList<>();
 
         while (rs.next()) {
-            var tipoProduto = build(rs);
+            var id = rs.getInt(1);
+            String nome = rs.getString(2);
+
+            TipoProdutoModel tipoProduto = new TipoProdutoModel(nome);
+            tipoProduto.setId(id);
 
             tiposProdutos.add(tipoProduto);
         }
