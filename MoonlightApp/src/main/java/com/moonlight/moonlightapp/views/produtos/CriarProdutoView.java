@@ -355,7 +355,7 @@ public class CriarProdutoView extends javax.swing.JFrame {
 
                         DefaultTableModel tabelaMateriasPrimas = (DefaultTableModel) tbMateriasPrimas.getModel();
                         for (var i : materiasPrimasSelecionadas) {
-                                Float quantidade = (Float) tabelaMateriasPrimas.getValueAt(i, 4);
+                                Float quantidade = Float.parseFloat(tabelaMateriasPrimas.getValueAt(i, 4).toString());
                                 String nomeMateriaPrima = tabelaMateriasPrimas.getValueAt(i, 0).toString();
                                 ItemProdutoDTO dto = new ItemProdutoDTO(quantidade, nomeMateriaPrima, nomeProduto);
                                 itensProdutos.add(dto);

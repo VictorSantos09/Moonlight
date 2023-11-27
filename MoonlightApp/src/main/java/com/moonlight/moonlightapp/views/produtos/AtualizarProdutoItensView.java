@@ -135,7 +135,7 @@ public class AtualizarProdutoItensView extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, true
@@ -302,16 +302,16 @@ public class AtualizarProdutoItensView extends javax.swing.JFrame {
 
     private void cbProdutosItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_cbProdutosItemStateChanged
         var produtoSelecionado = (ProdutoModel) cbProdutos.getSelectedItem();
-        var itensProduto = itensProdutoDAO.buscarMateriasPrimasDoProduto(produtoSelecionado.getId());
+        var itensProduto = itensProdutoDAO.buscarPorProdutoId(produtoSelecionado.getId());
 
         DefaultTableModel tabela = (DefaultTableModel) tbMateriasPrimasAtuais.getModel();
         tabela.setRowCount(0);
 
         itensProduto.forEach(ip -> {
             var materiaPrimaObj = new Object[] {
-                    ip.getNome(),
-                    ip.getUnidadeMedida().getNome(),
-                    ip.getTipoMateriaPrima().getNome(),
+                    ip.getMateriaPrima().getNome(),
+                    ip.getMateriaPrima().getUnidadeMedida().getNome(),
+                    ip.getMateriaPrima().getTipoMateriaPrima().getNome(),
                     ip.getQuantidade()
             };
 
