@@ -23,7 +23,6 @@ public class MateriaPrimaModel extends BaseModel {
         this.tipoMateriaPrima = tipoMateriaPrima;
     }
 
-    
 
     @Override
     public String toString() {
