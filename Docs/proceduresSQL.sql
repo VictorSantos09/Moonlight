@@ -159,7 +159,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spCriarItensProduto`(idProduto INT, idMateriaPrima INT, quantidade INT, subTotal DOUBLE)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spCriarItensProduto`(idProduto INT, idMateriaPrima INT, quantidade FLOAT, subTotal DOUBLE)
 BEGIN
 	INSERT INTO itens_produtos (ID_PRODUTO, ID_MATERIA_PRIMA, QUANTIDADE, SUBTOTAL) VALUES
     (idProduto, idMateriaPrima, quantidade, subTotal);
@@ -284,4 +284,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-25 20:46:19
+-- Dump completed on 2023-11-27 14:40:07
