@@ -7,23 +7,23 @@ package com.moonlight.moonlightapp.models;
  */
 
 public class ItemProdutoModel extends BaseModel {
-    private int quantidade;
+    private Float quantidade;
     private ProdutoModel produto;
     private MateriaPrimaModel materiaPrima;
-    private double subTotal;
+    private Double subTotal;
 
-    public ItemProdutoModel(int quantidade, ProdutoModel produto, double subTotal, MateriaPrimaModel materiaPrima) {
+    public ItemProdutoModel(Float quantidade, ProdutoModel produto, Double subTotal, MateriaPrimaModel materiaPrima) {
         this.quantidade = quantidade;
         this.produto = produto;
         this.subTotal = subTotal;
         this.materiaPrima = materiaPrima;
     }
 
-    public int getQuantidade() {
+    public Float getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(Float quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -43,11 +43,11 @@ public class ItemProdutoModel extends BaseModel {
         this.materiaPrima = materiaPrima;
     }
 
-    public double getSubTotal() {
+    public Double getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(double subTotal) {
+    public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
     }
 }

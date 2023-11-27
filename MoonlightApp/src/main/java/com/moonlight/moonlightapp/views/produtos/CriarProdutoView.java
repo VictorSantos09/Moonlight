@@ -175,13 +175,13 @@ public class CriarProdutoView extends javax.swing.JFrame {
         tbMateriasPrimas.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][] {
 
-                },
-                new String[] {
-                        "Item", "Tipo", "Unidade Medida", "Valor", "Quantidade"
-                }) {
-            Class[] types = new Class[] {
-                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class,
-                    java.lang.Integer.class
+            },
+            new String [] {
+                "Item", "Tipo", "Unidade Medida", "Valor", "Quantidade"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean[] {
                     false, false, false, false, true
@@ -424,7 +424,7 @@ public class CriarProdutoView extends javax.swing.JFrame {
             Boolean isValido = true;
             DefaultTableModel tabelaMateriasPrimas = (DefaultTableModel) tbMateriasPrimas.getModel();
             for (var i : materiasPrimasSelecionadas) {
-                Integer quantidade = (Integer) tabelaMateriasPrimas.getValueAt(i, 4);
+                Float quantidade = (Float) tabelaMateriasPrimas.getValueAt(i, 4);
                 String nomeMateriaPrima = tabelaMateriasPrimas.getValueAt(i, 0).toString();
 
                 if (DefaultValidator.isZeroOrNegative(quantidade)) {
