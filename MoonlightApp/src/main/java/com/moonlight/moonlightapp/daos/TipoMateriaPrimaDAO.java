@@ -69,4 +69,8 @@ public class TipoMateriaPrimaDAO extends ConexaoBanco
     public  Boolean isCadastrado(TipoMateriaPrimaModel model){
         return  buscarPorNome(model.getNome()) != null;
      }
+    
+    public Boolean isCadastrado(String nome){
+        return buscarPorNome(nome) != null;
+    }
 }
