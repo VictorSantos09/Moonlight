@@ -144,7 +144,12 @@ public class ProcessoDAO extends ConexaoBanco
     private List<ProcessoModel> buildList(ResultSet rs) throws SQLException {
         List<ProcessoModel> processos = new ArrayList<>();
         while (rs.next()) {
-            var processo = build(rs);
+            int id = rs.getInt(1);
+            String etapa = rs.getString(2);
+            double custo = rs.getDouble(3);
+
+            ProcessoModel processo = new ProcessoModel(etapa, custo);
+            processo.setId(id);
             processos.add(processo);
         }
         return processos;

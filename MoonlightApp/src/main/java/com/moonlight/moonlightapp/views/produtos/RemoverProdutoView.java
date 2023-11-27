@@ -37,10 +37,10 @@ public class RemoverProdutoView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cbProdutosParaRemover = new javax.swing.JComboBox<ProdutoModel>();
+        cbProdutosParaRemover = new javax.swing.JComboBox<>();
         lblSelecioneProdutoParaRemover = new javax.swing.JLabel();
         lblRemoverProduto = new javax.swing.JLabel();
         btnConfirmarRemocaoProduto = new javax.swing.JButton();
@@ -55,7 +55,6 @@ public class RemoverProdutoView extends javax.swing.JFrame {
         });
 
         cbProdutosParaRemover.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbProdutosParaRemover.setModel(new javax.swing.DefaultComboBoxModel<ProdutoModel>());
 
         lblSelecioneProdutoParaRemover.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblSelecioneProdutoParaRemover.setText("Selecione o Produto");
@@ -82,39 +81,35 @@ public class RemoverProdutoView extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRemoverProduto)
+                    .addComponent(lblSelecioneProdutoParaRemover)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblRemoverProduto)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblSelecioneProdutoParaRemover)
-                                                .addGap(41, 41, 41)
-                                                .addComponent(cbProdutosParaRemover,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 258,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnConfirmarRemocaoProduto)
-                                                .addGap(47, 47, 47)
-                                                .addComponent(btnCancelarRemocaoProduto)))
-                                .addContainerGap(32, Short.MAX_VALUE)));
+                            .addComponent(btnConfirmarRemocaoProduto)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelarRemocaoProduto))
+                        .addComponent(cbProdutosParaRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(103, Short.MAX_VALUE))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(lblRemoverProduto)
-                                .addGap(68, 68, 68)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lblSelecioneProdutoParaRemover)
-                                        .addComponent(cbProdutosParaRemover, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 267,
-                                        Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnConfirmarRemocaoProduto)
-                                        .addComponent(btnCancelarRemocaoProduto))
-                                .addGap(48, 48, 48)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(lblRemoverProduto)
+                .addGap(48, 48, 48)
+                .addComponent(lblSelecioneProdutoParaRemover)
+                .addGap(18, 18, 18)
+                .addComponent(cbProdutosParaRemover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfirmarRemocaoProduto)
+                    .addComponent(btnCancelarRemocaoProduto))
+                .addGap(38, 38, 38))
+        );
 
         pack();
         setLocationRelativeTo(null);

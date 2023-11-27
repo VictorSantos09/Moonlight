@@ -39,7 +39,7 @@ public class VisualizarProdutoProcessosView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lblBuscarProcessosProduto = new javax.swing.JLabel();
@@ -50,7 +50,8 @@ public class VisualizarProdutoProcessosView extends javax.swing.JFrame {
         btnBuscarProcessosProduto = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Visualizar Processo do Produto");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -64,22 +65,21 @@ public class VisualizarProdutoProcessosView extends javax.swing.JFrame {
         lblSelecionarProdutoProcesso.setText("Selecione o Produto");
 
         cbProdutoBuscaProcesso.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbProdutoBuscaProcesso.setModel(
-                new javax.swing.DefaultComboBoxModel<ProdutoModel>());
 
         tbProdutoProcessos.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null }
-                },
-                new String[] {
-                        "Etapa", "Custo"
-                }) {
-            boolean[] canEdit = new boolean[] {
-                    false, false
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Etapa", "Custo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tbProdutoProcessos);
@@ -103,45 +103,42 @@ public class VisualizarProdutoProcessosView extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(37, 37, 37)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(lblSelecionarProdutoProcesso)
-                                                                .addGap(46, 46, 46)
-                                                                .addComponent(cbProdutoBuscaProcesso,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 216,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(50, 50, 50)
-                                                                .addComponent(btnBuscarProcessosProduto)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(btnVoltar))
-                                                        .addComponent(lblBuscarProcessosProduto)))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        1136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(14, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSelecionarProdutoProcesso)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cbProdutoBuscaProcesso, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblBuscarProcessosProduto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(107, 107, 107)
+                                .addComponent(btnBuscarProcessosProduto)
+                                .addGap(38, 38, 38)
+                                .addComponent(btnVoltar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(lblBuscarProcessosProduto)
-                                .addGap(31, 31, 31)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lblSelecionarProdutoProcesso)
-                                        .addComponent(cbProdutoBuscaProcesso, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnBuscarProcessosProduto)
-                                        .addComponent(btnVoltar))
-                                .addGap(43, 43, 43)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
-                                .addContainerGap()));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(lblBuscarProcessosProduto)
+                .addGap(34, 34, 34)
+                .addComponent(lblSelecionarProdutoProcesso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbProdutoBuscaProcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarProcessosProduto)
+                    .addComponent(btnVoltar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -163,7 +160,7 @@ public class VisualizarProdutoProcessosView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um produto");
         }
 
-        var produtosProcessos = produtoProcessosDAO.buscarPorProdutoId(produtoSelecionado.getId());
+        var produtosProcessos = produtoProcessosDAO.buscarProcessosPorProdutoId(produtoSelecionado.getId());
 
         if (produtosProcessos == null || produtosProcessos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não há processos para este produto");
