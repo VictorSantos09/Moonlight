@@ -272,18 +272,18 @@ public class AtualizarProdutoItensView extends javax.swing.JFrame {
         }
 
         else {
-            Hashtable<String, Integer> nomesMateriasPrimasQuantidade = new Hashtable<>();
+            Hashtable<String, Float> nomesMateriasPrimasQuantidade = new Hashtable<>();
             boolean isValido = true;
 
             for (int i = 0; i < quantidadeMateriasPrimasAtuais; i++) {
                 String nomeMateriaPrima = tbMateriasPrimasAtuais.getValueAt(i, 0).toString();
                 
-                if ((Integer) tbMateriasPrimasAtuais.getValueAt(i, 3) == null) {
+                if ((Float) tbMateriasPrimasAtuais.getValueAt(i, 3) == null) {
                     JOptionPane.showMessageDialog(null,
                             "informe a quantidade para a matéria prima " + nomeMateriaPrima);
                     isValido = false;
                 } else {
-                    var quantidadeMateriaPrima = (Integer) tbMateriasPrimasAtuais.getValueAt(i, 3);
+                    var quantidadeMateriaPrima = (Float) tbMateriasPrimasAtuais.getValueAt(i, 3);
                     nomesMateriasPrimasQuantidade.put(nomeMateriaPrima, quantidadeMateriaPrima);
                 }
             }
