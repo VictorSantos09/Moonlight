@@ -1,4 +1,4 @@
-package com.moonlight.moonlightapp.views.materiaprimas;
+package com.moonlight.moonlightapp.services.materiasprimas;
 
 import com.moonlight.moonlightapp.converters.MateriaPrimaConverter;
 import com.moonlight.moonlightapp.daos.MateriaPrimaDAO;
@@ -6,12 +6,11 @@ import com.moonlight.moonlightapp.daos.TipoMateriaPrimaDAO;
 import com.moonlight.moonlightapp.daos.UnidadeMedidaDAO;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
 import com.moonlight.moonlightapp.dtos.materiasprimas.MateriaPrimaDTO;
-import com.moonlight.moonlightapp.dtos.unidadesmedidas.UnidadeMedidaDTO;
 import com.moonlight.moonlightapp.models.MateriaPrimaModel;
 import com.moonlight.moonlightapp.validators.dtos.MateriaPrimaDTOValidator;
 import com.moonlight.moonlightapp.validators.models.MateriaPrimaValidator;
 
-public class CriarMateriaPrima {
+public class CriarMateriaPrimaService {
 
     private UnidadeMedidaDAO unidadeMedidaDAO = new UnidadeMedidaDAO();
     private TipoMateriaPrimaDAO tipoMateriaPrimaDAO = new TipoMateriaPrimaDAO();
