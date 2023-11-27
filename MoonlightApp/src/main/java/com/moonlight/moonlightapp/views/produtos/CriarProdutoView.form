@@ -329,7 +329,7 @@
                 <Column editable="false" title="Tipo" type="java.lang.String"/>
                 <Column editable="false" title="Unidade Medida" type="java.lang.String"/>
                 <Column editable="false" title="Valor" type="java.lang.Double"/>
-                <Column editable="true" title="Quantidade" type="java.lang.Integer"/>
+                <Column editable="true" title="Quantidade" type="java.lang.Float"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
