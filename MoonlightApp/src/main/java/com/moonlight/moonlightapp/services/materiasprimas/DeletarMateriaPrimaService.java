@@ -11,13 +11,13 @@ public class DeletarMateriaPrimaService {
     public DeletarMateriaPrimaService() {
         materiaPrimaDAO = new MateriaPrimaDAO();
     }
-    
-    public BaseDTO deletar(String nome){
-        if (DefaultValidator.isBlankOrEmpty(nome)){
+
+    public BaseDTO deletar(String nome) {
+        if (DefaultValidator.isBlankOrEmpty(nome)) {
             return BaseDTO.buildFalha("Nome inválido");
         }
 
-        if (!materiaPrimaDAO.isCadastrado(nome)){
+        if (!materiaPrimaDAO.isCadastrado(nome)) {
             return BaseDTO.buildFalha("Matéria Prima não encontrada");
         }
 
@@ -29,12 +29,13 @@ public class DeletarMateriaPrimaService {
         }
         return BaseDTO.buildSucesso("Matéria Prima deletada com sucesso!", resultadoDeletacao.getData());
     }
-        private MateriaPrimaModel buscarMateriaPrimaPorNome(String nome){
-            return materiaPrimaDAO.buscarPorNome(nome);
-        }
 
-        private BaseDTO deletarMateriaPrima(MateriaPrimaModel materiaPrima){
-            return materiaPrimaDAO.deletar(materiaPrima);
-        }
-    
+    private MateriaPrimaModel buscarMateriaPrimaPorNome(String nome) {
+        return materiaPrimaDAO.buscarPorNome(nome);
+    }
+
+    private BaseDTO deletarMateriaPrima(MateriaPrimaModel materiaPrima) {
+        return materiaPrimaDAO.deletar(materiaPrima);
+    }
+
 }
