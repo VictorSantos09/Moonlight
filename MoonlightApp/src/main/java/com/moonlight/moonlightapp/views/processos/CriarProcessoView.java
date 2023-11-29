@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 import com.moonlight.moonlightapp.dtos.processos.ProcessoDTO;
 import com.moonlight.moonlightapp.services.processos.CriarProcessoService;
 import com.moonlight.moonlightapp.validators.DefaultValidator;
-
 /**
  *
  * @author pedro.janke
@@ -33,31 +32,21 @@ public class CriarProcessoView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        lblEtapa = new javax.swing.JLabel();
-        lblCusto = new javax.swing.JLabel();
-        txtEtapa = new javax.swing.JTextField();
-        txtCusto = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
+        txtCusto = new javax.swing.JTextField();
+        lblCusto = new javax.swing.JLabel();
+        lblEtapa = new javax.swing.JLabel();
+        txtEtapa = new javax.swing.JTextField();
         lblTitulo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Criar Processo");
 
-        lblEtapa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblEtapa.setText("Etapa");
-        lblEtapa.setMaximumSize(new java.awt.Dimension(51, 25));
-        lblEtapa.setMinimumSize(new java.awt.Dimension(51, 25));
-
-        lblCusto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblCusto.setText("Custo");
-        lblCusto.setMaximumSize(new java.awt.Dimension(51, 25));
-        lblCusto.setMinimumSize(new java.awt.Dimension(51, 25));
-
-        txtEtapa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtEtapa.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtEtapa.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnSalvar.setLabel("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEtapaActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
 
@@ -70,11 +59,21 @@ public class CriarProcessoView extends javax.swing.JFrame {
             }
         });
 
-        btnSalvar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnSalvar.setLabel("Salvar");
-        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+        lblCusto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCusto.setText("Custo");
+        lblCusto.setMaximumSize(new java.awt.Dimension(51, 25));
+        lblCusto.setMinimumSize(new java.awt.Dimension(51, 25));
+
+        lblEtapa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblEtapa.setText("Etapa");
+        lblEtapa.setMaximumSize(new java.awt.Dimension(51, 25));
+        lblEtapa.setMinimumSize(new java.awt.Dimension(51, 25));
+
+        txtEtapa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtEtapa.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtEtapa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarActionPerformed(evt);
+                txtEtapaActionPerformed(evt);
             }
         });
 
@@ -83,77 +82,47 @@ public class CriarProcessoView extends javax.swing.JFrame {
         lblTitulo.setMaximumSize(new java.awt.Dimension(51, 25));
         lblTitulo.setMinimumSize(new java.awt.Dimension(51, 25));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCusto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblEtapa, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEtapa, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEtapa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEtapa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblCusto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblEtapa, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEtapa, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEtapa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEtapa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblCusto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtEtapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEtapaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEtapaActionPerformed
-
-    private void txtCustoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCustoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         var tEtapa = txtEtapa.getText();
@@ -176,6 +145,14 @@ public class CriarProcessoView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, resultado.getMensagem());
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void txtCustoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCustoActionPerformed
+
+    private void txtEtapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEtapaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEtapaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,7 +192,6 @@ public class CriarProcessoView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCusto;
     private javax.swing.JLabel lblEtapa;
     private javax.swing.JLabel lblTitulo;

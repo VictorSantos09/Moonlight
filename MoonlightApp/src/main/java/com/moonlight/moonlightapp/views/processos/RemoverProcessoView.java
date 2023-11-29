@@ -8,7 +8,6 @@ import com.moonlight.moonlightapp.daos.ProcessoDAO;
 import com.moonlight.moonlightapp.models.ProcessoModel;
 import com.moonlight.moonlightapp.services.processos.RemoverProcessoService;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author pedro.janke
@@ -35,33 +34,17 @@ public class RemoverProcessoView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        lblTitulo = new javax.swing.JLabel();
-        lblProcesso = new javax.swing.JLabel();
-        cbProcessoParaRemover = new javax.swing.JComboBox<>();
-        btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
+        cbProcessoParaRemover = new javax.swing.JComboBox<>();
+        lblProcesso = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblTitulo.setText("Remover Processo");
-
-        lblProcesso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblProcesso.setText("Selecione o Processo");
-
-        cbProcessoParaRemover.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbProcessoParaRemover.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbProcessoParaRemoverActionPerformed(evt);
-            }
-        });
-
-        btnConfirmar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnConfirmar.setText("Confirmar");
-        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarActionPerformed(evt);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Remover Processo");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -73,69 +56,71 @@ public class RemoverProcessoView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitulo)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblProcesso)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(btnConfirmar)))
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbProcessoParaRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar))))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lblTitulo)
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblProcesso)
-                    .addComponent(cbProcessoParaRemover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnConfirmar)
-                    .addComponent(btnCancelar))
-                .addGap(30, 30, 30))
-        );
+        btnConfirmar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
+
+        cbProcessoParaRemover.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cbProcessoParaRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbProcessoParaRemoverActionPerformed(evt);
+            }
+        });
+
+        lblProcesso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblProcesso.setText("Selecione o Processo");
+
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTitulo.setText("Remover Processo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblProcesso)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(btnConfirmar)))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbProcessoParaRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(lblTitulo)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblProcesso)
+                    .addComponent(cbProcessoParaRemover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfirmar)
+                    .addComponent(btnCancelar))
+                .addGap(30, 30, 30))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbProcessoParaRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProcessoParaRemoverActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbProcessoParaRemoverActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         String[] opcoes = { "NÃO", "SIM" };
@@ -152,7 +137,9 @@ public class RemoverProcessoView extends javax.swing.JFrame {
             var resultado = removerProcessoService.remover(processoSelecionado.getEtapa());
 
             JOptionPane.showMessageDialog(null, resultado.getMensagem());
-            btnConfirmarActionPerformed(evt);
+        
+            setVisible(false);
+            dispose();
         }
 
         else {
@@ -160,10 +147,18 @@ public class RemoverProcessoView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.setVisible(false);
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    private void cbProcessoParaRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProcessoParaRemoverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbProcessoParaRemoverActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cbProcessoParaRemover.removeAllItems();
+        var processos = processoDAO.buscarTodos();
+
+        processos.forEach(processo -> {
+            cbProcessoParaRemover.addItem(processo);
+        });
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -205,7 +200,6 @@ public class RemoverProcessoView extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JComboBox<ProcessoModel> cbProcessoParaRemover;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblProcesso;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables

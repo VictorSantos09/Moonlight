@@ -5,6 +5,8 @@
 package com.moonlight.moonlightapp.views.principal;
 
 import com.moonlight.moonlightapp.services.produtos.DeletarProdutoService;
+import com.moonlight.moonlightapp.views.processos.CriarProcessoView;
+import com.moonlight.moonlightapp.views.processos.RemoverProcessoView;
 import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoItensView;
 import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoProcessosView;
 import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoView;
@@ -56,6 +58,10 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         mnVisualizarMateriasPrimas = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        mnCriarProcesso = new javax.swing.JMenuItem();
+        mnRemoverProcesso = new javax.swing.JMenuItem();
+        mnAtualizarProcesso = new javax.swing.JMenuItem();
+        mnConsultarProcesso = new javax.swing.JMenuItem();
         mnRelatorio = new javax.swing.JMenu();
         mnConsultaRelatorio = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -149,6 +155,29 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Processos");
+
+        mnCriarProcesso.setText("Criar");
+        mnCriarProcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnCriarProcessoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnCriarProcesso);
+
+        mnRemoverProcesso.setText("Remover");
+        mnRemoverProcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnRemoverProcessoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnRemoverProcesso);
+
+        mnAtualizarProcesso.setText("Atualizar");
+        jMenu3.add(mnAtualizarProcesso);
+
+        mnConsultarProcesso.setText("Consultar");
+        jMenu3.add(mnConsultarProcesso);
+
         jMenuBar1.add(jMenu3);
 
         mnRelatorio.setText("Relatório");
@@ -287,6 +316,16 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         view.setVisible(true);
     }//GEN-LAST:event_mnConsultarUnidadesMedidasActionPerformed
 
+    private void mnRemoverProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnRemoverProcessoActionPerformed
+        RemoverProcessoView view = new RemoverProcessoView();
+        view.setVisible(true);
+    }//GEN-LAST:event_mnRemoverProcessoActionPerformed
+
+    private void mnCriarProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCriarProcessoActionPerformed
+        CriarProcessoView view = new CriarProcessoView();
+        view.setVisible(true);
+    }//GEN-LAST:event_mnCriarProcessoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -336,12 +375,16 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel lblMoonlight;
     private javax.swing.JMenuItem mnAdicionarProduto;
     private javax.swing.JMenuItem mnAtualizarMateriasPrimas;
+    private javax.swing.JMenuItem mnAtualizarProcesso;
     private javax.swing.JMenuItem mnAtualizarProcessos;
     private javax.swing.JMenuItem mnAtualizarProduto;
     private javax.swing.JMenuItem mnConsultaRelatorio;
+    private javax.swing.JMenuItem mnConsultarProcesso;
     private javax.swing.JMenuItem mnConsultarTipos;
     private javax.swing.JMenuItem mnConsultarUnidadesMedidas;
+    private javax.swing.JMenuItem mnCriarProcesso;
     private javax.swing.JMenu mnRelatorio;
+    private javax.swing.JMenuItem mnRemoverProcesso;
     private javax.swing.JMenuItem mnRemoverProduto;
     private javax.swing.JMenuItem mnVisualizarMateriasPrimas;
     private javax.swing.JMenuItem mnVisualizarProcessos;
