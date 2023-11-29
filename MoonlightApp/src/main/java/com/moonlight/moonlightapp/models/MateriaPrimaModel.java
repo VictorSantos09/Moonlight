@@ -14,13 +14,19 @@ public class MateriaPrimaModel extends BaseModel {
     private TipoMateriaPrimaModel tipoMateriaPrima;
 
     public MateriaPrimaModel(String nome, String descricao, double valor, int quantidade,
-                             UnidadeMedidaModel unidadeMedida, TipoMateriaPrimaModel tipoMateriaPrima) {
+            UnidadeMedidaModel unidadeMedida, TipoMateriaPrimaModel tipoMateriaPrima) {
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
         this.quantidade = quantidade;
         this.unidadeMedida = unidadeMedida;
         this.tipoMateriaPrima = tipoMateriaPrima;
+    }
+
+
+    @Override
+    public String toString() {
+        return nome;
     }
 
     public String getNome() {

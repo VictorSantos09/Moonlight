@@ -33,6 +33,7 @@ public class VisualizarProdutoView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -88,13 +89,18 @@ public class VisualizarProdutoView extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
-                .addGap(60, 60, 60))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                .addGap(69, 69, 69))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVerProcessosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnVerProcessosActionPerformed
+        VisualizarProdutoProcessosView view = new VisualizarProdutoProcessosView();
+        view.setVisible(true);
+    }// GEN-LAST:event_btnVerProcessosActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowOpened
         var produtos = buscarProdutoService.buscarTodos();

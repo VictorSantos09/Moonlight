@@ -1,0 +1,9 @@
+ALTER TABLE itens_produtos AUTO_INCREMENT = 1;
+ALTER TABLE materias_primas AUTO_INCREMENT = 1;
+ALTER TABLE processos AUTO_INCREMENT = 1;
+ALTER TABLE produtos AUTO_INCREMENT = 1;
+ALTER TABLE produtos_processos AUTO_INCREMENT = 1;
+ALTER TABLE tipos_materias_primas AUTO_INCREMENT = 1;
+ALTER TABLE tipos_produtos AUTO_INCREMENT = 1;
+ALTER TABLE unidades_medidas AUTO_INCREMENT = 1;
+ALTER TABLE valores_produtos AUTO_INCREMENT = 1;

@@ -86,7 +86,7 @@ public class ItensProdutoDAO extends ConexaoBanco
             PreparedStatement ps = conexao.prepareStatement("CALL spCriarItensProduto(?, ?, ?, ?)");
             ps.setInt(1, model.getProduto().getId());
             ps.setInt(2, model.getMateriaPrima().getId());
-            ps.setInt(3, model.getQuantidade());
+            ps.setFloat(3, model.getQuantidade());
             ps.setDouble(4, model.getSubTotal());
 
             ps.execute();
@@ -105,7 +105,7 @@ public class ItensProdutoDAO extends ConexaoBanco
             Connection conexao = connect();
 
             PreparedStatement ps = conexao.prepareStatement("CALL spAtualizarProdutoItens(?, ?, ? , ?, ?)");
-            ps.setInt(1, modelAtualizado.getQuantidade());
+            ps.setFloat(1, modelAtualizado.getQuantidade());
             ps.setInt(2, modelAtualizado.getProduto().getId());
             ps.setInt(3, modelAtualizado.getMateriaPrima().getId());
             ps.setDouble(4, modelAtualizado.getSubTotal());
@@ -140,7 +140,7 @@ public class ItensProdutoDAO extends ConexaoBanco
 
         while (rs.next()) {
             int idItemProduto = rs.getInt(1);
-            int quantidade = rs.getInt(2);
+            Float quantidade = rs.getFloat(2);
             int idProduto = rs.getInt(3);
             int idMateriaPrima = rs.getInt(4);
             double subtotal = rs.getDouble(5);
@@ -160,7 +160,7 @@ public class ItensProdutoDAO extends ConexaoBanco
     private ItemProdutoModel build(ResultSet rs) throws SQLException {
         if (rs.next()) {
             int idItemProduto = rs.getInt(1);
-            int quantidade = rs.getInt(2);
+            Float quantidade = rs.getFloat(2);
             int idProduto = rs.getInt(3);
             int idMateriaPrima = rs.getInt(4);
             double subtotal = rs.getDouble(5);

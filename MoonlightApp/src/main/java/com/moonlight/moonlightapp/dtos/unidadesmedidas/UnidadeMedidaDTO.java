@@ -5,7 +5,7 @@ import com.moonlight.moonlightapp.dtos.DTO;
 public class UnidadeMedidaDTO implements DTO {
     private String nome;
 
-    public UnidadeMedidaDTO(String nome, String sigla) {
+    public UnidadeMedidaDTO(String nome) {
         this.nome = nome;
     }
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 public abstract class BaseValidator {
     protected final List<String> falhas;
+
     public BaseValidator() {
         falhas = new ArrayList<>();
     }
@@ -43,14 +44,17 @@ public abstract class BaseValidator {
         return DefaultValidator.isNull(input);
     }
 
-    protected boolean isZeroOrNegativte(Integer input) {
-        return DefaultValidator.isZeroOrNegativte(input);
+    protected boolean isZeroOrNegative(Integer input) {
+        return DefaultValidator.isZeroOrNegative(input);
     }
 
     protected boolean isZeroOrNegativte(Double input) {
-        return DefaultValidator.isZeroOrNegativte(input);
+        return DefaultValidator.isZeroOrNegative(input);
     }
 
+    protected boolean isZeroOrNegative(Float input) {
+        return DefaultValidator.isZeroOrNegative(input);
+    }
 
     private void criarFalha(String falha) {
         if (!falhas.contains(falha)) {

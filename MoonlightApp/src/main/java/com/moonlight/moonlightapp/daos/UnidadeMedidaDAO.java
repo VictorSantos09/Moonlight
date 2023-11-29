@@ -121,8 +121,12 @@ public class UnidadeMedidaDAO extends ConexaoBanco
     private List<UnidadeMedidaModel> buildList(ResultSet rs) throws SQLException {
         List<UnidadeMedidaModel> unidadesMedidas = new ArrayList<>();
         while (rs.next()) {
+            var id = rs.getInt(1);
+            String nome = rs.getString(2);
+            String sigla = rs.getString(3);
 
-            var unidadeMedida = build(rs);
+            var unidadeMedida = new UnidadeMedidaModel(nome, sigla);
+            unidadeMedida.setId(id);
             unidadesMedidas.add(unidadeMedida);
 
         }

@@ -1,32 +1,21 @@
 package com.moonlight.moonlightapp.dtos.produtos;
 
+import java.util.Hashtable;
+
 public class AtualizarItemProdutoDTO {
     private final String nomeProduto;
-    private final String nomeMateriaPrimaAtual;
-    private final String nomeMateriaPrimaNova;
-    private final Integer quantidade;
+    private final Hashtable<String, Float> materiasPrimasQuantidade;
 
-    public AtualizarItemProdutoDTO(String nomeProduto, String nomeMateriaPrimaAtual,
-                                   String nomeMateriaPrimaNova, Integer quantidade) {
+    public AtualizarItemProdutoDTO(String nomeProduto, Hashtable<String, Float> materiasPrimasQuantidade) {
         this.nomeProduto = nomeProduto;
-        this.nomeMateriaPrimaAtual = nomeMateriaPrimaAtual;
-        this.nomeMateriaPrimaNova = nomeMateriaPrimaNova;
-        this.quantidade = quantidade;
+        this.materiasPrimasQuantidade = materiasPrimasQuantidade;
     }
 
     public String getNomeProduto() {
         return nomeProduto;
     }
 
-    public String getNomeMateriaPrimaAtual() {
-        return nomeMateriaPrimaAtual;
-    }
-
-    public String getNomeMateriaPrimaNova() {
-        return nomeMateriaPrimaNova;
-    }
-
-    public Integer getQuantidade() {
-        return quantidade;
+    public Hashtable<String, Float> getMateriasPrimasQuantidade() {
+        return materiasPrimasQuantidade;
     }
 }
