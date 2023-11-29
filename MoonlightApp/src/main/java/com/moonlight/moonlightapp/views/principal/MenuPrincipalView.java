@@ -5,6 +5,7 @@
 package com.moonlight.moonlightapp.views.principal;
 
 import com.moonlight.moonlightapp.services.produtos.DeletarProdutoService;
+import com.moonlight.moonlightapp.views.processos.BuscarProcessoView;
 import com.moonlight.moonlightapp.views.processos.CriarProcessoView;
 import com.moonlight.moonlightapp.views.processos.RemoverProcessoView;
 import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoItensView;
@@ -176,6 +177,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenu3.add(mnAtualizarProcesso);
 
         mnConsultarProcesso.setText("Consultar");
+        mnConsultarProcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnConsultarProcessoActionPerformed(evt);
+            }
+        });
         jMenu3.add(mnConsultarProcesso);
 
         jMenuBar1.add(jMenu3);
@@ -325,6 +331,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         CriarProcessoView view = new CriarProcessoView();
         view.setVisible(true);
     }//GEN-LAST:event_mnCriarProcessoActionPerformed
+
+    private void mnConsultarProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnConsultarProcessoActionPerformed
+        BuscarProcessoView view = new BuscarProcessoView();
+        view.setVisible(true);
+    }//GEN-LAST:event_mnConsultarProcessoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -6,7 +6,6 @@ package com.moonlight.moonlightapp;
 
 import com.moonlight.moonlightapp.daos.ConexaoBanco;
 import com.moonlight.moonlightapp.views.principal.MenuPrincipalView;
-import com.moonlight.moonlightapp.views.produtos.CriarProdutoView;
 
 import javax.swing.*;
 
