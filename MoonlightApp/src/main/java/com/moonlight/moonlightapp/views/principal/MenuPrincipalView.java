@@ -195,6 +195,34 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         });
         jMenu3.add(mnConsultarProcesso);
 
+
+        mnCriarProcesso.setText("Criar");
+        mnCriarProcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnCriarProcessoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnCriarProcesso);
+
+        mnRemoverProcesso.setText("Remover");
+        mnRemoverProcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnRemoverProcessoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnRemoverProcesso);
+
+        mnAtualizarProcesso.setText("Atualizar");
+        jMenu3.add(mnAtualizarProcesso);
+
+        mnConsultarProcesso.setText("Consultar");
+        mnConsultarProcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnConsultarProcessoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnConsultarProcesso);
+
         jMenuBar1.add(jMenu3);
 
         mnRelatorio.setText("Relatório");
@@ -337,6 +365,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
        CriarMateriaPrimaView view = new CriarMateriaPrimaView();
        view.setVisible(true);
     }//GEN-LAST:event_MnCriarMateriaPrimaActionPerformed
+
     private void mnRemoverProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnRemoverProcessoActionPerformed
         RemoverProcessoView view = new RemoverProcessoView();
         view.setVisible(true);
