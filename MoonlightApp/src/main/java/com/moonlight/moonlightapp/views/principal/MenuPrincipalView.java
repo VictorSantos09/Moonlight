@@ -6,6 +6,7 @@ package com.moonlight.moonlightapp.views.principal;
 
 import com.moonlight.moonlightapp.services.produtos.DeletarProdutoService;
 import com.moonlight.moonlightapp.views.materiaprimas.CriarMateriaPrimaView;
+import com.moonlight.moonlightapp.views.processos.AtualizarProcessoView;
 import com.moonlight.moonlightapp.views.processos.BuscarProcessoView;
 import com.moonlight.moonlightapp.views.processos.CriarProcessoView;
 import com.moonlight.moonlightapp.views.processos.RemoverProcessoView;
@@ -185,34 +186,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenu3.add(mnRemoverProcesso);
 
         mnAtualizarProcesso.setText("Atualizar");
-        jMenu3.add(mnAtualizarProcesso);
-
-        mnConsultarProcesso.setText("Consultar");
-        mnConsultarProcesso.addActionListener(new java.awt.event.ActionListener() {
+        mnAtualizarProcesso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnConsultarProcessoActionPerformed(evt);
+                mnAtualizarProcessoActionPerformed(evt);
             }
         });
-        jMenu3.add(mnConsultarProcesso);
-
-
-        mnCriarProcesso.setText("Criar");
-        mnCriarProcesso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnCriarProcessoActionPerformed(evt);
-            }
-        });
-        jMenu3.add(mnCriarProcesso);
-
-        mnRemoverProcesso.setText("Remover");
-        mnRemoverProcesso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnRemoverProcessoActionPerformed(evt);
-            }
-        });
-        jMenu3.add(mnRemoverProcesso);
-
-        mnAtualizarProcesso.setText("Atualizar");
         jMenu3.add(mnAtualizarProcesso);
 
         mnConsultarProcesso.setText("Consultar");
@@ -380,6 +358,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         BuscarProcessoView view = new BuscarProcessoView();
         view.setVisible(true);
     }//GEN-LAST:event_mnConsultarProcessoActionPerformed
+
+    private void mnAtualizarProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAtualizarProcessoActionPerformed
+        AtualizarProcessoView view = new AtualizarProcessoView();
+        view.setVisible(true);
+    }//GEN-LAST:event_mnAtualizarProcessoActionPerformed
 
     /**
      * @param args the command line arguments
