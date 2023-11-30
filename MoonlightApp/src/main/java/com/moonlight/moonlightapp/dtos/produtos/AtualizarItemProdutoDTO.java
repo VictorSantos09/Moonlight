@@ -4,9 +4,9 @@ import java.util.Hashtable;
 
 public class AtualizarItemProdutoDTO {
     private final String nomeProduto;
-    private final Hashtable<String, Integer> materiasPrimasQuantidade;
+    private final Hashtable<String, Float> materiasPrimasQuantidade;
 
-    public AtualizarItemProdutoDTO(String nomeProduto, Hashtable<String, Integer> materiasPrimasQuantidade) {
+    public AtualizarItemProdutoDTO(String nomeProduto, Hashtable<String, Float> materiasPrimasQuantidade) {
         this.nomeProduto = nomeProduto;
         this.materiasPrimasQuantidade = materiasPrimasQuantidade;
     }
@@ -15,7 +15,7 @@ public class AtualizarItemProdutoDTO {
         return nomeProduto;
     }
 
-    public Hashtable<String, Integer> getMateriasPrimasQuantidade() {
+    public Hashtable<String, Float> getMateriasPrimasQuantidade() {
         return materiasPrimasQuantidade;
     }
 }

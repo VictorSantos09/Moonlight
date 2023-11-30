@@ -6,16 +6,6 @@ USE `moonlight`;
 -- ------------------------------------------------------
 -- Server version	8.0.35
 
-ALTER TABLE itens_produtos AUTO_INCREMENT = 1;
-ALTER TABLE materias_primas AUTO_INCREMENT = 1;
-ALTER TABLE processos AUTO_INCREMENT = 1;
-ALTER TABLE produtos AUTO_INCREMENT = 1;
-ALTER TABLE produtos_processos AUTO_INCREMENT = 1;
-ALTER TABLE tipos_materias_primas AUTO_INCREMENT = 1;
-ALTER TABLE tipos_produtos AUTO_INCREMENT = 1;
-ALTER TABLE unidades_medidas AUTO_INCREMENT = 1;
-ALTER TABLE valores_produtos AUTO_INCREMENT = 1;
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -33,6 +23,7 @@ ALTER TABLE valores_produtos AUTO_INCREMENT = 1;
 
 LOCK TABLES `itens_produtos` WRITE;
 /*!40000 ALTER TABLE `itens_produtos` DISABLE KEYS */;
+INSERT INTO `itens_produtos` VALUES (5,1,0000000002,1,5.99),(6,1,0000000002,9,3.49),(7,0.25,0000000002,10,1.00),(8,1,0000000002,11,2.99),(9,4,0000000002,12,3.96),(10,0.1,0000000002,19,0.20),(11,1,0000000001,6,8.99),(12,0.5,0000000001,9,1.75),(13,1.5,0000000001,1,8.99),(14,1,0000000001,10,3.99);
 /*!40000 ALTER TABLE `itens_produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -42,7 +33,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `materias_primas` WRITE;
 /*!40000 ALTER TABLE `materias_primas` DISABLE KEYS */;
-INSERT INTO `materias_primas` VALUES (1,'Morango','Morango fresco',5.99,500,6,1),(2,'Tomate','Tomate maduro',3.49,600,4,1),(3,'Carne de Frango','Peito de frango',10.99,800,1,4),(4,'Farinha de Trigo','Farinha de trigo refinada',2.99,1000,4,11),(5,'Azeite de Oliva','Azeite de oliva extra virgem',15.99,500,1,24),(6,'Chocolate Amargo','Chocolate amargo 70%',8.99,200,4,28),(7,'Feijão Preto','Feijão preto',4.99,750,4,11),(8,'Queijo Parmesão','Queijo parmesão ralado',7.99,250,1,38),(9,'Leite Condensado','Leite condensado',3.49,400,6,8),(10,'Leite','Leite integral',3.99,1000,6,8),(11,'Creme de Leite','Creme de leite',2.99,500,6,8),(12,'Ovo','Ovo branco',0.99,30,6,23),(13,'Manteiga','Manteiga sem sal',5.99,500,1,23),(14,'Açúcar','Açúcar refinado',2.99,1000,4,16),(15,'Sal','Sal refinado',1.99,1000,4,25),(16,'Pimenta do Reino','Pimenta do reino moída',3.99,100,4,25),(17,'Café','Café torrado e moído',5.99,500,6,27),(18,'Cebolinha','Cebolinha fresca',1.99,100,6,26),(19,'Salsinha','Salsinha fresca',1.99,100,6,26),(20,'Alho','Alho fresco',2.99,100,6,26),(21,'Cebola','Cebola roxa',1.99,100,6,2),(22,'Alface','Alface americana',1.99,100,6,2),(23,'Pimentão','Pimentão verde',1.99,100,6,2),(24,'Cenoura','Cenoura',1.99,100,6,3),(25,'Batata','Batata inglesa',1.99,100,6,3),(26,'Abobrinha','Abobrinha italiana',1.99,100,6,3),(27,'Abacaxi','Abacaxi pérola',1.99,100,6,1),(28,'Banana','Banana prata',1.99,100,6,1),(29,'Arroz Integral','Arroz integral',3.29,1000,4,11),(30,'Atum em Lata','Atum em água enlatado',9.99,150,6,5),(31,'Açaí','Polpa de açaí congelada',12.99,500,5,1),(32,'Batata Doce','Batata doce média',2.49,400,4,3),(33,'Mel','Mel puro',7.99,250,1,17),(34,'Sal Marinho','Sal marinho grosso',2.29,500,4,26),(35,'Salmão Fresco','Filé de salmão fresco',15.99,300,1,5);
+INSERT INTO `materias_primas` VALUES (1,'Morango','Morango fresco',5.99,500,1,1),(2,'Tomate','Tomate maduro',3.49,600,1,1),(3,'Carne de Frango','Peito de frango',10.99,800,1,4),(4,'Farinha de Trigo','Farinha de trigo refinada',2.99,1000,1,11),(5,'Azeite de Oliva','Azeite de oliva extra virgem',15.99,500,2,24),(6,'Chocolate Amargo','Chocolate amargo 70%',8.99,200,1,28),(7,'Feijão Preto','Feijão preto',4.99,750,1,11),(8,'Queijo Parmesão','Queijo parmesão ralado',7.99,250,1,38),(9,'Leite Condensado','Leite condensado',3.49,400,6,8),(10,'Leite','Leite integral',3.99,1000,2,8),(11,'Creme de Leite','Creme de leite',2.99,500,6,8),(12,'Ovo','Ovo branco',0.99,30,3,23),(13,'Manteiga','Manteiga sem sal',5.99,500,1,23),(14,'Açúcar','Açúcar refinado',2.99,1000,1,16),(15,'Sal','Sal refinado',1.99,1000,1,25),(16,'Pimenta do Reino','Pimenta do reino moída',3.99,100,1,25),(17,'Café','Café torrado e moído',5.99,500,1,27),(18,'Cebolinha','Cebolinha fresca',1.99,100,1,26),(19,'Salsinha','Salsinha fresca',1.99,100,1,26),(20,'Alho','Alho fresco',2.99,100,1,26),(21,'Cebola','Cebola roxa',1.99,100,1,2),(22,'Alface','Alface americana',1.99,100,1,2),(23,'Pimentão','Pimentão verde',1.99,100,1,2);
 /*!40000 ALTER TABLE `materias_primas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,6 +53,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `produtos` WRITE;
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
+INSERT INTO `produtos` VALUES (0000000001,'BOLO DE CHOCOLATE AMARGO','FEITO COM CHOCOLATE',1,3,13),(0000000002,'BOLO DE MORANGO','DOCE',2,3,13);
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,6 +63,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `produtos_processos` WRITE;
 /*!40000 ALTER TABLE `produtos_processos` DISABLE KEYS */;
+INSERT INTO `produtos_processos` VALUES (1,0000000001,1),(2,0000000001,17),(3,0000000001,18),(4,0000000002,1),(5,0000000002,2),(6,0000000002,4),(7,0000000002,5),(8,0000000002,13);
 /*!40000 ALTER TABLE `produtos_processos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +93,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `unidades_medidas` WRITE;
 /*!40000 ALTER TABLE `unidades_medidas` DISABLE KEYS */;
-INSERT INTO `unidades_medidas` VALUES (1,'QUILOGRAMA','KG'),(2,'LITRO','LT'),(3,'COLHER DE SOPA','CS'),(4,'GRAMAS','GR'),(5,'MILIGRAMA','MG'),(6,'MILILITRO','ML'),(7,'UNIDADE','UN'),(8,'COLHER DE CHÁ','CT'),(9,'COPO','CP'),(10,'PACOTE','PC'),(11,'XÍCARA','XC'),(12,'GARRAFA','GF'),(13,'FOLHA','FL'),(14,'FATIA','FT'),(15,'POTE','PT'),(16,'BANDEJA','BD'),(17,'PACOTE PEQUENO','PP'),(18,'PACOTE GRANDE','PG'),(19,'GALÃO','GL'),(20,'BARRA','BR');
+INSERT INTO `unidades_medidas` VALUES (1,'QUILOGRAMA','KG'),(2,'LITRO','LT'),(3,'UNIDADE','UN'),(4,'PACOTE PEQUENO','PE'),(5,'PACOTE GRANDE','PG'),(6,'CAIXA','CX'),(7,'BARRA','BR');
 /*!40000 ALTER TABLE `unidades_medidas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,6 +103,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `valores_produtos` WRITE;
 /*!40000 ALTER TABLE `valores_produtos` DISABLE KEYS */;
+INSERT INTO `valores_produtos` VALUES (1,125.25,80.00),(2,192.73,200.00);
 /*!40000 ALTER TABLE `valores_produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -122,4 +116,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-25 20:47:09
+-- Dump completed on 2023-11-27 14:41:04

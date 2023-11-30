@@ -53,7 +53,7 @@ public class AtualizarProdutoItemService {
         return BaseDTO.buildSucesso("produto e matéria prima atualizados");
     }
 
-    private Double calcularSubtotal(MateriaPrimaModel materiaPrima, Integer quantidade) {
+    private Double calcularSubtotal(MateriaPrimaModel materiaPrima, Float quantidade) {
         return materiaPrima.getValor() * quantidade;
 
     }

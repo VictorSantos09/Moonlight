@@ -14,6 +14,15 @@ public class ProcessoModel extends BaseModel {
         this.custo = custo;
     }
 
+    
+
+    @Override
+    public String toString() {
+        return etapa;
+    }
+
+
+
     public String getEtapa() {
         return etapa;
     }

@@ -9,7 +9,7 @@ public class ItemProdutoDTOValidator extends BaseValidator
         implements DTOValidator<ItemProdutoDTO> {
     @Override
     public ResultadoValidacao validar(ItemProdutoDTO dto) {
-        if (isZeroOrNegativte(dto.getQuantidade())) {
+        if (isZeroOrNegative(dto.getQuantidade())) {
             addFailure("quantidade do item produto inválida");
         }
         if (isBlankOrEmpty(dto.getNomeProduto())) {

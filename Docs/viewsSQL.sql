@@ -43,11 +43,9 @@ SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `vw_valortotal_itensproduto` AS SELECT 
  1 AS `PRODUTO`,
- 1 AS `VALOR_VENDA_PRODUTO`,
- 1 AS `NOME_MATERIA_PRIMA`,
- 1 AS `VALOR_MATERIA_PRIMA`,
- 1 AS `QUANTIDADE_UTILIZADA`,
- 1 AS `SUBTOTAL`*/;
+ 1 AS `VALOR`,
+ 1 AS `VALOR_RECOMENDADO`,
+ 1 AS `SUBTOTAL_ITENS`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -152,7 +150,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vw_valortotal_itensproduto` AS select `pr`.`NOME` AS `PRODUTO`,`vp`.`VALOR` AS `VALOR_VENDA_PRODUTO`,`mp`.`NOME` AS `NOME_MATERIA_PRIMA`,`mp`.`VALOR` AS `VALOR_MATERIA_PRIMA`,sum(`ip`.`QUANTIDADE`) AS `QUANTIDADE_UTILIZADA`,sum(`ip`.`SUBTOTAL`) AS `SUBTOTAL` from (((`itens_produtos` `ip` join `materias_primas` `mp` on((`mp`.`ID_MATERIA_PRIMA` = `ip`.`ID_MATERIA_PRIMA`))) join `produtos` `pr` on((`pr`.`ID_PRODUTO` = `ip`.`ID_PRODUTO`))) join `valores_produtos` `vp` on((`vp`.`ID_VALOR_PRODUTO` = `pr`.`ID_VALOR_PRODUTO`))) group by `pr`.`NOME` */;
+/*!50001 VIEW `vw_valortotal_itensproduto` AS select `pr`.`NOME` AS `PRODUTO`,`vp`.`VALOR` AS `VALOR`,`vp`.`VALOR_RECOMENDADO` AS `VALOR_RECOMENDADO`,sum(`ip`.`SUBTOTAL`) AS `SUBTOTAL_ITENS` from (((`itens_produtos` `ip` join `materias_primas` `mp` on((`mp`.`ID_MATERIA_PRIMA` = `ip`.`ID_MATERIA_PRIMA`))) join `produtos` `pr` on((`pr`.`ID_PRODUTO` = `ip`.`ID_PRODUTO`))) join `valores_produtos` `vp` on((`vp`.`ID_VALOR_PRODUTO` = `pr`.`ID_VALOR_PRODUTO`))) group by `pr`.`NOME` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -238,4 +236,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-25 20:45:52
+-- Dump completed on 2023-11-27 14:40:18
