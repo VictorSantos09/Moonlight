@@ -5,6 +5,7 @@
 package com.moonlight.moonlightapp.views.principal;
 
 import com.moonlight.moonlightapp.services.produtos.DeletarProdutoService;
+import com.moonlight.moonlightapp.views.materiaprimas.CriarMateriaPrimaView;
 import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoItensView;
 import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoProcessosView;
 import com.moonlight.moonlightapp.views.produtos.AtualizarProdutoView;
@@ -55,6 +56,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         mnVisualizarProcessos = new javax.swing.JMenuItem();
         mnVisualizarMateriasPrimas = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        MnCriarMateriaPrima = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         mnRelatorio = new javax.swing.JMenu();
         mnConsultaRelatorio = new javax.swing.JMenuItem();
@@ -146,6 +148,15 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Matéria Prima");
+
+        MnCriarMateriaPrima.setText("Criar");
+        MnCriarMateriaPrima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCriarMateriaPrimaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MnCriarMateriaPrima);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Processos");
@@ -287,6 +298,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         view.setVisible(true);
     }//GEN-LAST:event_mnConsultarUnidadesMedidasActionPerformed
 
+    private void MnCriarMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCriarMateriaPrimaActionPerformed
+       CriarMateriaPrimaView view = new CriarMateriaPrimaView();
+       view.setVisible(true);
+    }//GEN-LAST:event_MnCriarMateriaPrimaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -323,6 +339,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MnCriarMateriaPrima;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
