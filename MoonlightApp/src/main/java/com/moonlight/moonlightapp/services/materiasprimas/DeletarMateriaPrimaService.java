@@ -1,5 +1,7 @@
 package com.moonlight.moonlightapp.services.materiasprimas;
 
+import java.sql.SQLException;
+
 import com.moonlight.moonlightapp.daos.MateriaPrimaDAO;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
 import com.moonlight.moonlightapp.models.MateriaPrimaModel;
@@ -22,6 +24,14 @@ public class DeletarMateriaPrimaService {
         }
 
         var materiaPrima = buscarMateriaPrimaPorNome(nome);
+
+        try {
+            if (materiaPrimaDAO.isUtilizado(materiaPrima.getId())) {
+                return BaseDTO.buildFalha("matéria-prima sendo utilizada por um ou mais produtos");
+            }
+        } catch (SQLException e) {
+            return BaseDTO.buildFalha("não foi possível verificar se matéria-prima está sendo utilizada");
+        }
 
         var resultadoDeletacao = deletarMateriaPrima(materiaPrima);
         if (!resultadoDeletacao.getIsSucesso()) {

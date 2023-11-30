@@ -11,11 +11,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author gusta
  */
-public class VisualizaMateriaPrimaView extends javax.swing.JFrame {
+public class VisualizarMateriaPrimaView extends javax.swing.JFrame {
 
     private final BuscarMateriaPrimaService buscarMateriaPrimaService;
     
-    public VisualizaMateriaPrimaView() {
+    public VisualizarMateriaPrimaView() {
         initComponents();
         buscarMateriaPrimaService = new BuscarMateriaPrimaService();
     }
@@ -33,7 +33,8 @@ public class VisualizaMateriaPrimaView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVisualizarMateriaPrima = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consultar Matérias-Primas");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -48,7 +49,7 @@ public class VisualizaMateriaPrimaView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Descrição", "Valor", "Quantidade", "Und.Medida", "Tipo Mat. Prima"
+                "Nome", "Descrição", "Valor", "Quantidade", "Unidade Medida", "Tipo"
             }
         ));
         jScrollPane1.setViewportView(tblVisualizarMateriaPrima);
@@ -77,6 +78,7 @@ public class VisualizaMateriaPrimaView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -117,20 +119,21 @@ public class VisualizaMateriaPrimaView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VisualizaMateriaPrimaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarMateriaPrimaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VisualizaMateriaPrimaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarMateriaPrimaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VisualizaMateriaPrimaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarMateriaPrimaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VisualizaMateriaPrimaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarMateriaPrimaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VisualizaMateriaPrimaView().setVisible(true);
+                new VisualizarMateriaPrimaView().setVisible(true);
             }
         });
     }
