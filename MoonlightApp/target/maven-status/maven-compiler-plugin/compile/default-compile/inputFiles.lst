@@ -1,69 +1,95 @@
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\converters\MateriaPrimaConverter.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\DefaultValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\ProdutoProcessoModel.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\CriarProdutoView.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\produtos\AtualizarProcessoProdutoDTO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\TipoMateriaPrimaValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\BuscarProdutoService.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\DTO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\TipoProdutoDAO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\dtos\UnidadeMedidaDTOValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\produtos\AtualizarInformacoesProdutoDTO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\BaseModel.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\TipoProdutoValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\BaseDTO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\contracts\ModelDAO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\TipoMateriaPrimaDAO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\AtualizarProdutoProcessoService.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\ItensProdutoDAO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\CalcularValorRecomendadoProdutoService.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\AtualizarProdutoItemService.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\dtos\TipoProdutoDTOValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\contracts\ModelValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\MoonlightApp.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\converters\TipoProdutoConverter.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\ProcessoDAO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\ProdutoValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\produtos\AtualizarItemProdutoDTO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\CalcularValorProcessoService.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\ValorProdutoDAO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\contracts\BuscarPorIdDAO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\produtos\ItemProdutoDTO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\BaseValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\ProcessoModel.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\ProdutoDAO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\UnidadeMedidaModel.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\ProdutoModel.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\CriarProdutoService.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\converters\contracts\ModelConverter.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\materiasprimas\MateriaPrimaDTO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\DeletarProdutoService.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\MateriaPrimaValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\dtos\ItemProdutoDTOValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\converters\ProcessoConverter.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\unidadesmedidas\UnidadeMedidaDTO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\ValorProdutoValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\TipoMateriaPrimaModel.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\UnidadeMedidaDAO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\processos\ProcessoDTO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\dtos\ProcessoDTOValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\MateriaPrimaModel.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\contracts\BuscarPorNomeDAO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\produtos\ProdutoDTO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\UnidadeMedidaValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\AtualizarProdutoValorRecomendadoService.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\converters\UnidadeMedidaConverter.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\AtualizarProdutoInformacoesService.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\converters\ProdutoConverter.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\contracts\IsCadastrado.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\TipoProdutoModel.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\ResultadoValidacao.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\ProdutoProcessosDAO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\contracts\DTOValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\ConexaoBanco.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\ValorProdutoModel.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\ProcessoValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\ItemProdutoModel.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\MateriaPrimaDAO.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\dtos\ProdutoDTOValidator.java
-C:\Users\victor.santos8\Desktop\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\produtos\TipoProdutoDTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\converters\contracts\ModelConverter.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\materiasprimas\MateriaPrimaDTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\materiasprimas\DeletarMateriaPrimaService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\produtos\AtualizarProdutoItensView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\contracts\ModelDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\CalcularValorProcessoService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\materiasprimas\CriarMateriaPrimaService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\processos\ProcessoDTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\materiasprimas\AtualizarMateriaPrimaService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\ProdutoValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\produtos\AtualizarItemProdutoDTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\converters\TipoProdutoConverter.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\TipoProdutoDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\BaseModel.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\UnidadeMedidaModel.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\MateriaPrimaDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\produtos\VisualizarProdutoItensView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\contracts\BuscarPorNomeDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\BaseValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\TipoProdutoModel.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\AtualizarProdutoInformacoesService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\RelatorioDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\contracts\IsCadastrado.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\ProdutoProcessosDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\ItemProdutoModel.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\DTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\unidadesmedidas\VisualizarUnidadesMedidasView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\TipoProdutoValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\ProcessoModel.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\contracts\ModelValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\produtos\CriarProdutoView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\relatorios\ProdutoFabricacaoMaisCaroRelatorio.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\UnidadeMedidaDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\contracts\DTOValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\CriarProdutoService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\produtos\AtualizarProdutoProcessosView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\relatorios\BaseProdutoRelatorio.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\ConexaoBanco.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\relatorios\RelatorioProdutoService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\MateriaPrimaValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\materiaprimas\VisualizaMateriaPrimaView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\dtos\UnidadeMedidaDTOValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\TipoMateriaPrimaValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\ValorProdutoValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\AtualizarProdutoProcessoService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\AtualizarProdutoValorRecomendadoService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\produtos\RemoverProdutoView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\tipos\VisualizarTiposView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\produtos\TipoProdutoDTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\TipoMateriaPrimaDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\dtos\ItemProdutoDTOValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\produtos\VisualizarProdutoProcessosView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\materiasprimas\BuscarMateriaPrimaService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\dtos\MateriaPrimaDTOValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\converters\ProcessoConverter.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\MoonlightApp.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\CalcularValorRecomendadoProdutoService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\produtos\AtualizarProdutoView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\materiasprimas\AtualizarMateriaPrimaDTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\produtos\VisualizarProdutoView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\BaseDTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\DeletarProdutoService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\unidadesmedidas\UnidadeMedidaDTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\relatorios\ProdutoMaisCaroRelatorio.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\AtualizarProdutoItemService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\DefaultValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\TipoMateriaPrimaModel.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\relatorios\RelatorioView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\processos\RemoverProcessoService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\ValorProdutoDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\ProdutoProcessoModel.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\dtos\TipoProdutoDTOValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\ProdutoModel.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\produtos\AtualizarInformacoesProdutoDTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\ItensProdutoDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\produtos\ProdutoDTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\produtos\AtualizarProcessoProdutoDTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\materiaprimas\RemoverMateriaPrimaView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\views\principal\MenuPrincipalView.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\ProdutoDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\dtos\ProcessoDTOValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\ValorProdutoModel.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\converters\MateriaPrimaConverter.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\ProcessoValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\relatorios\ProdutoFabricacaoMaisBaratoRelatorio.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\MateriaPrimaModel.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\ResultadoValidacao.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\models\relatorios\ProdutoMaisBaratoRelatorio.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\contracts\BuscarPorIdDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\daos\ProcessoDAO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\dtos\produtos\ItemProdutoDTO.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\models\UnidadeMedidaValidator.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\converters\ProdutoConverter.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\services\produtos\BuscarProdutoService.java
+C:\Users\gusta\OneDrive\Área de Trabalho\Moonlight\MoonlightApp\src\main\java\com\moonlight\moonlightapp\validators\dtos\ProdutoDTOValidator.java

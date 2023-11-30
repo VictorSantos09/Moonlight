@@ -55,6 +55,11 @@ public class RemoverProdutoView extends javax.swing.JFrame {
         });
 
         cbProdutosParaRemover.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cbProdutosParaRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbProdutosParaRemoverActionPerformed(evt);
+            }
+        });
 
         lblSelecioneProdutoParaRemover.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblSelecioneProdutoParaRemover.setText("Selecione o Produto");
@@ -114,6 +119,10 @@ public class RemoverProdutoView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbProdutosParaRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProdutosParaRemoverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbProdutosParaRemoverActionPerformed
 
     private void btnCancelarRemocaoProdutoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCancelarRemocaoProdutoActionPerformed
         this.setVisible(false);
