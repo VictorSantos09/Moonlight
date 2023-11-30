@@ -26,7 +26,7 @@ public class CriarMateriaPrimaService {
             return resultadoValidacaoEntrada;
         }
 
-        if (!unidadeMedidaDAO.isCadastradoPorNome(dto.getSiglaUnidadeMedida())) {
+        if (!unidadeMedidaDAO.isCadastrado(dto.getSiglaUnidadeMedida())) {
             return BaseDTO.buildFalha("'unidade de medida não encontrado");
         }
 
