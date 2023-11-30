@@ -52,7 +52,7 @@ public class ProcessoDAO extends ConexaoBanco
             Connection conexao = connect();
 
             PreparedStatement ps = conexao
-                    .prepareStatement("INSERT INTO processos (ETAPA, CUSTO, ID_PRODUTO) VALUES (?, ?, ?)");
+                    .prepareStatement("INSERT INTO processos (ETAPA, CUSTO) VALUES (?, ?)");
             ps.setString(1, model.getEtapa());
             ps.setDouble(2, model.getCusto());
 
