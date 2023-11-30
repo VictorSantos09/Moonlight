@@ -135,7 +135,7 @@ public class AtualizarProdutoItensView extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, true
@@ -272,18 +272,18 @@ public class AtualizarProdutoItensView extends javax.swing.JFrame {
         }
 
         else {
-            Hashtable<String, Integer> nomesMateriasPrimasQuantidade = new Hashtable<>();
+            Hashtable<String, Float> nomesMateriasPrimasQuantidade = new Hashtable<>();
             boolean isValido = true;
 
             for (int i = 0; i < quantidadeMateriasPrimasAtuais; i++) {
                 String nomeMateriaPrima = tbMateriasPrimasAtuais.getValueAt(i, 0).toString();
                 
-                if ((Integer) tbMateriasPrimasAtuais.getValueAt(i, 3) == null) {
+                if ((Float) tbMateriasPrimasAtuais.getValueAt(i, 3) == null) {
                     JOptionPane.showMessageDialog(null,
                             "informe a quantidade para a matéria prima " + nomeMateriaPrima);
                     isValido = false;
                 } else {
-                    var quantidadeMateriaPrima = (Integer) tbMateriasPrimasAtuais.getValueAt(i, 3);
+                    var quantidadeMateriaPrima = (Float) tbMateriasPrimasAtuais.getValueAt(i, 3);
                     nomesMateriasPrimasQuantidade.put(nomeMateriaPrima, quantidadeMateriaPrima);
                 }
             }
@@ -302,16 +302,16 @@ public class AtualizarProdutoItensView extends javax.swing.JFrame {
 
     private void cbProdutosItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_cbProdutosItemStateChanged
         var produtoSelecionado = (ProdutoModel) cbProdutos.getSelectedItem();
-        var itensProduto = itensProdutoDAO.buscarMateriasPrimasDoProduto(produtoSelecionado.getId());
+        var itensProduto = itensProdutoDAO.buscarPorProdutoId(produtoSelecionado.getId());
 
         DefaultTableModel tabela = (DefaultTableModel) tbMateriasPrimasAtuais.getModel();
         tabela.setRowCount(0);
 
         itensProduto.forEach(ip -> {
             var materiaPrimaObj = new Object[] {
-                    ip.getNome(),
-                    ip.getUnidadeMedida().getNome(),
-                    ip.getTipoMateriaPrima().getNome(),
+                    ip.getMateriaPrima().getNome(),
+                    ip.getMateriaPrima().getUnidadeMedida().getNome(),
+                    ip.getMateriaPrima().getTipoMateriaPrima().getNome(),
                     ip.getQuantidade()
             };
 

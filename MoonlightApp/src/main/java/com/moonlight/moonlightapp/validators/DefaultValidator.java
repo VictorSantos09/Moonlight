@@ -9,11 +9,15 @@ public abstract class DefaultValidator {
         return input == null;
     }
 
-    public static boolean isZeroOrNegativte(Integer input) {
+    public static boolean isZeroOrNegative(Integer input) {
         return isNull(input) || input <= 0;
     }
 
     public static boolean isZeroOrNegative(Double input) {
+        return isNull(input) || input <= 0;
+    }
+
+    public static boolean isZeroOrNegative(Float input) {
         return isNull(input) || input <= 0;
     }
 }

@@ -36,7 +36,7 @@ CREATE TABLE `itens_produtos` (
   KEY `IND_MATERIAS_PRIMAS_ITENS_PRODUTOS_002` (`ID_PRODUTO`),
   CONSTRAINT `FK_MATERIAS_PRIMAS_ITENS_PRODUTOS_002` FOREIGN KEY (`ID_MATERIA_PRIMA`) REFERENCES `materias_primas` (`ID_MATERIA_PRIMA`),
   CONSTRAINT `FK_PRODUTOS_ITENS_PRODUTOS_001` FOREIGN KEY (`ID_PRODUTO`) REFERENCES `produtos` (`ID_PRODUTO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,6 +45,7 @@ CREATE TABLE `itens_produtos` (
 
 LOCK TABLES `itens_produtos` WRITE;
 /*!40000 ALTER TABLE `itens_produtos` DISABLE KEYS */;
+INSERT INTO `itens_produtos` VALUES (5,1,0000000002,1,5.99),(6,1,0000000002,9,3.49),(7,0.25,0000000002,10,1.00),(8,1,0000000002,11,2.99),(9,4,0000000002,12,3.96),(10,0.1,0000000002,19,0.20),(11,1,0000000001,6,8.99),(12,0.5,0000000001,9,1.75),(13,1.5,0000000001,1,8.99),(14,1,0000000001,10,3.99);
 /*!40000 ALTER TABLE `itens_produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +71,7 @@ CREATE TABLE `materias_primas` (
   KEY `IND_TIPOS_MATERIAS_PRIMAS_MATERIAS_PRIMAS_002` (`ID_TIPO_MATERIA_PRIMA`),
   CONSTRAINT `FK_TIPOS_MATERIAS_PRIMAS_MATERIAS_PRIMAS_002` FOREIGN KEY (`ID_TIPO_MATERIA_PRIMA`) REFERENCES `tipos_materias_primas` (`ID_TIPO_MATERIA_PRIMA`),
   CONSTRAINT `FK_UNIDADES_MEDIDAS_MATERIAS_PRIMAS_001` FOREIGN KEY (`ID_UNIDADE_MEDIDA`) REFERENCES `unidades_medidas` (`ID_UNIDADE_MEDIDA`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +80,7 @@ CREATE TABLE `materias_primas` (
 
 LOCK TABLES `materias_primas` WRITE;
 /*!40000 ALTER TABLE `materias_primas` DISABLE KEYS */;
-INSERT INTO `materias_primas` VALUES (1,'Morango','Morango fresco',5.99,500,6,1),(2,'Tomate','Tomate maduro',3.49,600,4,1),(3,'Carne de Frango','Peito de frango',10.99,800,1,4),(4,'Farinha de Trigo','Farinha de trigo refinada',2.99,1000,4,11),(5,'Azeite de Oliva','Azeite de oliva extra virgem',15.99,500,1,24),(6,'Chocolate Amargo','Chocolate amargo 70%',8.99,200,4,28),(7,'Feijão Preto','Feijão preto',4.99,750,4,11),(8,'Queijo Parmesão','Queijo parmesão ralado',7.99,250,1,38),(9,'Leite Condensado','Leite condensado',3.49,400,6,8),(10,'Leite','Leite integral',3.99,1000,6,8),(11,'Creme de Leite','Creme de leite',2.99,500,6,8),(12,'Ovo','Ovo branco',0.99,30,6,23),(13,'Manteiga','Manteiga sem sal',5.99,500,1,23),(14,'Açúcar','Açúcar refinado',2.99,1000,4,16),(15,'Sal','Sal refinado',1.99,1000,4,25),(16,'Pimenta do Reino','Pimenta do reino moída',3.99,100,4,25),(17,'Café','Café torrado e moído',5.99,500,6,27),(18,'Cebolinha','Cebolinha fresca',1.99,100,6,26),(19,'Salsinha','Salsinha fresca',1.99,100,6,26),(20,'Alho','Alho fresco',2.99,100,6,26),(21,'Cebola','Cebola roxa',1.99,100,6,2),(22,'Alface','Alface americana',1.99,100,6,2),(23,'Pimentão','Pimentão verde',1.99,100,6,2),(24,'Cenoura','Cenoura',1.99,100,6,3),(25,'Batata','Batata inglesa',1.99,100,6,3),(26,'Abobrinha','Abobrinha italiana',1.99,100,6,3),(27,'Abacaxi','Abacaxi pérola',1.99,100,6,1),(28,'Banana','Banana prata',1.99,100,6,1),(29,'Arroz Integral','Arroz integral',3.29,1000,4,11),(30,'Atum em Lata','Atum em água enlatado',9.99,150,6,5),(31,'Açaí','Polpa de açaí congelada',12.99,500,5,1),(32,'Batata Doce','Batata doce média',2.49,400,4,3),(33,'Mel','Mel puro',7.99,250,1,17),(34,'Sal Marinho','Sal marinho grosso',2.29,500,4,26),(35,'Salmão Fresco','Filé de salmão fresco',15.99,300,1,5);
+INSERT INTO `materias_primas` VALUES (1,'Morango','Morango fresco',5.99,500,1,1),(2,'Tomate','Tomate maduro',3.49,600,1,1),(3,'Carne de Frango','Peito de frango',10.99,800,1,4),(4,'Farinha de Trigo','Farinha de trigo refinada',2.99,1000,1,11),(5,'Azeite de Oliva','Azeite de oliva extra virgem',15.99,500,2,24),(6,'Chocolate Amargo','Chocolate amargo 70%',8.99,200,1,28),(7,'Feijão Preto','Feijão preto',4.99,750,1,11),(8,'Queijo Parmesão','Queijo parmesão ralado',7.99,250,1,38),(9,'Leite Condensado','Leite condensado',3.49,400,6,8),(10,'Leite','Leite integral',3.99,1000,2,8),(11,'Creme de Leite','Creme de leite',2.99,500,6,8),(12,'Ovo','Ovo branco',0.99,30,3,23),(13,'Manteiga','Manteiga sem sal',5.99,500,1,23),(14,'Açúcar','Açúcar refinado',2.99,1000,1,16),(15,'Sal','Sal refinado',1.99,1000,1,25),(16,'Pimenta do Reino','Pimenta do reino moída',3.99,100,1,25),(17,'Café','Café torrado e moído',5.99,500,1,27),(18,'Cebolinha','Cebolinha fresca',1.99,100,1,26),(19,'Salsinha','Salsinha fresca',1.99,100,1,26),(20,'Alho','Alho fresco',2.99,100,1,26),(21,'Cebola','Cebola roxa',1.99,100,1,2),(22,'Alface','Alface americana',1.99,100,1,2),(23,'Pimentão','Pimentão verde',1.99,100,1,2);
 /*!40000 ALTER TABLE `materias_primas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,7 +134,7 @@ CREATE TABLE `produtos` (
   CONSTRAINT `fk_PRODUTOS_TIPOS_PRODUTOS1` FOREIGN KEY (`ID_TIPO_PRODUTO`) REFERENCES `tipos_produtos` (`ID_TIPO_PRODUTO`),
   CONSTRAINT `fk_PRODUTOS_UNIDADES_MEDIDAS1` FOREIGN KEY (`ID_UNIDADE_MEDIDA`) REFERENCES `unidades_medidas` (`ID_UNIDADE_MEDIDA`),
   CONSTRAINT `FK_VALORES_PRODUTOS_PRODUTOS` FOREIGN KEY (`ID_VALOR_PRODUTO`) REFERENCES `valores_produtos` (`ID_VALOR_PRODUTO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,6 +143,7 @@ CREATE TABLE `produtos` (
 
 LOCK TABLES `produtos` WRITE;
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
+INSERT INTO `produtos` VALUES (0000000001,'BOLO DE CHOCOLATE AMARGO','FEITO COM CHOCOLATE',1,3,13),(0000000002,'BOLO DE MORANGO','DOCE',2,3,13);
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +164,7 @@ CREATE TABLE `produtos_processos` (
   KEY `IND_PRODUTOS_PROCESSOS_002` (`ID_PRODUTO`),
   CONSTRAINT `FK_PRODUTOS_PROCESSOS_PROCESSOS` FOREIGN KEY (`ID_PROCESSO`) REFERENCES `processos` (`ID_PROCESSO`),
   CONSTRAINT `FK_PRODUTOS_PROCESSOS_PRODUTOS` FOREIGN KEY (`ID_PRODUTO`) REFERENCES `produtos` (`ID_PRODUTO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,6 +173,7 @@ CREATE TABLE `produtos_processos` (
 
 LOCK TABLES `produtos_processos` WRITE;
 /*!40000 ALTER TABLE `produtos_processos` DISABLE KEYS */;
+INSERT INTO `produtos_processos` VALUES (1,0000000001,1),(2,0000000001,17),(3,0000000001,18),(4,0000000002,1),(5,0000000002,2),(6,0000000002,4),(7,0000000002,5),(8,0000000002,13);
 /*!40000 ALTER TABLE `produtos_processos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,7 +244,7 @@ CREATE TABLE `unidades_medidas` (
   UNIQUE KEY `IDX_UNIDADES_MEDIDAS_001` (`ID_UNIDADE_MEDIDA`),
   UNIQUE KEY `IDX_UNIDADES_MEDIDAS_002` (`SIGLA`),
   UNIQUE KEY `IDX_UNIDADES_MEDIDAS_003` (`NOME`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,7 +253,7 @@ CREATE TABLE `unidades_medidas` (
 
 LOCK TABLES `unidades_medidas` WRITE;
 /*!40000 ALTER TABLE `unidades_medidas` DISABLE KEYS */;
-INSERT INTO `unidades_medidas` VALUES (1,'QUILOGRAMA','KG'),(2,'LITRO','LT'),(3,'COLHER DE SOPA','CS'),(4,'GRAMAS','GR'),(5,'MILIGRAMA','MG'),(6,'MILILITRO','ML'),(7,'UNIDADE','UN'),(8,'COLHER DE CHÁ','CT'),(9,'COPO','CP'),(10,'PACOTE','PC'),(11,'XÍCARA','XC'),(12,'GARRAFA','GF'),(13,'FOLHA','FL'),(14,'FATIA','FT'),(15,'POTE','PT'),(16,'BANDEJA','BD'),(17,'PACOTE PEQUENO','PP'),(18,'PACOTE GRANDE','PG'),(19,'GALÃO','GL'),(20,'BARRA','BR');
+INSERT INTO `unidades_medidas` VALUES (1,'QUILOGRAMA','KG'),(2,'LITRO','LT'),(3,'UNIDADE','UN'),(4,'PACOTE PEQUENO','PE'),(5,'PACOTE GRANDE','PG'),(6,'CAIXA','CX'),(7,'BARRA','BR');
 /*!40000 ALTER TABLE `unidades_medidas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +270,7 @@ CREATE TABLE `valores_produtos` (
   `VALOR` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_VALOR_PRODUTO`),
   UNIQUE KEY `IDX_VALORES_PRODUTOS_001` (`ID_VALOR_PRODUTO`) /*!80000 INVISIBLE */
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,6 +279,7 @@ CREATE TABLE `valores_produtos` (
 
 LOCK TABLES `valores_produtos` WRITE;
 /*!40000 ALTER TABLE `valores_produtos` DISABLE KEYS */;
+INSERT INTO `valores_produtos` VALUES (1,125.25,80.00),(2,192.73,200.00);
 /*!40000 ALTER TABLE `valores_produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,11 +309,9 @@ SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `vw_valortotal_itensproduto` AS SELECT 
  1 AS `PRODUTO`,
- 1 AS `VALOR_VENDA_PRODUTO`,
- 1 AS `NOME_MATERIA_PRIMA`,
- 1 AS `VALOR_MATERIA_PRIMA`,
- 1 AS `QUANTIDADE_UTILIZADA`,
- 1 AS `SUBTOTAL`*/;
+ 1 AS `VALOR`,
+ 1 AS `VALOR_RECOMENDADO`,
+ 1 AS `SUBTOTAL_ITENS`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -525,7 +527,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spCriarItensProduto`(idProduto INT, idMateriaPrima INT, quantidade INT, subTotal DOUBLE)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spCriarItensProduto`(idProduto INT, idMateriaPrima INT, quantidade FLOAT, subTotal DOUBLE)
 BEGIN
 	INSERT INTO itens_produtos (ID_PRODUTO, ID_MATERIA_PRIMA, QUANTIDADE, SUBTOTAL) VALUES
     (idProduto, idMateriaPrima, quantidade, subTotal);
@@ -672,7 +674,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vw_valortotal_itensproduto` AS select `pr`.`NOME` AS `PRODUTO`,`vp`.`VALOR` AS `VALOR_VENDA_PRODUTO`,`mp`.`NOME` AS `NOME_MATERIA_PRIMA`,`mp`.`VALOR` AS `VALOR_MATERIA_PRIMA`,sum(`ip`.`QUANTIDADE`) AS `QUANTIDADE_UTILIZADA`,sum(`ip`.`SUBTOTAL`) AS `SUBTOTAL` from (((`itens_produtos` `ip` join `materias_primas` `mp` on((`mp`.`ID_MATERIA_PRIMA` = `ip`.`ID_MATERIA_PRIMA`))) join `produtos` `pr` on((`pr`.`ID_PRODUTO` = `ip`.`ID_PRODUTO`))) join `valores_produtos` `vp` on((`vp`.`ID_VALOR_PRODUTO` = `pr`.`ID_VALOR_PRODUTO`))) group by `pr`.`NOME` */;
+/*!50001 VIEW `vw_valortotal_itensproduto` AS select `pr`.`NOME` AS `PRODUTO`,`vp`.`VALOR` AS `VALOR`,`vp`.`VALOR_RECOMENDADO` AS `VALOR_RECOMENDADO`,sum(`ip`.`SUBTOTAL`) AS `SUBTOTAL_ITENS` from (((`itens_produtos` `ip` join `materias_primas` `mp` on((`mp`.`ID_MATERIA_PRIMA` = `ip`.`ID_MATERIA_PRIMA`))) join `produtos` `pr` on((`pr`.`ID_PRODUTO` = `ip`.`ID_PRODUTO`))) join `valores_produtos` `vp` on((`vp`.`ID_VALOR_PRODUTO` = `pr`.`ID_VALOR_PRODUTO`))) group by `pr`.`NOME` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -758,4 +760,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-25 20:45:24
+-- Dump completed on 2023-11-27 14:39:50

@@ -53,7 +53,7 @@ public class AtualizarProdutoItemService {
         return BaseDTO.buildSucesso("produto e matéria prima atualizados");
     }
 
-    private Double calcularSubtotal(MateriaPrimaModel materiaPrima, Integer quantidade) {
+    private Double calcularSubtotal(MateriaPrimaModel materiaPrima, Float quantidade) {
         return materiaPrima.getValor() * quantidade;
 
     }
@@ -69,7 +69,7 @@ public class AtualizarProdutoItemService {
                 erros.add("nome da matéria prima inválida");
             }
 
-            if (DefaultValidator.isZeroOrNegativte(dto.getMateriasPrimasQuantidade().get(m))) {
+            if (DefaultValidator.isZeroOrNegative(dto.getMateriasPrimasQuantidade().get(m))) {
                 erros.add("quantidade da matéria prima inválida");
             }
         });
