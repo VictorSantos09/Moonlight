@@ -5,6 +5,7 @@
 package com.moonlight.moonlightapp.views.principal;
 
 import com.moonlight.moonlightapp.services.produtos.DeletarProdutoService;
+import com.moonlight.moonlightapp.views.materiaprimas.AtualizarMateriaPrimaView;
 import com.moonlight.moonlightapp.views.materiaprimas.CriarMateriaPrimaView;
 import com.moonlight.moonlightapp.views.materiaprimas.RemoverMateriaPrimaView;
 import com.moonlight.moonlightapp.views.materiaprimas.VisualizarMateriaPrimaView;
@@ -63,6 +64,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         mnVisualizarMateriasPrimas = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         MnCriarMateriaPrima = new javax.swing.JMenuItem();
+        mnAtualizarMateriaPrima = new javax.swing.JMenuItem();
         mnRemoverMateriaPrima = new javax.swing.JMenuItem();
         mnConsultarMateriasPrimas = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -169,6 +171,13 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         });
         jMenu2.add(MnCriarMateriaPrima);
 
+        mnAtualizarMateriaPrima.setText("Atualizar");
+        mnAtualizarMateriaPrima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnAtualizarMateriaPrimaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnAtualizarMateriaPrima);
         mnRemoverMateriaPrima.setText("Remover");
         mnRemoverMateriaPrima.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -379,6 +388,10 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         view.setVisible(true);
     }//GEN-LAST:event_mnConsultarProcessoActionPerformed
 
+    private void mnAtualizarMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAtualizarMateriaPrimaActionPerformed
+        AtualizarMateriaPrimaView view = new AtualizarMateriaPrimaView();
+        view.setVisible((true));
+    }//GEN-LAST:event_mnAtualizarMateriaPrimaActionPerformed
     private void mnRemoverMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnRemoverMateriaPrimaActionPerformed
         RemoverMateriaPrimaView view = new RemoverMateriaPrimaView();
         view.setVisible(true);
@@ -442,6 +455,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel lblDicaMenuSuperior;
     private javax.swing.JLabel lblMoonlight;
     private javax.swing.JMenuItem mnAdicionarProduto;
+    private javax.swing.JMenuItem mnAtualizarMateriaPrima;
     private javax.swing.JMenuItem mnAtualizarMateriasPrimas;
     private javax.swing.JMenuItem mnAtualizarProcesso;
     private javax.swing.JMenuItem mnAtualizarProcessos;

@@ -92,6 +92,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnCriarMateriaPrimaActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnAtualizarMateriaPrima">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Atualizar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnAtualizarMateriaPrimaActionPerformed"/>
             <MenuItem class="javax.swing.JMenuItem" name="mnRemoverMateriaPrima">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Remover"/>

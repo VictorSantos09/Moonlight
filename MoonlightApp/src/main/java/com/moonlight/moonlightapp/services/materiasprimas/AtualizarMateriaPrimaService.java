@@ -33,7 +33,7 @@ public class AtualizarMateriaPrimaService {
             return BaseDTO.buildFalha("matéria-prima não encontrado");
         }
 
-        if (!unidadeMedidaDAO.isCadastradoPorNome(dto.getSiglaUnidadeMedida())) {
+        if (!unidadeMedidaDAO.isCadastrado(dto.getSiglaUnidadeMedida())) {
             return BaseDTO.buildFalha("unidade de medida não encontrada");
         }
 
