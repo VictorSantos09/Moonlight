@@ -13,7 +13,6 @@ import com.moonlight.moonlightapp.validators.DefaultValidator;
  * @author amanda.medeiros1
  */
 public class AtualizarMateriaPrimaService {
-
     private final MateriaPrimaDAO materiaPrimaDAO;
     private final UnidadeMedidaDAO unidadeMedidaDAO;
     private final TipoMateriaPrimaDAO tipoMateriaPrimaDAO;
@@ -22,7 +21,6 @@ public class AtualizarMateriaPrimaService {
         materiaPrimaDAO = new MateriaPrimaDAO();
         unidadeMedidaDAO = new UnidadeMedidaDAO();
         tipoMateriaPrimaDAO = new TipoMateriaPrimaDAO();
-        ;
     }
 
     public BaseDTO atualizar(AtualizarMateriaPrimaDTO dto) {
@@ -82,7 +80,14 @@ public class AtualizarMateriaPrimaService {
             return BaseDTO.buildFalha("tipo do produto inválido");
         }
 
+        if(DefaultValidator.isZeroOrNegative(dto.getQuantidade())){
+            return BaseDTO.buildFalha("quantidade inválida");
+        }
+
+        if(DefaultValidator.isZeroOrNegative(dto.getValor())){
+            return BaseDTO.buildFalha("valor inválido");
+        }
+
         return BaseDTO.buildSucesso("dados inválidos");
     }
-
 }

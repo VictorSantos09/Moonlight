@@ -43,8 +43,8 @@ public class MateriaPrimaDAO extends ConexaoBanco
         }
     }
 
-    public List<MateriaPrimaModel> buscarTodos() throws RuntimeException{
-          try {
+    public List<MateriaPrimaModel> buscarTodos() throws RuntimeException {
+        try {
             Connection conexao = connect();
             PreparedStatement ps = conexao.prepareStatement("SELECT * FROM materias_primas");
             ResultSet rs = ps.executeQuery();
@@ -108,8 +108,12 @@ public class MateriaPrimaDAO extends ConexaoBanco
     @Override
     public BaseDTO deletar(MateriaPrimaModel model) throws RuntimeException {
         try {
+            if (isUtilizado(model.getId())) {
+                return BaseDTO.buildFalha("matéria-prima sendo utilizada por 1 ou mais produtos");
+            }
+
             Connection conexao = connect();
-            PreparedStatement ps = conexao.prepareStatement("DELETE FROM materias_primas WHERE id = ?");
+            PreparedStatement ps = conexao.prepareStatement("DELETE FROM materias_primas WHERE ID_MATERIA_PRIMA = ?");
             ps.setInt(1, model.getId());
             ps.execute();
 
@@ -161,13 +165,13 @@ public class MateriaPrimaDAO extends ConexaoBanco
 
             return materiaPrima;
         } else {
-            return  null;
+            return null;
         }
     }
 
-    private List<MateriaPrimaModel> buildList(ResultSet rs) throws SQLException{
+    private List<MateriaPrimaModel> buildList(ResultSet rs) throws SQLException {
         List<MateriaPrimaModel> output = new ArrayList<>();
-           while (rs.next()) {
+        while (rs.next()) {
             int id = rs.getInt(1);
             String nome = rs.getString(2);
             String descricao = rs.getString(3);
@@ -195,5 +199,14 @@ public class MateriaPrimaDAO extends ConexaoBanco
 
     private TipoMateriaPrimaModel buscarTipoMateriaPrimaPorId(int id) {
         return tipoMateriaPrimaDAO.buscarPorId(id);
+    }
+
+    public Boolean isUtilizado(Integer id) throws SQLException {
+        var conexao = connect();
+        var ps = conexao.prepareStatement("SELECT * FROM itens_produtos WHERE ID_MATERIA_PRIMA = ? LIMIT 1");
+        ps.setInt(1, id);
+        var rs = ps.executeQuery();
+
+        return rs.next();
     }
 }
