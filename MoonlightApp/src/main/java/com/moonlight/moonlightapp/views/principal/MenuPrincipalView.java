@@ -5,6 +5,7 @@
 package com.moonlight.moonlightapp.views.principal;
 
 import com.moonlight.moonlightapp.services.produtos.DeletarProdutoService;
+import com.moonlight.moonlightapp.views.materiaprimas.AtualizarMateriaPrimaView;
 import com.moonlight.moonlightapp.views.materiaprimas.CriarMateriaPrimaView;
 import com.moonlight.moonlightapp.views.processos.BuscarProcessoView;
 import com.moonlight.moonlightapp.views.processos.CriarProcessoView;
@@ -60,6 +61,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         mnVisualizarMateriasPrimas = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         MnCriarMateriaPrima = new javax.swing.JMenuItem();
+        mnAtualizarMateriaPrima = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         mnCriarProcesso = new javax.swing.JMenuItem();
         mnRemoverProcesso = new javax.swing.JMenuItem();
@@ -164,37 +166,17 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         });
         jMenu2.add(MnCriarMateriaPrima);
 
+        mnAtualizarMateriaPrima.setText("Atualizar");
+        mnAtualizarMateriaPrima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnAtualizarMateriaPrimaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnAtualizarMateriaPrima);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Processos");
-
-        mnCriarProcesso.setText("Criar");
-        mnCriarProcesso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnCriarProcessoActionPerformed(evt);
-            }
-        });
-        jMenu3.add(mnCriarProcesso);
-
-        mnRemoverProcesso.setText("Remover");
-        mnRemoverProcesso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnRemoverProcessoActionPerformed(evt);
-            }
-        });
-        jMenu3.add(mnRemoverProcesso);
-
-        mnAtualizarProcesso.setText("Atualizar");
-        jMenu3.add(mnAtualizarProcesso);
-
-        mnConsultarProcesso.setText("Consultar");
-        mnConsultarProcesso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnConsultarProcessoActionPerformed(evt);
-            }
-        });
-        jMenu3.add(mnConsultarProcesso);
-
 
         mnCriarProcesso.setText("Criar");
         mnCriarProcesso.addActionListener(new java.awt.event.ActionListener() {
@@ -381,6 +363,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         view.setVisible(true);
     }//GEN-LAST:event_mnConsultarProcessoActionPerformed
 
+    private void mnAtualizarMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAtualizarMateriaPrimaActionPerformed
+        AtualizarMateriaPrimaView view = new AtualizarMateriaPrimaView();
+        view.setVisible((true));
+    }//GEN-LAST:event_mnAtualizarMateriaPrimaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -430,6 +417,7 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel lblDicaMenuSuperior;
     private javax.swing.JLabel lblMoonlight;
     private javax.swing.JMenuItem mnAdicionarProduto;
+    private javax.swing.JMenuItem mnAtualizarMateriaPrima;
     private javax.swing.JMenuItem mnAtualizarMateriasPrimas;
     private javax.swing.JMenuItem mnAtualizarProcesso;
     private javax.swing.JMenuItem mnAtualizarProcessos;

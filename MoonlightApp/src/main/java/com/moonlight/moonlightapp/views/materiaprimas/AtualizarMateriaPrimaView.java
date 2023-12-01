@@ -5,11 +5,16 @@
 package com.moonlight.moonlightapp.views.materiaprimas;
 
 import com.moonlight.moonlightapp.daos.MateriaPrimaDAO;
+import com.moonlight.moonlightapp.daos.TipoMateriaPrimaDAO;
 import com.moonlight.moonlightapp.daos.UnidadeMedidaDAO;
+import com.moonlight.moonlightapp.dtos.materiasprimas.AtualizarMateriaPrimaDTO;
+import com.moonlight.moonlightapp.dtos.unidadesmedidas.UnidadeMedidaDTO;
 import com.moonlight.moonlightapp.models.MateriaPrimaModel;
 import com.moonlight.moonlightapp.models.TipoMateriaPrimaModel;
 import com.moonlight.moonlightapp.models.UnidadeMedidaModel;
+import com.moonlight.moonlightapp.services.materiasprimas.AtualizarMateriaPrimaService;
 import com.moonlight.moonlightapp.services.materiasprimas.BuscarMateriaPrimaService;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,11 +26,16 @@ public class AtualizarMateriaPrimaView extends javax.swing.JFrame {
      * Creates new form AtualizarMateriaPrimaView
      */
 
-    private final BuscarMateriaPrimaService buscarMateriaPrimaService = new BuscarMateriaPrimaService();
-    private final UnidadeMedidaDAO unidadeMedidaDAO = new UnidadeMedidaDAO();
-    private MateriaPrimaDAO materiaPrimaDAO = new MateriaPrimaDAO();
+    private final AtualizarMateriaPrimaService atualizarMateriaPrimaService;
+    private final UnidadeMedidaDAO unidadeMedidaDAO;
+    private final TipoMateriaPrimaDAO tipoMateriaPrimaDAO;
+    private MateriaPrimaDAO materiaPrimaDAO;
 
     public AtualizarMateriaPrimaView() {
+        unidadeMedidaDAO = new UnidadeMedidaDAO();
+        tipoMateriaPrimaDAO = new TipoMateriaPrimaDAO();
+        atualizarMateriaPrimaService = new AtualizarMateriaPrimaService();
+        materiaPrimaDAO = new MateriaPrimaDAO();
         initComponents();
     }
 
@@ -37,7 +47,7 @@ public class AtualizarMateriaPrimaView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollBar1 = new javax.swing.JScrollBar();
@@ -49,15 +59,23 @@ public class AtualizarMateriaPrimaView extends javax.swing.JFrame {
         lblValorMateriaPrima = new javax.swing.JLabel();
         lblUnidadeMedidaMateriaPrima = new javax.swing.JLabel();
         cbTipoMateriaPrima = new javax.swing.JComboBox<>();
-        TxtDescricaoMateriaPrima = new javax.swing.JTextField();
+        txtDescricaoMateriaPrima = new javax.swing.JTextField();
         btnAtualizar = new javax.swing.JButton();
         cbSelecionarMateriaPrima = new javax.swing.JComboBox<>();
         txtNomeMateriaPrima = new javax.swing.JTextField();
         txtValorMateriaPrima = new javax.swing.JTextField();
         cbUnidadeMedidaMateriaPrima = new javax.swing.JComboBox<>();
         lblSelecioneMateriaPrima = new javax.swing.JLabel();
+        lblQuantidade = new javax.swing.JLabel();
+        txtQuantidade = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Atualizar Matéria-Prima");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnVoltar.setText("Voltar");
@@ -85,12 +103,6 @@ public class AtualizarMateriaPrimaView extends javax.swing.JFrame {
         lblUnidadeMedidaMateriaPrima.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblUnidadeMedidaMateriaPrima.setText("Unidade Medida");
 
-        TxtDescricaoMateriaPrima.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtDescricaoMateriaPrimaActionPerformed(evt);
-            }
-        });
-
         btnAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAtualizar.setText("Atualizar");
         btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,178 +111,182 @@ public class AtualizarMateriaPrimaView extends javax.swing.JFrame {
             }
         });
 
-        cbUnidadeMedidaMateriaPrima.setModel(new javax.swing.DefaultComboBoxModel<>());
+        cbSelecionarMateriaPrima.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbSelecionarMateriaPrimaItemStateChanged(evt);
+            }
+        });
 
         lblSelecioneMateriaPrima.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSelecioneMateriaPrima.setText("Atualizar Matéria-Prima");
+        lblSelecioneMateriaPrima.setText("Selecione a Matéria-Prima");
+
+        lblQuantidade.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblQuantidade.setText("Quantidade");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblNomeMateriaPrima)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTipoMateriaPrima)
+                            .addComponent(lblValorMateriaPrima))
+                        .addGap(101, 101, 101)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbTipoMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(55, 55, 55)
+                                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblNomeMateriaPrima)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(lblDescricaoMateriaPrima)
-                                                        .addComponent(lblUnidadeMedidaMateriaPrima))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(cbSelecionarMateriaPrima,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 291,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap())
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(lblTipoMateriaPrima)
-                                                        .addComponent(lblValorMateriaPrima))
-                                                .addGap(101, 101, 101)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                .addComponent(btnAtualizar,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 112,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(55, 55, 55)
-                                                                .addComponent(btnVoltar,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 103,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(18, 18, 18))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                false)
-                                                                                .addComponent(TxtDescricaoMateriaPrima)
-                                                                                .addComponent(txtNomeMateriaPrima,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        312, Short.MAX_VALUE))
-                                                                        .addComponent(cbUnidadeMedidaMateriaPrima,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                217,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(cbTipoMateriaPrima,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                217,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(txtValorMateriaPrima,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                217,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                        68, Short.MAX_VALUE)
-                                                                .addComponent(lblAtualizarMateriaPrima)
-                                                                .addContainerGap())))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblSelecioneMateriaPrima)
-                                .addContainerGap()));
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtDescricaoMateriaPrima)
+                                        .addComponent(txtNomeMateriaPrima, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+                                    .addComponent(txtValorMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                                .addComponent(lblAtualizarMateriaPrima)
+                                .addContainerGap())))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblUnidadeMedidaMateriaPrima)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbUnidadeMedidaMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDescricaoMateriaPrima)
+                                    .addComponent(lblQuantidade))
+                                .addGap(45, 45, 45)
+                                .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbSelecionarMateriaPrima, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblSelecioneMateriaPrima, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addContainerGap())))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                layout.createSequentialGroup()
-                                                        .addContainerGap()
-                                                        .addComponent(txtNomeMateriaPrima,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 39,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(37, 37, 37))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGap(34, 34, 34)
-                                                                .addComponent(lblNomeMateriaPrima))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGap(23, 23, 23)
-                                                                .addComponent(lblAtualizarMateriaPrima)))
-                                                .addGap(57, 57, 57)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblDescricaoMateriaPrima)
-                                        .addComponent(TxtDescricaoMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtValorMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 36,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblValorMateriaPrima))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblSelecioneMateriaPrima)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
-                                                .createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                false)
-                                                        .addComponent(cbUnidadeMedidaMateriaPrima,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, 25,
-                                                                Short.MAX_VALUE)
-                                                        .addComponent(cbSelecionarMateriaPrima))
-                                                .addGap(33, 33, 33)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(cbTipoMateriaPrima,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 28,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(lblTipoMateriaPrima)))
-                                        .addComponent(lblUnidadeMedidaMateriaPrima))
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, 45,
-                                                Short.MAX_VALUE)
-                                        .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(67, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtNomeMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(lblNomeMateriaPrima))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(lblAtualizarMateriaPrima)))
+                        .addGap(57, 57, 57)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDescricaoMateriaPrima)
+                    .addComponent(txtDescricaoMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblValorMateriaPrima)
+                    .addComponent(txtValorMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblSelecioneMateriaPrima)
+                        .addGap(10, 10, 10)
+                        .addComponent(cbSelecionarMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblQuantidade)
+                        .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUnidadeMedidaMateriaPrima)
+                    .addComponent(cbUnidadeMedidaMateriaPrima, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbTipoMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblTipoMateriaPrima)))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbSelecionarMateriaPrimaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbSelecionarMateriaPrimaItemStateChanged
+        var materiaPrimaSelecionado = (MateriaPrimaModel) cbSelecionarMateriaPrima.getSelectedItem();
+        
+        txtDescricaoMateriaPrima.setText(materiaPrimaSelecionado.getDescricao());
+        txtNomeMateriaPrima.setText(materiaPrimaSelecionado.getNome());
+        txtValorMateriaPrima.setText(String.valueOf(materiaPrimaSelecionado.getValor()));
+        txtQuantidade.setText(String.valueOf(materiaPrimaSelecionado.getQuantidade()));
+        
+        cbTipoMateriaPrima.getModel().setSelectedItem(materiaPrimaSelecionado.getTipoMateriaPrima());
+        cbTipoMateriaPrima.setSelectedItem(materiaPrimaSelecionado.getTipoMateriaPrima());
+        cbUnidadeMedidaMateriaPrima.getModel().setSelectedItem(materiaPrimaSelecionado.getUnidadeMedida());
+    }//GEN-LAST:event_cbSelecionarMateriaPrimaItemStateChanged
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cbSelecionarMateriaPrima.removeAll();
+        cbTipoMateriaPrima.removeAll();
+        cbUnidadeMedidaMateriaPrima.removeAll();
+        
+        materiaPrimaDAO.buscarTodos().forEach( materiaPrima -> cbSelecionarMateriaPrima.addItem(materiaPrima));
+        tipoMateriaPrimaDAO.buscarTodos().forEach(tipoMateriaPrima -> cbTipoMateriaPrima.addItem(tipoMateriaPrima));
+        unidadeMedidaDAO.buscarTodos().forEach(unidade -> cbUnidadeMedidaMateriaPrima.addItem(unidade));
+
+        var materiaPrimaSelecionado = (MateriaPrimaModel) cbSelecionarMateriaPrima.getSelectedItem();
+        cbTipoMateriaPrima.setSelectedItem(materiaPrimaSelecionado.getTipoMateriaPrima());
+        cbUnidadeMedidaMateriaPrima.setSelectedItem(materiaPrimaSelecionado.getUnidadeMedida());
+    }//GEN-LAST:event_formWindowOpened
+
+    
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
     }// GEN-LAST:event_btnVoltarActionPerformed
 
-    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAtualizarActionPerformed
-        // TODO add your handling code here:
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAtualizarActionPerformed     
+        var materiaPrimaOriginal = (MateriaPrimaModel) cbSelecionarMateriaPrima.getSelectedItem();
+        var nome = txtNomeMateriaPrima.getText();
+        var descricao = txtDescricaoMateriaPrima.getText();
+        var valor = Double.parseDouble(txtValorMateriaPrima.getText());
+        var quantidade = Integer.parseInt(txtQuantidade.getText());
+        var unidadeMedida = (UnidadeMedidaModel) cbUnidadeMedidaMateriaPrima.getSelectedItem();
+        var tipoMateriaPrima = (TipoMateriaPrimaModel) cbTipoMateriaPrima.getSelectedItem();   
+
+        var dto = new AtualizarMateriaPrimaDTO(nome, materiaPrimaOriginal.getNome(), descricao, valor, 
+                quantidade, unidadeMedida.getSigla(), tipoMateriaPrima.getNome());
+
+        var resultadoAtualizacao = atualizarMateriaPrimaService.atualizar(dto);
+        JOptionPane.showMessageDialog(null, resultadoAtualizacao.getMensagem());
+        
+        this.setVisible(false);
+        this.dispose();
+        
     }// GEN-LAST:event_btnAtualizarActionPerformed
 
-    private void TxtDescricaoMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_TxtDescricaoMateriaPrimaActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_TxtDescricaoMateriaPrimaActionPerformed
-
-    private void cbMateriaPrimaItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_cbMateriaPrimaItemStateChanged
-        // TODO add your handling code here:
-    }// GEN-LAST:event_cbMateriaPrimaItemStateChanged
-
-    private void btnAtualizarMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAtualizarMateriaPrimaActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_btnAtualizarMateriaPrimaActionPerformed
-
-    private void btnVoltarMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnVoltarMateriaPrimaActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_btnVoltarMateriaPrimaActionPerformed
-
-    private void cbUnidadesMedidasMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbUnidadesMedidasMateriaPrimaActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_cbUnidadesMedidasMateriaPrimaActionPerformed
-
-    private void cbMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbMateriaPrimaActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_cbMateriaPrimaActionPerformed
-
+    
+    
+    
     /**
      * @param args the command line arguments
      */
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
@@ -312,7 +328,6 @@ public class AtualizarMateriaPrimaView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TxtDescricaoMateriaPrima;
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<MateriaPrimaModel> cbSelecionarMateriaPrima;
@@ -322,11 +337,14 @@ public class AtualizarMateriaPrimaView extends javax.swing.JFrame {
     private javax.swing.JLabel lblAtualizarMateriaPrima;
     private javax.swing.JLabel lblDescricaoMateriaPrima;
     private javax.swing.JLabel lblNomeMateriaPrima;
+    private javax.swing.JLabel lblQuantidade;
     private javax.swing.JLabel lblSelecioneMateriaPrima;
     private javax.swing.JLabel lblTipoMateriaPrima;
     private javax.swing.JLabel lblUnidadeMedidaMateriaPrima;
     private javax.swing.JLabel lblValorMateriaPrima;
+    private javax.swing.JTextField txtDescricaoMateriaPrima;
     private javax.swing.JTextField txtNomeMateriaPrima;
+    private javax.swing.JTextField txtQuantidade;
     private javax.swing.JTextField txtValorMateriaPrima;
     // End of variables declaration//GEN-END:variables
 }
