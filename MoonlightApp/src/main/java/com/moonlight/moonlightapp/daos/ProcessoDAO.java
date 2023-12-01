@@ -71,7 +71,7 @@ public class ProcessoDAO extends ConexaoBanco
             Connection conexao = connect();
             PreparedStatement ps = conexao
                     .prepareStatement(
-                            "UPDATE processos SET ETAPA = ?, CUSTO = ?, ID_PRODUTO = ? WHERE ID_PROCESSO = ?");
+                            "UPDATE processos SET ETAPA = ?, CUSTO = ? WHERE ID_PROCESSO = ?");
 
             ps.setString(1, modelAtualizado.getEtapa());
             ps.setDouble(2, modelAtualizado.getCusto());

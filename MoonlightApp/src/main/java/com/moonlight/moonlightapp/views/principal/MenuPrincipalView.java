@@ -8,6 +8,7 @@ import com.moonlight.moonlightapp.services.produtos.DeletarProdutoService;
 import com.moonlight.moonlightapp.views.materiaprimas.CriarMateriaPrimaView;
 import com.moonlight.moonlightapp.views.materiaprimas.RemoverMateriaPrimaView;
 import com.moonlight.moonlightapp.views.materiaprimas.VisualizarMateriaPrimaView;
+import com.moonlight.moonlightapp.views.processos.AtualizarProcessoView;
 import com.moonlight.moonlightapp.views.processos.BuscarProcessoView;
 import com.moonlight.moonlightapp.views.processos.CriarProcessoView;
 import com.moonlight.moonlightapp.views.processos.RemoverProcessoView;
@@ -205,6 +206,11 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenu3.add(mnRemoverProcesso);
 
         mnAtualizarProcesso.setText("Atualizar");
+        mnAtualizarProcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnAtualizarProcessoActionPerformed(evt);
+            }
+        });
         jMenu3.add(mnAtualizarProcesso);
 
         mnConsultarProcesso.setText("Consultar");
@@ -382,6 +388,10 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         VisualizarMateriaPrimaView view = new VisualizarMateriaPrimaView();
         view.setVisible(true);
     }//GEN-LAST:event_mnConsultarMateriasPrimasActionPerformed
+    private void mnAtualizarProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAtualizarProcessoActionPerformed
+        AtualizarProcessoView view = new AtualizarProcessoView();
+        view.setVisible(true);
+    }//GEN-LAST:event_mnAtualizarProcessoActionPerformed
 
     /**
      * @param args the command line arguments
