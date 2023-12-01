@@ -1,5 +1,7 @@
 package com.moonlight.moonlightapp.services.materiasprimas;
 
+import java.sql.SQLException;
+
 import com.moonlight.moonlightapp.daos.MateriaPrimaDAO;
 import com.moonlight.moonlightapp.dtos.BaseDTO;
 import com.moonlight.moonlightapp.models.MateriaPrimaModel;
@@ -11,17 +13,25 @@ public class DeletarMateriaPrimaService {
     public DeletarMateriaPrimaService() {
         materiaPrimaDAO = new MateriaPrimaDAO();
     }
-    
-    public BaseDTO deletar(String nome){
-        if (DefaultValidator.isBlankOrEmpty(nome)){
+
+    public BaseDTO deletar(String nome) {
+        if (DefaultValidator.isBlankOrEmpty(nome)) {
             return BaseDTO.buildFalha("Nome inválido");
         }
 
-        if (!materiaPrimaDAO.isCadastrado(nome)){
+        if (!materiaPrimaDAO.isCadastrado(nome)) {
             return BaseDTO.buildFalha("Matéria Prima não encontrada");
         }
 
         var materiaPrima = buscarMateriaPrimaPorNome(nome);
+
+        try {
+            if (materiaPrimaDAO.isUtilizado(materiaPrima.getId())) {
+                return BaseDTO.buildFalha("matéria-prima sendo utilizada por um ou mais produtos");
+            }
+        } catch (SQLException e) {
+            return BaseDTO.buildFalha("não foi possível verificar se matéria-prima está sendo utilizada");
+        }
 
         var resultadoDeletacao = deletarMateriaPrima(materiaPrima);
         if (!resultadoDeletacao.getIsSucesso()) {
@@ -29,12 +39,13 @@ public class DeletarMateriaPrimaService {
         }
         return BaseDTO.buildSucesso("Matéria Prima deletada com sucesso!", resultadoDeletacao.getData());
     }
-        private MateriaPrimaModel buscarMateriaPrimaPorNome(String nome){
-            return materiaPrimaDAO.buscarPorNome(nome);
-        }
 
-        private BaseDTO deletarMateriaPrima(MateriaPrimaModel materiaPrima){
-            return materiaPrimaDAO.deletar(materiaPrima);
-        }
-    
+    private MateriaPrimaModel buscarMateriaPrimaPorNome(String nome) {
+        return materiaPrimaDAO.buscarPorNome(nome);
+    }
+
+    private BaseDTO deletarMateriaPrima(MateriaPrimaModel materiaPrima) {
+        return materiaPrimaDAO.deletar(materiaPrima);
+    }
+
 }
